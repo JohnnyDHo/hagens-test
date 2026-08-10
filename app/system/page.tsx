@@ -16,11 +16,11 @@ const colors = [
   { name: "Course red", hex: "#B9342E", className: styles.redSwatch },
 ];
 
-const stats = [
-  ["04", "laps"],
-  ["52.4", "miles"],
-  ["3,420", "ft gained"],
-  ["18", "riders"],
+const raceFacts = [
+  ["02", "race days"],
+  ["12 mi", "rolling loop"],
+  ["MAR 21", "day one"],
+  ["MAR 28", "day two"],
 ];
 
 export default function SystemPage() {
@@ -43,14 +43,21 @@ export default function SystemPage() {
         <p className={styles.issue}>System 01 / Rev. A</p>
       </header>
 
+      <nav className={styles.jumpNav} aria-label="Jump to a manual section">
+        <a href="#color-language">01 Color</a>
+        <a href="#type-language">02 Type</a>
+        <a href="#primitives">03 Race</a>
+        <a href="#image-language">04 Image</a>
+      </nav>
+
       <section className={styles.hero} aria-labelledby="manual-title">
         <div className={styles.heroIndex} aria-hidden="true">
-          47.61° N
-          <span />
-          122.33° W
+          Seattle area / Pacific Northwest
         </div>
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>HBR visual standard · road / dirt / track</p>
+          <p className={styles.kicker}>
+            Road / Cyclocross / Gravel / Track / Mountain bike
+          </p>
           <h1 id="manual-title">
             Puget Sound
             <em>Race Manual</em>
@@ -59,6 +66,7 @@ export default function SystemPage() {
             Built for the sharp end of the bunch. An editorial system for race
             days, team stories, and the roads that connect them.
           </p>
+          <p className={styles.inclusiveLine}>Everyone can race.</p>
         </div>
         <figure className={styles.heroFigure}>
           <Image
@@ -70,13 +78,13 @@ export default function SystemPage() {
           />
           <figcaption>
             <span>Plate 01</span>
-            Mason County, WA · Road discipline
+            Official HBR gallery · @hagensbermancycling
           </figcaption>
         </figure>
-        <p className={styles.heroNote}>Follow the wheel. Hold the line.</p>
+        <p className={styles.heroNote}>Five disciplines. One team.</p>
       </section>
 
-      <section className={styles.palette} aria-labelledby="palette-title">
+      <section className={styles.palette} id="color-language" aria-labelledby="palette-title">
         <div className={styles.sectionLabel}>
           <span>01</span>
           <h2 id="palette-title">Color / Weather</h2>
@@ -101,7 +109,7 @@ export default function SystemPage() {
         </div>
       </section>
 
-      <section className={styles.typeSection} aria-labelledby="type-title">
+      <section className={styles.typeSection} id="type-language" aria-labelledby="type-title">
         <div className={`${styles.sectionLabel} ${styles.sectionLabelDark}`}>
           <span>02</span>
           <h2 id="type-title">Type / Voice</h2>
@@ -117,26 +125,28 @@ export default function SystemPage() {
           </div>
           <div className={styles.editorialSample}>
             <p>Editorial / 18–28</p>
-            <blockquote>
-              “A team is measured in the work between races: the wheel held,
-              the call made, the last rider brought home.”
-            </blockquote>
-            <cite>— Field note 07, Seattle</cite>
+            <div className={styles.principle}>
+              <span>Source principle / Team philosophy</span>
+              <p>
+                “We race as a team, not as a group of individuals wearing the
+                same kit.”
+              </p>
+            </div>
           </div>
           <div className={styles.monoSample}>
             <p>Mono / 11–14</p>
             <dl>
               <div>
-                <dt>Call-up</dt>
-                <dd>06:45 PDT</dd>
+                <dt>Dues</dt>
+                <dd>$75</dd>
               </div>
               <div>
-                <dt>Wind</dt>
-                <dd>SSW 08 MPH</dd>
+                <dt>Team kit</dt>
+                <dd>1 required</dd>
               </div>
               <div>
-                <dt>Surface</dt>
-                <dd>Dry / Fast</dd>
+                <dt>Volunteer</dt>
+                <dd>1 local race</dd>
               </div>
             </dl>
           </div>
@@ -149,24 +159,24 @@ export default function SystemPage() {
           <h2 id="primitives-title">Race / Primitives</h2>
         </div>
         <div className={styles.raceHead}>
-          <div className={styles.dateBlock} aria-label="April 12">
-            <span>APR</span>
-            <strong>12</strong>
+          <div className={styles.dateBlock} aria-label="March 21, 2026">
+            <span>MAR</span>
+            <strong>21</strong>
             <small>2026</small>
           </div>
           <div className={styles.raceTitle}>
-            <p>HBR race file 004 / Road</p>
+            <p>Verified 2026 event / Road</p>
             <h3>Mason Lake Road Race</h3>
-            <span>Shelton, Washington · Senior Men 1/2</span>
+            <span>Mason Lake / Pacific Northwest · 12-mile rolling loop</span>
           </div>
-          <div className={styles.callout}>
-            <span>First call</span>
-            <strong>06:45</strong>
-            <small>PDT / Paddock B</small>
+          <div className={styles.callout} aria-label="March 28, 2026, race day two">
+            <span>Race day two</span>
+            <strong>28</strong>
+            <small>March / 2026</small>
           </div>
         </div>
         <dl className={styles.statLine}>
-          {stats.map(([value, label]) => (
+          {raceFacts.map(([value, label]) => (
             <div key={label}>
               <dt>{label}</dt>
               <dd>{value}</dd>
@@ -205,8 +215,8 @@ export default function SystemPage() {
               />
             </div>
             <figcaption>
-              <span>Plate 02 / The team before the start</span>
-              Close, human, unpolished. Let weather and place remain visible.
+              <span>Plate 02 / Team portrait</span>
+              Official HBR gallery · @hagensbermancycling
             </figcaption>
           </figure>
           <aside className={styles.imageRules} aria-label="Image treatment rules">

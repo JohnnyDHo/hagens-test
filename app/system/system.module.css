@@ -86,7 +86,8 @@
 }
 
 .utilityNav a,
-.footer > a {
+.footer > a,
+.jumpNav a {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -98,6 +99,28 @@
   text-underline-offset: 5px;
   text-transform: uppercase;
 }
+
+.jumpNav {
+  min-height: 45px;
+  padding-inline: clamp(20px, 4.2vw, 72px);
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 24px;
+  overflow-x: auto;
+  background: var(--glacier);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+
+.jumpNav::-webkit-scrollbar { display: none; }
+
+.jumpNav a {
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.jumpNav a:hover { color: var(--blue); }
 
 .issue {
   justify-self: end;
@@ -207,6 +230,19 @@
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1rem, 1.55vw, 1.32rem);
   line-height: 1.45;
+}
+
+.inclusiveLine {
+  width: fit-content;
+  margin: 24px 0 0;
+  padding: 10px 13px;
+  background: white;
+  color: var(--ink);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .heroFigure {
@@ -411,19 +447,21 @@
 
 .editorialSample { border-bottom: 1px solid rgba(244, 247, 249, 0.35); }
 
-.editorialSample blockquote {
+.principle p {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.1rem, 1.8vw, 1.55rem);
   line-height: 1.42;
 }
 
-.editorialSample cite {
+.principle span {
   display: block;
-  margin-top: 20px;
+  margin-bottom: 18px;
   color: #a9b3b9;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.7rem;
-  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .monoSample dl { margin: 0; }
@@ -706,6 +744,13 @@
   .footer { padding-inline: 16px; }
   .masthead { min-height: 76px; }
   .issue { font-size: 0.52rem; }
+  .jumpNav {
+    min-height: 49px;
+    padding-inline: 16px;
+    justify-content: flex-start;
+    gap: 22px;
+  }
+  .jumpNav a { min-height: 48px; }
   .hero { min-height: auto; display: block; padding-top: 0; }
   .hero::before { left: 16px; }
   .heroIndex { left: 32px; }
@@ -719,6 +764,7 @@
   .palette,
   .primitives { padding-block: 58px; }
   .sectionIntro { margin: 34px 0; }
+  .sectionLabel { font-size: 0.72rem; }
   .swatches { grid-template-columns: 1fr 1fr; }
   .swatches li { min-height: 145px; padding: 16px; font-size: 0.62rem; }
   .pairings { grid-template-columns: 1fr; }
