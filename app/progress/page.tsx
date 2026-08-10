@@ -74,7 +74,12 @@ export default function ProgressPage() {
 
         <ol className={styles.pieceList}>
           {progressPieces.map((piece) => (
-            <li className={styles.piece} key={piece.id}>
+            <li
+              className={`${styles.piece} ${
+                piece.status === "QUEUED" ? styles.queuedPiece : ""
+              }`}
+              key={piece.id}
+            >
               <div className={styles.identity}>
                 <span className={styles.number} aria-hidden="true">
                   {String(piece.id).padStart(2, "0")}

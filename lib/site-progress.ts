@@ -15,10 +15,11 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 1,
     name: "Content contract / progress board",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Builder complete; independent rendered critique pending.",
-    biggestGap: "Desktop and mobile visual QA has not yet been signed off.",
-    checkpoint: "P01 · R1 · BUILD",
+    round: 2,
+    latestVerdict:
+      "Builder addressed the contrast and touch-target failure; independent re-review pending.",
+    biggestGap: "Accessibility recheck pending.",
+    checkpoint: "P01 · R2 · BUILD",
   },
   {
     id: 2,
