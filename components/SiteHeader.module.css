@@ -1,0 +1,427 @@
+.skipLink {
+  position: fixed;
+  z-index: 110;
+  top: 10px;
+  left: 10px;
+  padding: 12px 16px;
+  background: #f4f7f9;
+  color: #071621;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-150%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.header {
+  --blue: #14539e;
+  --ink: #071621;
+  --glacier: #f4f7f9;
+  --red: #b9342e;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  min-height: 76px;
+  padding-inline: clamp(18px, 3.5vw, 58px);
+  display: grid;
+  grid-template-columns: minmax(210px, 1fr) auto minmax(104px, 1fr);
+  align-items: stretch;
+  gap: 28px;
+  background: rgba(244, 247, 249, 0.97);
+  border-bottom: 1px solid rgba(7, 22, 33, 0.22);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  backdrop-filter: blur(14px);
+}
+
+.header a,
+.mobileMenu a {
+  color: inherit;
+}
+
+.header a:focus-visible,
+.header button:focus-visible,
+.mobileMenu a:focus-visible,
+.skipLink:focus-visible {
+  outline: 3px solid var(--red, #b9342e);
+  outline-offset: -3px;
+}
+
+.brand {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brandMark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  background: var(--blue);
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: -0.05em;
+  transform: skewX(-7deg);
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.brand:hover .brandMark {
+  background: var(--red);
+  transform: skewX(-7deg) translateX(3px);
+}
+
+.brandName {
+  font-size: 0.69rem;
+  font-weight: 850;
+  letter-spacing: 0.075em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.brandName small {
+  display: block;
+  margin-top: 5px;
+  color: #53616a;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.desktopNavigation {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(13px, 1.55vw, 26px);
+}
+
+.primaryLink {
+  position: relative;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.primaryLink::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 4px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 180ms ease;
+}
+
+.primaryLink:hover,
+.activeLink {
+  color: var(--blue);
+}
+
+.primaryLink:hover::after,
+.primaryLink:focus-visible::after,
+.activeLink::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.membersLink {
+  align-self: center;
+  justify-self: end;
+  min-width: 104px;
+  min-height: 44px;
+  padding: 0 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: var(--ink);
+  color: white !important;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 160ms ease;
+}
+
+.membersLink:hover {
+  background: var(--blue);
+}
+
+.menuButton {
+  display: none;
+}
+
+.mobileMenu {
+  --blue: #14539e;
+  --ink: #071621;
+  --glacier: #f4f7f9;
+  --red: #b9342e;
+  position: fixed;
+  z-index: 90;
+  inset: 72px 0 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--blue);
+  color: white;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+@media (max-width: 980px) {
+  .header {
+    min-height: 72px;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .desktopNavigation,
+  .membersLink {
+    display: none;
+  }
+
+  .menuButton {
+    min-width: 86px;
+    min-height: 44px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid rgba(7, 22, 33, 0.48);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font: 800 0.61rem/1 var(--font-geist-mono), monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .menuButton:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .menuGlyph {
+    position: relative;
+    width: 18px;
+    height: 14px;
+    display: block;
+  }
+
+  .menuGlyph i {
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    display: block;
+    background: currentColor;
+    transition: transform 160ms ease, top 160ms ease;
+  }
+
+  .menuGlyph i:first-child {
+    top: 3px;
+  }
+
+  .menuGlyph i:last-child {
+    top: 10px;
+  }
+
+  .menuButton[aria-expanded="true"] .menuGlyph i:first-child {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+
+  .menuButton[aria-expanded="true"] .menuGlyph i:last-child {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  .mobileMenu {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+  }
+
+  .mobilePrimary {
+    padding: clamp(20px, 5vw, 54px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mobilePrimary a {
+    position: relative;
+    min-height: 64px;
+    padding: 6px 0;
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    color: white;
+    font-size: clamp(2rem, 6.6vw, 4.5rem);
+    font-weight: 850;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .mobilePrimary a > span {
+    align-self: start;
+    margin-top: 7px;
+    font: 700 0.55rem/1 var(--font-geist-mono), monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .mobilePrimary a > i {
+    font-size: 0.36em;
+    font-style: normal;
+    opacity: 0;
+    transform: translate(-8px, -8px);
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .mobilePrimary a:hover,
+  .mobilePrimary a:focus-visible,
+  .mobilePrimary .mobileActive {
+    color: #ffffff;
+    background: rgba(7, 22, 33, 0.18);
+  }
+
+  .mobilePrimary a:hover > i,
+  .mobilePrimary a:focus-visible > i,
+  .mobilePrimary .mobileActive > i {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .mobileUtility {
+    padding: clamp(24px, 5vw, 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--ink);
+  }
+
+  .mobileUtility p {
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.56);
+    font: 700 0.6rem/1 var(--font-geist-mono), monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .mobileUtility a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font: 750 0.68rem/1 var(--font-geist-mono), monospace;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .mobileUtility a:hover {
+    color: #88bfff;
+  }
+
+  .mobileUtility small {
+    margin-top: 28px;
+    color: rgba(255, 255, 255, 0.58);
+    font: 600 0.56rem/1.6 var(--font-geist-mono), monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 680px) {
+  .header {
+    padding-inline: 14px;
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brandMark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brandName {
+    font-size: 0.59rem;
+  }
+
+  .brandName small {
+    font-size: 0.48rem;
+  }
+
+  .menuButton {
+    min-width: 76px;
+    padding-inline: 10px;
+  }
+
+  .mobileMenu {
+    grid-template-columns: 1fr;
+  }
+
+  .mobilePrimary {
+    min-height: 450px;
+    padding: 22px 20px 30px;
+    justify-content: flex-start;
+  }
+
+  .mobilePrimary a {
+    min-height: 60px;
+    grid-template-columns: 28px 1fr auto;
+    font-size: clamp(2rem, 11vw, 3.6rem);
+  }
+
+  .mobileUtility {
+    min-height: 285px;
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brandName small {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brandMark,
+  .primaryLink::after,
+  .menuGlyph i,
+  .mobilePrimary a > i {
+    transition: none;
+  }
+}

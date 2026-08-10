@@ -34,10 +34,10 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 3,
     name: "Global shell",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "Navigation, mobile menu, and footer behaviors are not yet built.",
+    latestVerdict: "Builder complete; review pending.",
+    biggestGap: "Desktop/mobile interaction critique pending.",
     checkpoint: "P03 · R1 · BUILD",
   },
   {
