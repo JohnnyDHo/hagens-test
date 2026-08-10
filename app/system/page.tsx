@@ -116,7 +116,7 @@ export default function SystemPage() {
         </div>
         <div className={styles.typeGrid}>
           <div className={styles.displaySample}>
-            <p>Display / 96–168</p>
+            <p>Display / 67–160px responsive</p>
             <strong>
               Ride the
               <br />
@@ -124,7 +124,7 @@ export default function SystemPage() {
             </strong>
           </div>
           <div className={styles.editorialSample}>
-            <p>Editorial / 18–28</p>
+            <p>Editorial / 18–25px responsive</p>
             <div className={styles.principle}>
               <span>Source principle / Team philosophy</span>
               <p>
