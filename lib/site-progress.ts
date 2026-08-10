@@ -24,10 +24,10 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 2,
     name: "Design system",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "Editorial tokens and responsive primitives are not yet established.",
+    latestVerdict: "Builder complete; independent desktop/mobile critique pending.",
+    biggestGap: "Blind rendered comparison has not yet passed.",
     checkpoint: "P02 · R1 · BUILD",
   },
   {
