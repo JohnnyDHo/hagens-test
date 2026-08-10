@@ -58,25 +58,30 @@ export default function SiteHeader() {
     const scrollY = window.scrollY;
     const rootStyles = {
       overflow: root.style.overflow,
+      overscrollBehavior: root.style.overscrollBehavior,
       scrollBehavior: root.style.scrollBehavior,
     };
     const bodyStyles = {
       overflow: body.style.overflow,
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      width: body.style.width,
+      overscrollBehavior: body.style.overscrollBehavior,
     };
 
     root.style.overflow = "hidden";
+    root.style.overscrollBehavior = "none";
     body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = `-${scrollX}px`;
-    body.style.right = "0";
-    body.style.width = "100%";
+    body.style.overscrollBehavior = "none";
     firstLink?.focus();
+
+    const eventTargetsMenu = (target: EventTarget | null) =>
+      target instanceof Node && mobileMenu?.contains(target);
+
+    const preventBackgroundWheel = (event: WheelEvent) => {
+      if (!eventTargetsMenu(event.target)) event.preventDefault();
+    };
+
+    const preventBackgroundTouch = (event: TouchEvent) => {
+      if (!eventTargetsMenu(event.target)) event.preventDefault();
+    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -105,16 +110,23 @@ export default function SiteHeader() {
     };
 
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("wheel", preventBackgroundWheel, {
+      capture: true,
+      passive: false,
+    });
+    document.addEventListener("touchmove", preventBackgroundTouch, {
+      capture: true,
+      passive: false,
+    });
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("wheel", preventBackgroundWheel, true);
+      document.removeEventListener("touchmove", preventBackgroundTouch, true);
       root.style.overflow = rootStyles.overflow;
+      root.style.overscrollBehavior = rootStyles.overscrollBehavior;
       body.style.overflow = bodyStyles.overflow;
-      body.style.position = bodyStyles.position;
-      body.style.top = bodyStyles.top;
-      body.style.left = bodyStyles.left;
-      body.style.right = bodyStyles.right;
-      body.style.width = bodyStyles.width;
+      body.style.overscrollBehavior = bodyStyles.overscrollBehavior;
       root.style.scrollBehavior = "auto";
       window.scrollTo(scrollX, scrollY);
       root.style.scrollBehavior = rootStyles.scrollBehavior;
@@ -123,7 +135,7 @@ export default function SiteHeader() {
   }, [menuOpen]);
 
   useEffect(() => {
-    const desktopMedia = window.matchMedia("(min-width: 981px)");
+    const desktopMedia = window.matchMedia("(min-width: 1024px)");
     const closeAtDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) setMenuOpen(false);
     };
@@ -230,7 +242,9 @@ export default function SiteHeader() {
                 }}
                 key={item.label}
               >
-                <span aria-hidden="true">0{index + 1}</span>
+                <span className={styles.mobileIndex} aria-hidden="true">
+                  0{index + 1}
+                </span>
                 {item.label}
                 <i aria-hidden="true">↘</i>
               </Link>
