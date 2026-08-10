@@ -14,8 +14,8 @@
 }
 
 .footer a:focus-visible {
-  outline: 3px solid var(--red);
-  outline-offset: 4px;
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .topLine {
@@ -150,6 +150,10 @@
 
 .endLine p {
   color: rgba(255, 255, 255, 0.55);
+}
+
+.endLine div p + p {
+  margin-top: 5px;
 }
 
 .endLine a {

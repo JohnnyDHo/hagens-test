@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ShellPage() {
   return (
     <div className={styles.shell} id="top">
-      <SiteHeader activeItem="Home" />
+      <SiteHeader />
 
       <main className={styles.page} id="main-content">
         <section className={styles.intro} aria-labelledby="shell-title">

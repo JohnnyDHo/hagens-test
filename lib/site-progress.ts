@@ -35,10 +35,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 3,
     name: "Global shell",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Builder complete; review pending.",
-    biggestGap: "Desktop/mobile interaction critique pending.",
-    checkpoint: "P03 · R1 · BUILD",
+    round: 2,
+    latestVerdict:
+      "FAIL — 8.2 despite a clear A/B win; Round 2 fixes complete and review pending.",
+    biggestGap:
+      "Independent verification of mobile scroll lock, drawer spacing, and focus contrast is pending.",
+    checkpoint: "P03 · R2 · BUILD",
   },
   {
     id: 4,

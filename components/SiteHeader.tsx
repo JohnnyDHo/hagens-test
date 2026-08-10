@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./SiteHeader.module.css";
 
@@ -14,7 +15,7 @@ const primaryNavigation = [
 ] as const;
 
 const utilityNavigation = [
-  { label: "Members", href: "https://www.hbsccycling.com/calendar" },
+  { label: "Members calendar", href: "https://www.hbsccycling.com/calendar" },
   {
     label: "Instagram",
     href: "https://www.instagram.com/hagensbermancycling/",
@@ -25,25 +26,56 @@ const utilityNavigation = [
   },
 ] as const;
 
-type SiteHeaderProps = {
-  activeItem?: (typeof primaryNavigation)[number]["label"];
-};
-
-export default function SiteHeader({ activeItem }: SiteHeaderProps) {
+export default function SiteHeader() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState<string | null>(null);
   const navigationId = `site-navigation-${useId().replaceAll(":", "")}`;
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const syncHash = () => setCurrentHash(window.location.hash);
+
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    window.addEventListener("popstate", syncHash);
+    return () => {
+      window.removeEventListener("hashchange", syncHash);
+      window.removeEventListener("popstate", syncHash);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
     if (!menuOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const root = document.documentElement;
+    const body = document.body;
     const menuButton = menuButtonRef.current;
     const mobileMenu = mobileMenuRef.current;
     const firstLink = mobileMenu?.querySelector<HTMLAnchorElement>("a");
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const rootStyles = {
+      overflow: root.style.overflow,
+      scrollBehavior: root.style.scrollBehavior,
+    };
+    const bodyStyles = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    };
 
-    document.body.style.overflow = "hidden";
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = `-${scrollX}px`;
+    body.style.right = "0";
+    body.style.width = "100%";
     firstLink?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -75,8 +107,17 @@ export default function SiteHeader({ activeItem }: SiteHeaderProps) {
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      root.style.overflow = rootStyles.overflow;
+      body.style.overflow = bodyStyles.overflow;
+      body.style.position = bodyStyles.position;
+      body.style.top = bodyStyles.top;
+      body.style.left = bodyStyles.left;
+      body.style.right = bodyStyles.right;
+      body.style.width = bodyStyles.width;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(scrollX, scrollY);
+      root.style.scrollBehavior = rootStyles.scrollBehavior;
       menuButton?.focus();
     };
   }, [menuOpen]);
@@ -92,6 +133,11 @@ export default function SiteHeader({ activeItem }: SiteHeaderProps) {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const noteNavigationTarget = (href: string) => {
+    const hashStart = href.indexOf("#");
+    setCurrentHash(hashStart === -1 ? "" : href.slice(hashStart));
+  };
+  const currentTarget = currentHash === null ? null : `${pathname}${currentHash}`;
 
   return (
     <>
@@ -115,25 +161,31 @@ export default function SiteHeader({ activeItem }: SiteHeaderProps) {
         </Link>
 
         <nav className={styles.desktopNavigation} aria-label="Primary navigation">
-          {primaryNavigation.map((item) => (
-            <Link
-              className={`${styles.primaryLink} ${
-                activeItem === item.label ? styles.activeLink : ""
-              }`}
-              href={item.href}
-              aria-current={activeItem === item.label ? "page" : undefined}
-              key={item.label}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {primaryNavigation.map((item) => {
+            const isActive = currentTarget === item.href;
+
+            return (
+              <Link
+                className={`${styles.primaryLink} ${isActive ? styles.activeLink : ""}`}
+                href={item.href}
+                aria-current={isActive ? (item.href.includes("#") ? "location" : "page") : undefined}
+                onClick={() => noteNavigationTarget(item.href)}
+                key={item.label}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <a
           className={styles.membersLink}
           href="https://www.hbsccycling.com/calendar"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Members calendar (opens in a new tab)"
         >
-          <span>Members</span>
+          <span>Members calendar</span>
           <span aria-hidden="true">↗</span>
         </a>
 
@@ -164,25 +216,38 @@ export default function SiteHeader({ activeItem }: SiteHeaderProps) {
         hidden={!menuOpen}
       >
         <nav className={styles.mobilePrimary} aria-label="Mobile primary navigation">
-          {primaryNavigation.map((item, index) => (
-            <Link
-              className={activeItem === item.label ? styles.mobileActive : ""}
-              href={item.href}
-              aria-current={activeItem === item.label ? "page" : undefined}
-              onClick={closeMenu}
-              key={item.label}
-            >
-              <span aria-hidden="true">0{index + 1}</span>
-              {item.label}
-              <i aria-hidden="true">↘</i>
-            </Link>
-          ))}
+          {primaryNavigation.map((item, index) => {
+            const isActive = currentTarget === item.href;
+
+            return (
+              <Link
+                className={isActive ? styles.mobileActive : ""}
+                href={item.href}
+                aria-current={isActive ? (item.href.includes("#") ? "location" : "page") : undefined}
+                onClick={() => {
+                  noteNavigationTarget(item.href);
+                  closeMenu();
+                }}
+                key={item.label}
+              >
+                <span aria-hidden="true">0{index + 1}</span>
+                {item.label}
+                <i aria-hidden="true">↘</i>
+              </Link>
+            );
+          })}
         </nav>
 
         <div className={styles.mobileUtility}>
           <p>Team desk</p>
           {utilityNavigation.map((item) => (
-            <a href={item.href} onClick={closeMenu} key={item.label}>
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              key={item.label}
+            >
               {item.label}
               <span aria-hidden="true">↗</span>
             </a>

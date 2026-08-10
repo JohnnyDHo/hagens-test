@@ -43,7 +43,12 @@ export default function SiteFooter() {
 
         <nav aria-label="Footer navigation">
           {footerLinks.map((item) => (
-            <a href={item.href} key={item.label}>
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={item.label}
+            >
               {item.label}
               <span aria-hidden="true">↗</span>
             </a>
@@ -52,7 +57,10 @@ export default function SiteFooter() {
       </div>
 
       <div className={styles.endLine}>
-        <p>Road / Cyclocross / Gravel / Track / Mountain bike</p>
+        <div>
+          <p>© 2026 Hagens Berman Racing Seattle</p>
+          <p>Road / Cyclocross / Gravel / Track / Mountain bike</p>
+        </div>
         <a href="#top">Back to start <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
