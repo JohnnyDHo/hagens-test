@@ -118,10 +118,12 @@ export default function Home() {
           <section className={styles.teamMethod} aria-labelledby="method-title">
             <header>
               <p>How the team moves / 04</p>
-              <h3 id="method-title">
-                The work between
-                <em>the start lines.</em>
-              </h3>
+              <div className={styles.methodTitle}>
+                <h3 id="method-title">More than race day.</h3>
+                <p>
+                  Team racing is learned, practiced, and supported together.
+                </p>
+              </div>
             </header>
 
             <ol className={styles.methodList}>
@@ -169,57 +171,126 @@ export default function Home() {
             aria-labelledby="disciplines-title"
           >
             <header className={styles.disciplineHeader}>
-              <p>Race manual / Five disciplines</p>
-              <h3 id="disciplines-title">
-                Five ways in.
-                <em>One team.</em>
-              </h3>
+              <p>Race atlas / 01—05</p>
+              <h3 id="disciplines-title">The race changes under your wheels.</h3>
               <p>
-                Pick a course—or race them all. The same team-first approach
-                carries across every discipline.
+                Five disciplines. One roster. The same team-first approach
+                carries from paved bunches to forest trails.
               </p>
             </header>
 
-            <figure className={styles.actionFrame}>
-              <Image
-                src="/media/action-03.webp"
-                alt="A road-race field climbing together on a forest-lined road"
-                width="750"
-                height="500"
-                sizes="(max-width: 760px) calc(100vw - 40px), 40vw"
-                loading="lazy"
-              />
-              <figcaption>
-                <span>Road racing / Team archive</span>
-                <span>Pacific Northwest</span>
-              </figcaption>
-            </figure>
+            <ol className={styles.disciplineAtlas}>
+              <li className={styles.roadLane}>
+                <article>
+                  <figure>
+                    <Image
+                      src="/media/action-03.webp"
+                      alt="A road-race field climbing together on a paved forest highway"
+                      width="750"
+                      height="500"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 55vw"
+                      loading="lazy"
+                    />
+                    <figcaption>HBR team archive</figcaption>
+                  </figure>
+                  <div className={styles.laneCopy}>
+                    <span>01 / Paved bunch</span>
+                    <h4>Road</h4>
+                    <p>Paved courses. Bunch racing.</p>
+                  </div>
+                </article>
+              </li>
 
-            <ol className={styles.disciplineList}>
-              <li>
-                <span>01</span>
-                <h4>Road</h4>
-                <p>HBR discipline</p>
+              <li className={styles.gravelLane}>
+                <article>
+                  <figure>
+                    <Image
+                      src="/media/discipline-gravel.webp"
+                      alt="A cyclist descending a rocky mixed-surface route above forested hills"
+                      width="1400"
+                      height="934"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 31vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Reference image / Drakepirates · CC BY-SA 4.0
+                    </figcaption>
+                  </figure>
+                  <div className={styles.laneCopy}>
+                    <span>02 / Mixed surface</span>
+                    <h4>Gravel</h4>
+                    <p>Loose ground. Long routes.</p>
+                  </div>
+                </article>
               </li>
-              <li>
-                <span>02</span>
-                <h4>Gravel</h4>
-                <p>HBR discipline</p>
+
+              <li className={styles.crossLane}>
+                <article>
+                  <figure>
+                    <Image
+                      src="/media/discipline-cyclocross.webp"
+                      alt="Cyclocross racers climbing a grass incline inside a taped circuit"
+                      width="1024"
+                      height="1024"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Reference image / Roxanne King · CC BY 2.0
+                    </figcaption>
+                  </figure>
+                  <div className={styles.laneCopy}>
+                    <span>03 / Off-road circuit</span>
+                    <h4>Cyclocross</h4>
+                    <p>Taped course. Fast laps.</p>
+                  </div>
+                </article>
               </li>
-              <li>
-                <span>03</span>
-                <h4>Cyclocross</h4>
-                <p>HBR discipline</p>
+
+              <li className={styles.trackLane}>
+                <article>
+                  <figure>
+                    <Image
+                      src="/media/discipline-track.webp"
+                      alt="A cyclist riding the banking of an outdoor velodrome"
+                      width="1000"
+                      height="1334"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Reference image / Vitalii Khodzinskyi · Unsplash
+                    </figcaption>
+                  </figure>
+                  <div className={styles.laneCopy}>
+                    <span>04 / Velodrome</span>
+                    <h4>Track</h4>
+                    <p>Banked oval. Measured lines.</p>
+                  </div>
+                </article>
               </li>
-              <li>
-                <span>04</span>
-                <h4>Track</h4>
-                <p>HBR discipline</p>
-              </li>
-              <li>
-                <span>05</span>
-                <h4>Mountain bike</h4>
-                <p>HBR discipline</p>
+
+              <li className={styles.mountainLane}>
+                <article>
+                  <figure>
+                    <Image
+                      src="/media/discipline-mtb.webp"
+                      alt="A mountain biker navigating a narrow trail through dense forest"
+                      width="1000"
+                      height="1500"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Reference image / Jonathan Cooper · Pexels
+                    </figcaption>
+                  </figure>
+                  <div className={styles.laneCopy}>
+                    <span>05 / Trail</span>
+                    <h4>Mountain bike</h4>
+                    <p>Forest trail. Off-road lines.</p>
+                  </div>
+                </article>
               </li>
             </ol>
 
