@@ -191,7 +191,9 @@ export default function Home() {
                       sizes="(max-width: 760px) calc(100vw - 40px), 55vw"
                       loading="lazy"
                     />
-                    <figcaption>HBR team archive</figcaption>
+                    <figcaption className={styles.officialCredit}>
+                      Official HBR team archive
+                    </figcaption>
                   </figure>
                   <div className={styles.laneCopy}>
                     <span>01 / Paved bunch</span>
@@ -212,8 +214,26 @@ export default function Home() {
                       sizes="(max-width: 760px) calc(100vw - 40px), 31vw"
                       loading="lazy"
                     />
-                    <figcaption>
-                      Reference image / Drakepirates · CC BY-SA 4.0
+                    <figcaption className={styles.photoCredit}>
+                      <span>Reference image · Cropped + WebP derivative</span>
+                      <span className={styles.creditLinks}>
+                        <a
+                          href="https://commons.wikimedia.org/wiki/File:Cyclist_on_gravel_bike_descending_Eldridge_Grade.jpg"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the gravel reference image by Drakepirates on Wikimedia Commons (opens in a new tab)"
+                        >
+                          Image · Drakepirates <span aria-hidden="true">↗</span>
+                        </a>
+                        <a
+                          href="https://creativecommons.org/licenses/by-sa/4.0/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the CC BY-SA 4.0 license for the gravel reference image (opens in a new tab)"
+                        >
+                          CC BY-SA 4.0 <span aria-hidden="true">↗</span>
+                        </a>
+                      </span>
                     </figcaption>
                   </figure>
                   <div className={styles.laneCopy}>
@@ -235,8 +255,26 @@ export default function Home() {
                       sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
                       loading="lazy"
                     />
-                    <figcaption>
-                      Reference image / Roxanne King · CC BY 2.0
+                    <figcaption className={styles.photoCredit}>
+                      <span>Reference image · Cropped + WebP derivative</span>
+                      <span className={styles.creditLinks}>
+                        <a
+                          href="https://commons.wikimedia.org/wiki/File:JeremyPowersCXNats.jpg"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the cyclocross reference image by Roxanne King on Wikimedia Commons (opens in a new tab)"
+                        >
+                          Image · Roxanne King <span aria-hidden="true">↗</span>
+                        </a>
+                        <a
+                          href="https://creativecommons.org/licenses/by/2.0/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the CC BY 2.0 license for the cyclocross reference image (opens in a new tab)"
+                        >
+                          CC BY 2.0 <span aria-hidden="true">↗</span>
+                        </a>
+                      </span>
                     </figcaption>
                   </figure>
                   <div className={styles.laneCopy}>
@@ -258,8 +296,26 @@ export default function Home() {
                       sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
                       loading="lazy"
                     />
-                    <figcaption>
-                      Reference image / Vitalii Khodzinskyi · Unsplash
+                    <figcaption className={styles.photoCredit}>
+                      <span>Reference image · Cropped + WebP derivative</span>
+                      <span className={styles.creditLinks}>
+                        <a
+                          href="https://unsplash.com/photos/a-person-riding-a-bike-on-a-track-QvN9oEvvdm4"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the track reference image by Vitalii Khodzinskyi on Unsplash (opens in a new tab)"
+                        >
+                          Image · Vitalii Khodzinskyi <span aria-hidden="true">↗</span>
+                        </a>
+                        <a
+                          href="https://unsplash.com/license"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the Unsplash License for the track reference image (opens in a new tab)"
+                        >
+                          Unsplash License <span aria-hidden="true">↗</span>
+                        </a>
+                      </span>
                     </figcaption>
                   </figure>
                   <div className={styles.laneCopy}>
@@ -281,8 +337,26 @@ export default function Home() {
                       sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
                       loading="lazy"
                     />
-                    <figcaption>
-                      Reference image / Jonathan Cooper · Pexels
+                    <figcaption className={styles.photoCredit}>
+                      <span>Reference image · Cropped + WebP derivative</span>
+                      <span className={styles.creditLinks}>
+                        <a
+                          href="https://www.pexels.com/photo/man-using-a-mountain-bike-in-the-forest-11715051/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the mountain bike reference image by Jonathan Cooper on Pexels (opens in a new tab)"
+                        >
+                          Image · Jonathan Cooper <span aria-hidden="true">↗</span>
+                        </a>
+                        <a
+                          href="https://www.pexels.com/license/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View the Pexels License for the mountain bike reference image (opens in a new tab)"
+                        >
+                          Pexels License <span aria-hidden="true">↗</span>
+                        </a>
+                      </span>
                     </figcaption>
                   </figure>
                   <div className={styles.laneCopy}>

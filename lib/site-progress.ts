@@ -55,11 +55,11 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 5,
     name: "Team story / disciplines",
     status: "IN REVIEW",
-    round: 2,
+    round: 3,
     latestVerdict:
-      "R1 FAIL — 7.9. R2 rebuilt typography, mobile microtype, and the five-discipline race atlas; critique pending.",
-    biggestGap: "Pending fresh desktop/mobile review of the rebuilt race-atlas finale.",
-    checkpoint: "P05 · R2 · REVIEW",
+      "R2 FAIL — 8.3. R3 adds complete linked source, license, and derivative credits; mobile re-review pending.",
+    biggestGap: "Pending fresh mobile review of the production-complete attribution rails.",
+    checkpoint: "P05 · R3 · REVIEW",
   },
   {
     id: 6,

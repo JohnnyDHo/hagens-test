@@ -740,7 +740,7 @@
   object-position: center 48%;
 }
 
-.disciplineAtlas figcaption {
+.officialCredit {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -755,6 +755,51 @@
   line-height: 1.45;
   text-align: right;
   text-transform: uppercase;
+}
+
+.photoCredit {
+  padding-top: 12px;
+  display: grid;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.creditLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 7px;
+}
+
+.creditLinks a {
+  min-height: 44px;
+  padding: 9px 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(7, 22, 33, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.creditLinks a:hover {
+  background: white;
+  color: var(--ink);
+}
+
+.creditLinks a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
 }
 
 .laneCopy {
@@ -1278,6 +1323,21 @@
     max-width: 106px;
   }
 
+  .photoCredit {
+    padding-top: 10px;
+    gap: 6px;
+  }
+
+  .creditLinks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .creditLinks a {
+    width: 100%;
+  }
+
   .disciplineFooter {
     min-height: 116px;
     margin-top: 64px;
@@ -1300,7 +1360,8 @@
   .squadRail > p,
   .squadRail ul,
   .disciplineHeader > p:first-child,
-  .disciplineAtlas figcaption,
+  .officialCredit,
+  .photoCredit,
   .laneCopy span,
   .laneCopy p,
   .disciplineFooter {
