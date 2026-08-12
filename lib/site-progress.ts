@@ -74,22 +74,21 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 7,
     name: "Join / membership",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 2,
     latestVerdict:
-      "R1 FAIL — 8.6 overall; editorial structure passed, but desktop photo rendering and official signup wording required correction.",
-    biggestGap:
-      "Fresh R2 critic must verify native-friendly photo rendering and the exact join-page handoff.",
-    checkpoint: "P07 · R2 · REVIEW",
+      "PASS — 9.3 overall; clear desktop/mobile A/B win with verified signup truth and no objective defect.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P07 · R2 · PASS",
   },
   {
     id: 8,
     name: "Race gallery",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "Official race imagery is curated but the gallery experience is not built.",
-    checkpoint: "P08 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "Builder assignment active.",
+    biggestGap: "The full gallery experience is not yet built.",
+    checkpoint: "P08 · R1 · BUILD",
   },
   {
     id: 9,
