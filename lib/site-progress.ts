@@ -45,10 +45,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 4,
     name: "Cinematic hero",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Round 1 production hero built; independent rendered review pending.",
-    biggestGap: "Awaiting desktop/mobile A/B verdict on art direction and first-fold impact.",
-    checkpoint: "P04 · R1 · REVIEW",
+    round: 2,
+    latestVerdict:
+      "Round 1 FAIL — 7.8 overall despite a clear visual A/B win; objective defects returned for repair.",
+    biggestGap:
+      "Round 2 repairs CTA routing, destination integrity, mobile clipping, and the video seam; re-review pending.",
+    checkpoint: "P04 · R2 · REVIEW",
   },
   {
     id: 5,

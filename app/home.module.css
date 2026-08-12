@@ -28,6 +28,17 @@
   color: white;
 }
 
+.topRail,
+.titleBlock,
+.bottomRail,
+.bottomRail > *,
+.actions,
+.actions a,
+.handoff > *,
+.sectionIndexRow > * {
+  min-width: 0;
+}
+
 .hero::before {
   content: "";
   position: absolute;
@@ -179,13 +190,13 @@
 
 .titleBlock h1 {
   width: min-content;
+  max-width: 100%;
   margin: 0;
   font-size: clamp(6.8rem, 13.1vw, 12.8rem);
   font-weight: 880;
   letter-spacing: -0.088em;
   line-height: 0.7;
   text-transform: uppercase;
-  text-wrap: nowrap;
 }
 
 .titleBlock h1 span,
@@ -223,6 +234,8 @@
 }
 
 .actions {
+  width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: stretch;
   gap: 10px;
@@ -342,6 +355,116 @@
   border-top: 4px solid var(--red);
 }
 
+.handoff,
+.sectionIndexRow {
+  scroll-margin-top: 88px;
+}
+
+.sectionIndex {
+  padding-inline: clamp(20px, 4.2vw, 72px);
+  background: var(--ink);
+  color: white;
+}
+
+.sectionIndexHeader {
+  min-height: 128px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.sectionIndexHeader p,
+.sectionNumber,
+.sectionTag,
+.joinRow > a {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sectionIndexHeader p {
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.58rem;
+}
+
+.sectionIndexHeader p:first-child {
+  color: white;
+}
+
+.sectionIndexRow {
+  min-height: 218px;
+  display: grid;
+  grid-template-columns: minmax(108px, 0.42fr) minmax(180px, 0.72fr) minmax(280px, 1.55fr) minmax(150px, 0.55fr);
+  align-items: center;
+  gap: clamp(22px, 3.6vw, 62px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.sectionNumber,
+.sectionTag {
+  margin: 0;
+  font-size: 0.56rem;
+  line-height: 1.55;
+}
+
+.sectionNumber {
+  color: #85baf6;
+}
+
+.sectionIndexRow h2 {
+  margin: 0;
+  font-size: clamp(2.6rem, 5vw, 5.4rem);
+  font-weight: 860;
+  letter-spacing: -0.065em;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.sectionSummary {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.04rem, 1.45vw, 1.26rem);
+  line-height: 1.48;
+  text-wrap: balance;
+}
+
+.sectionTag {
+  justify-self: end;
+  max-width: 190px;
+  color: rgba(255, 255, 255, 0.58);
+  text-align: right;
+}
+
+.joinRow > a {
+  min-height: 52px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: var(--blue);
+  color: white;
+  font-size: 0.61rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.joinRow > a:hover {
+  background: white;
+  color: var(--ink);
+}
+
+.joinRow > a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+
 @media (max-width: 1120px) {
   .bottomRail {
     grid-template-columns: minmax(260px, 0.8fr) auto;
@@ -358,6 +481,26 @@
   .handoff aside {
     grid-column: 2;
     max-width: 380px;
+  }
+
+  .sectionIndexRow {
+    grid-template-columns: 110px minmax(170px, 0.65fr) minmax(0, 1.35fr);
+  }
+
+  .sectionTag,
+  .joinRow > a {
+    grid-column: 3;
+    justify-self: start;
+  }
+
+  .sectionTag {
+    margin-top: -34px;
+    text-align: left;
+  }
+
+  .joinRow > a {
+    min-width: 190px;
+    margin-top: -20px;
   }
 }
 
@@ -418,7 +561,9 @@
   }
 
   .titleBlock h1 {
-    font-size: clamp(3.8rem, 19vw, 5.6rem);
+    width: 100%;
+    max-width: 100%;
+    font-size: min(16.6vw, 5.6rem);
     line-height: 0.72;
   }
 
@@ -440,6 +585,8 @@
   }
 
   .actions {
+    width: 100%;
+    max-width: 100%;
     gap: 8px;
   }
 
@@ -451,6 +598,7 @@
     gap: 8px;
     font-size: 0.55rem;
     letter-spacing: 0.065em;
+    white-space: normal;
   }
 
   .handoff {
@@ -471,15 +619,58 @@
   .handoff aside {
     max-width: 350px;
   }
+
+  .sectionIndex {
+    padding-inline: 20px;
+  }
+
+  .sectionIndexHeader {
+    min-height: 104px;
+  }
+
+  .sectionIndexRow {
+    min-height: 310px;
+    padding-block: 38px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 17px;
+  }
+
+  .sectionIndexRow h2,
+  .sectionSummary,
+  .sectionTag,
+  .joinRow > a {
+    grid-column: 1;
+  }
+
+  .sectionIndexRow h2 {
+    font-size: clamp(3.2rem, 15vw, 4.8rem);
+  }
+
+  .sectionSummary {
+    max-width: 520px;
+    font-size: 1rem;
+  }
+
+  .sectionTag,
+  .joinRow > a {
+    margin-top: 4px;
+    justify-self: start;
+  }
+
+  .sectionTag {
+    max-width: none;
+    text-align: left;
+  }
+
+  .joinRow > a {
+    min-width: 196px;
+  }
 }
 
 @media (max-width: 380px) {
   .topRail p:last-child {
     display: none;
-  }
-
-  .titleBlock h1 {
-    font-size: 19vw;
   }
 
   .actions a {
@@ -495,6 +686,10 @@
   }
 
   .actions a {
+    transition: none;
+  }
+
+  .joinRow > a {
     transition: none;
   }
 }

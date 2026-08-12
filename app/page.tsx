@@ -47,7 +47,7 @@ export default function Home() {
             </p>
 
             <div className={styles.actions} aria-label="Team actions">
-              <a href="https://www.hbsccycling.com/join">
+              <a href="https://www.hbsccycling.com/join-us">
                 Join the team <span aria-hidden="true">↗</span>
               </a>
               <a href="#team">
@@ -73,6 +73,72 @@ export default function Home() {
             around a team-first approach.
           </aside>
         </section>
+
+        <div className={styles.sectionIndex} aria-label="Explore the team">
+          <header className={styles.sectionIndexHeader}>
+            <p>Race manual / Section index</p>
+            <p>HBR · Seattle</p>
+          </header>
+
+          <section
+            className={styles.sectionIndexRow}
+            id="events"
+            aria-labelledby="events-title"
+          >
+            <p className={styles.sectionNumber}>02 / Race days</p>
+            <h2 id="events-title">Events</h2>
+            <p className={styles.sectionSummary}>
+              The team presents the Mason Lake road race near Grapeview and
+              the Women, Trans, Femme, Non-Binary racing series at Pacific
+              Raceways.
+            </p>
+            <p className={styles.sectionTag}>Mason Lake / WTNB</p>
+          </section>
+
+          <section
+            className={styles.sectionIndexRow}
+            id="gallery"
+            aria-labelledby="gallery-title"
+          >
+            <p className={styles.sectionNumber}>03 / Race archive</p>
+            <h2 id="gallery-title">Gallery</h2>
+            <p className={styles.sectionSummary}>
+              Official race-day photography from Mason Lake follows the team
+              through the bunch, the break, and the finish.
+            </p>
+            <p className={styles.sectionTag}>Official HBR gallery</p>
+          </section>
+
+          <section
+            className={styles.sectionIndexRow}
+            id="partners"
+            aria-labelledby="partners-title"
+          >
+            <p className={styles.sectionNumber}>04 / Team support</p>
+            <h2 id="partners-title">Partners</h2>
+            <p className={styles.sectionSummary}>
+              Hagens Berman, Smith, Skratch Labs, Specialized, and SILCA
+              support the team.
+            </p>
+            <p className={styles.sectionTag}>Five verified partners</p>
+          </section>
+
+          <section
+            className={`${styles.sectionIndexRow} ${styles.joinRow}`}
+            id="join"
+            aria-labelledby="join-title"
+          >
+            <p className={styles.sectionNumber}>05 / Membership</p>
+            <h2 id="join-title">Join</h2>
+            <p className={styles.sectionSummary}>
+              Race with a Seattle team built around weekly rides, rider
+              development, shared support, and showing up for one another.
+            </p>
+            <a href="https://www.hbsccycling.com/join-us">
+              Join the team <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </div>
       </main>
 
       <SiteFooter />

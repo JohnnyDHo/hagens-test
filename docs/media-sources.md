@@ -15,5 +15,5 @@ The current team site and its public Mason Lake 2026 galleries are the source of
 ## Hero footage
 
 - `public/media/hero.mp4` and `public/media/hero-poster.jpg` — “Cyclists race around a curve in an urban park setting,” video 18701796 by Albert Patten on Pexels: https://www.pexels.com/video/a-group-of-cyclists-are-riding-on-a-road-18701796/
-- Pexels marks the clip “Free to use.” The local copy is a six-second, muted, 1280×720 H.264 derivative optimized for fast autoplay; the poster is a frame from that copy.
-
+- Pexels marks the clip “Free to use.” The deployed video is a 5.208-second, muted, 1280×720 H.264/yuv420p derivative with its opening and closing 0.8 seconds cyclically dissolved for a smooth repeat. It is encoded without audio and with MP4 fast-start metadata; the poster is a frame from the source clip.
+- The derived output is frozen in the media-use ledger as `.media/video/video_001.mp4`; provenance points back to the deployed `public/media/hero.mp4` copy.
