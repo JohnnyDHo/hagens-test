@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import styles from "./SiteHeader.module.css";
 
 const primaryNavigation = [
@@ -46,7 +46,7 @@ export default function SiteHeader() {
     };
   }, [pathname]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuOpen) return;
 
     const root = document.documentElement;
@@ -64,13 +64,22 @@ export default function SiteHeader() {
     const bodyStyles = {
       overflow: body.style.overflow,
       overscrollBehavior: body.style.overscrollBehavior,
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      width: body.style.width,
     };
 
+    root.style.scrollBehavior = "auto";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = `-${scrollX}px`;
+    body.style.width = "100%";
     root.style.overflow = "hidden";
     root.style.overscrollBehavior = "none";
     body.style.overflow = "hidden";
     body.style.overscrollBehavior = "none";
-    firstLink?.focus();
+    firstLink?.focus({ preventScroll: true });
 
     const eventTargetsMenu = (target: EventTarget | null) =>
       target instanceof Node && mobileMenu?.contains(target);
@@ -127,10 +136,13 @@ export default function SiteHeader() {
       root.style.overscrollBehavior = rootStyles.overscrollBehavior;
       body.style.overflow = bodyStyles.overflow;
       body.style.overscrollBehavior = bodyStyles.overscrollBehavior;
-      root.style.scrollBehavior = "auto";
+      body.style.position = bodyStyles.position;
+      body.style.top = bodyStyles.top;
+      body.style.left = bodyStyles.left;
+      body.style.width = bodyStyles.width;
       window.scrollTo(scrollX, scrollY);
       root.style.scrollBehavior = rootStyles.scrollBehavior;
-      menuButton?.focus();
+      menuButton?.focus({ preventScroll: true });
     };
   }, [menuOpen]);
 
@@ -156,7 +168,9 @@ export default function SiteHeader() {
       <a className={styles.skipLink} href="#main-content">
         Skip to content
       </a>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${menuOpen ? styles.headerMenuOpen : ""}`}
+      >
         <Link
           className={styles.brand}
           href="/"

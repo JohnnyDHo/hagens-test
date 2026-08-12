@@ -35,12 +35,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 3,
     name: "Global shell",
     status: "IN REVIEW",
-    round: 3,
+    round: 4,
     latestVerdict:
-      "Round 2 FAIL — 8.0; Round 3 objective fixes complete and re-review pending.",
+      "Round 3 FAIL — 8.1; Round 4 deep-scroll lock fix complete and re-review pending.",
     biggestGap:
-      "Fresh verification of 390px index containment and deep-scroll header visibility is pending.",
-    checkpoint: "P03 · R3 · BUILD",
+      "Exact deep-scroll open, interaction lock, and coordinate restoration verification is pending.",
+    checkpoint: "P03 · R4 · BUILD",
   },
   {
     id: 4,
