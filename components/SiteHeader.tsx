@@ -33,6 +33,24 @@ export default function SiteHeader() {
   const navigationId = `site-navigation-${useId().replaceAll(":", "")}`;
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuOpenRef = useRef(false);
+  const scrollCaptureRef = useRef<{ x: number; y: number } | null>(null);
+
+  const closeMenu = () => {
+    menuOpenRef.current = false;
+    setMenuOpen(false);
+  };
+
+  const toggleMenu = () => {
+    if (menuOpen) {
+      closeMenu();
+      return;
+    }
+
+    scrollCaptureRef.current = { x: window.scrollX, y: window.scrollY };
+    menuOpenRef.current = true;
+    setMenuOpen(true);
+  };
 
   useEffect(() => {
     const syncHash = () => setCurrentHash(window.location.hash);
@@ -54,8 +72,11 @@ export default function SiteHeader() {
     const menuButton = menuButtonRef.current;
     const mobileMenu = mobileMenuRef.current;
     const firstLink = mobileMenu?.querySelector<HTMLAnchorElement>("a");
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
+    const scrollCapture = scrollCaptureRef.current;
+
+    if (!scrollCapture) return;
+
+    const { x: scrollX, y: scrollY } = scrollCapture;
     const rootStyles = {
       overflow: root.style.overflow,
       overscrollBehavior: root.style.overscrollBehavior,
@@ -95,6 +116,7 @@ export default function SiteHeader() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
+        menuOpenRef.current = false;
         setMenuOpen(false);
         return;
       }
@@ -143,20 +165,26 @@ export default function SiteHeader() {
       window.scrollTo(scrollX, scrollY);
       root.style.scrollBehavior = rootStyles.scrollBehavior;
       menuButton?.focus({ preventScroll: true });
+
+      if (!menuOpenRef.current && scrollCaptureRef.current === scrollCapture) {
+        scrollCaptureRef.current = null;
+      }
     };
   }, [menuOpen]);
 
   useEffect(() => {
     const desktopMedia = window.matchMedia("(min-width: 1024px)");
     const closeAtDesktop = (event: MediaQueryListEvent) => {
-      if (event.matches) setMenuOpen(false);
+      if (event.matches) {
+        menuOpenRef.current = false;
+        setMenuOpen(false);
+      }
     };
 
     desktopMedia.addEventListener("change", closeAtDesktop);
     return () => desktopMedia.removeEventListener("change", closeAtDesktop);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
   const noteNavigationTarget = (href: string) => {
     const hashStart = href.indexOf("#");
     setCurrentHash(hashStart === -1 ? "" : href.slice(hashStart));
@@ -222,7 +250,7 @@ export default function SiteHeader() {
           aria-controls={navigationId}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          onClick={toggleMenu}
         >
           <span>{menuOpen ? "Close" : "Menu"}</span>
           <span className={styles.menuGlyph} aria-hidden="true">
