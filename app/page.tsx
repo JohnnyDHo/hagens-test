@@ -553,9 +553,176 @@ export default function Home() {
           </footer>
         </section>
 
+        <section
+          className={styles.joinProgram}
+          id="join"
+          aria-labelledby="join-title"
+        >
+          <header className={styles.joinMasthead}>
+            <div className={styles.joinIndex}>
+              <span>03</span>
+              <p>Membership / Seattle</p>
+            </div>
+
+            <div className={styles.joinHeading}>
+              <p>Everyone can race.</p>
+              <h2 id="join-title">
+                Your place
+                <em>in the bunch.</em>
+              </h2>
+            </div>
+
+            <p className={styles.joinIntro}>
+              Hagens Berman Racing fields men&apos;s, women&apos;s, masters, and
+              development squads across five disciplines. The common thread is
+              a team-first way of racing.
+            </p>
+          </header>
+
+          <div className={styles.joinBody}>
+            <figure className={styles.joinPortrait}>
+              <Image
+                src="/media/action-05.webp"
+                alt="Two cyclists racing on a forest road, led by a rider in a Hagens Berman kit"
+                width="750"
+                height="500"
+                sizes="(max-width: 760px) calc(100vw - 40px), 39vw"
+                loading="lazy"
+                unoptimized
+              />
+              <div className={styles.joinPhotoFlag} aria-hidden="true">
+                <span>One kit</span>
+                <span>One team</span>
+              </div>
+              <figcaption>
+                <span>Official HBR race archive</span>
+                <span>Team kit / On course</span>
+              </figcaption>
+            </figure>
+
+            <article
+              className={styles.joinDossier}
+              aria-labelledby="exchange-title"
+            >
+              <header className={styles.dossierHeader}>
+                <p>Membership briefing / HBR Seattle</p>
+                <span>Rider exchange · 03 / 05</span>
+              </header>
+
+              <div className={styles.dossierLead}>
+                <p>Team support / Shared commitment</p>
+                <h3 id="exchange-title">
+                  What the team offers.
+                  <em>What you bring.</em>
+                </h3>
+                <p>
+                  A racing team works when knowledge, preparation, and effort
+                  move through the whole roster—not just one rider.
+                </p>
+              </div>
+
+              <div className={styles.joinExchange}>
+                <section
+                  className={styles.teamOffers}
+                  aria-labelledby="offers-title"
+                >
+                  <header>
+                    <p>Team / Offers</p>
+                    <h4 id="offers-title">Support from week to race day.</h4>
+                  </header>
+                  <ol>
+                    <li>
+                      <span>01</span>
+                      <p>Weekly team rides</p>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <p>Skills and race-strategy clinics</p>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <p>Team training camp</p>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <p>In-race support</p>
+                    </li>
+                  </ol>
+                </section>
+
+                <section
+                  className={styles.riderCommitment}
+                  aria-labelledby="commitment-title"
+                >
+                  <header>
+                    <p>Rider / Commits</p>
+                    <h4 id="commitment-title">Show up for the team.</h4>
+                  </header>
+                  <dl>
+                    <div>
+                      <dt>Annual dues</dt>
+                      <dd>$75</dd>
+                    </div>
+                    <div>
+                      <dt>Team kit</dt>
+                      <dd>
+                        <strong>01</strong>
+                        <span>Jersey + bib</span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Give back</dt>
+                      <dd>
+                        <strong>01</strong>
+                        <span>Local race</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <p className={styles.volunteerNote}>
+                    Every member volunteers at one local race.
+                  </p>
+                </section>
+              </div>
+
+              <div className={styles.squadStrip}>
+                <p>Four squads / One roster</p>
+                <ul aria-label="Membership squads">
+                  <li>Men</li>
+                  <li>Women</li>
+                  <li>Masters</li>
+                  <li>Development</li>
+                </ul>
+              </div>
+
+              <footer className={styles.joinAction}>
+                <div>
+                  <p>Start with an introduction.</p>
+                  <span>
+                    The official join page opens a short contact form. Tell the
+                    team where you are in your racing journey.
+                  </span>
+                </div>
+                <a
+                  href="https://www.hbsccycling.com/join-us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open the official Hagens Berman Racing join form (opens in a new tab)"
+                >
+                  Open official join form <span aria-hidden="true">↗</span>
+                </a>
+              </footer>
+            </article>
+          </div>
+
+          <footer className={styles.joinFooter}>
+            <p>Community / Development / Team racing</p>
+            <span aria-hidden="true">03—05</span>
+          </footer>
+        </section>
+
         <div className={styles.sectionIndex} aria-label="Explore the team">
           <header className={styles.sectionIndexHeader}>
-            <p>Race manual / Next sections</p>
+            <p>Race manual / Final sections</p>
             <p>HBR · Seattle</p>
           </header>
 
@@ -564,7 +731,7 @@ export default function Home() {
             id="gallery"
             aria-labelledby="gallery-title"
           >
-            <p className={styles.sectionNumber}>03 / Race archive</p>
+            <p className={styles.sectionNumber}>04 / Race archive</p>
             <h2 id="gallery-title">Gallery</h2>
             <p className={styles.sectionSummary}>
               Official race-day photography from Mason Lake follows the team
@@ -578,29 +745,13 @@ export default function Home() {
             id="partners"
             aria-labelledby="partners-title"
           >
-            <p className={styles.sectionNumber}>04 / Team support</p>
+            <p className={styles.sectionNumber}>05 / Team support</p>
             <h2 id="partners-title">Partners</h2>
             <p className={styles.sectionSummary}>
               Hagens Berman, Smith, Skratch Labs, Specialized, and SILCA
               support the team.
             </p>
             <p className={styles.sectionTag}>Five verified partners</p>
-          </section>
-
-          <section
-            className={`${styles.sectionIndexRow} ${styles.joinRow}`}
-            id="join"
-            aria-labelledby="join-title"
-          >
-            <p className={styles.sectionNumber}>05 / Membership</p>
-            <h2 id="join-title">Join</h2>
-            <p className={styles.sectionSummary}>
-              Race with a Seattle team built around weekly rides, rider
-              development, shared support, and showing up for one another.
-            </p>
-            <a href="https://www.hbsccycling.com/join-us">
-              Join the team <span aria-hidden="true">↗</span>
-            </a>
           </section>
         </div>
       </main>

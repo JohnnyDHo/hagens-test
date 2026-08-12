@@ -74,11 +74,12 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 7,
     name: "Join / membership",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "The full join and membership experience is not yet built.",
-    checkpoint: "P07 · R1 · BUILD",
+    latestVerdict:
+      "Production membership dossier built from the verified official join flow; awaiting independent rendered review.",
+    biggestGap: "Fresh desktop and mobile critic verdict pending.",
+    checkpoint: "P07 · R1 · REVIEW",
   },
   {
     id: 8,
