@@ -64,22 +64,21 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 6,
     name: "Events",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 2,
     latestVerdict:
-      "R1 FAIL — 8.45 overall; hierarchy, editorial design, brand, and mobile passed, but photography sharpness and one unsupported phrase missed the gate.",
-    biggestGap:
-      "R2 replaces upscaled crops with native-resolution official imagery and removes the unsupported spring-classic wording; fresh review pending.",
-    checkpoint: "P06 · R2 · REVIEW",
+      "PASS — 9.2 overall; all categories cleared 8.7 with a clear desktop/mobile A/B win and no objective defect.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P06 · R2 · PASS",
   },
   {
     id: 7,
     name: "Join / membership",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "Membership benefits, requirements, and working CTA are not yet built.",
-    checkpoint: "P07 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "Builder assignment active.",
+    biggestGap: "The full join and membership experience is not yet built.",
+    checkpoint: "P07 · R1 · BUILD",
   },
   {
     id: 8,
