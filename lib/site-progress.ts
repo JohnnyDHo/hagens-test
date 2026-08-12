@@ -34,22 +34,21 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 3,
     name: "Global shell",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 5,
     latestVerdict:
-      "Round 4 FAIL — 8.4; Round 5 endpoint-capture fix complete and re-review pending.",
-    biggestGap:
-      "Exact bottom-scroll endpoint restoration regression verification is pending.",
-    checkpoint: "P03 · R5 · BUILD",
+      "PASS — 9.0 overall; clear desktop/mobile A/B win with no objective shell defect.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P03 · R5 · PASS",
   },
   {
     id: 4,
     name: "Cinematic hero",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "Video, poster, crop, copy, and CTA treatment are not yet built.",
-    checkpoint: "P04 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "Builder assignment active.",
+    biggestGap: "Cinematic hero is not yet built.",
+    checkpoint: "P04 · R1 · BUILD",
   },
   {
     id: 5,
