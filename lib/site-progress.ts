@@ -84,11 +84,11 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 8,
     name: "Race gallery",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "The full gallery experience is not yet built.",
-    checkpoint: "P08 · R1 · BUILD",
+    latestVerdict: "Builder checkpoint ready for independent rendered review.",
+    biggestGap: "Awaiting fresh desktop/mobile critic verdict.",
+    checkpoint: "P08 · R1 · REVIEW",
   },
   {
     id: 9,

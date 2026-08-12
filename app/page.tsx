@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import HeroMedia from "@/components/HeroMedia";
+import RaceArchive from "@/components/RaceArchive";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import styles from "./home.module.css";
@@ -730,25 +731,13 @@ export default function Home() {
           </footer>
         </section>
 
+        <RaceArchive />
+
         <div className={styles.sectionIndex} aria-label="Explore the team">
           <header className={styles.sectionIndexHeader}>
             <p>Race manual / Final sections</p>
             <p>HBR · Seattle</p>
           </header>
-
-          <section
-            className={styles.sectionIndexRow}
-            id="gallery"
-            aria-labelledby="gallery-title"
-          >
-            <p className={styles.sectionNumber}>04 / Race archive</p>
-            <h2 id="gallery-title">Gallery</h2>
-            <p className={styles.sectionSummary}>
-              Official race-day photography from Mason Lake follows the team
-              through the bunch, the break, and the finish.
-            </p>
-            <p className={styles.sectionTag}>Official HBR gallery</p>
-          </section>
 
           <section
             className={styles.sectionIndexRow}
