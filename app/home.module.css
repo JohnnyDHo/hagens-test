@@ -34,7 +34,10 @@
 .bottomRail > *,
 .actions,
 .actions a,
-.handoff > *,
+.teamLead > *,
+.disciplineHeader > *,
+.methodList > *,
+.disciplineList > *,
 .sectionIndexRow > * {
   min-width: 0;
 }
@@ -303,61 +306,472 @@
   color: white;
 }
 
-.handoff {
-  min-height: min(650px, 70vh);
-  padding: clamp(74px, 10vw, 150px) clamp(20px, 4.2vw, 72px);
-  display: grid;
-  grid-template-columns: minmax(135px, 0.55fr) minmax(0, 2.25fr) minmax(190px, 0.65fr);
-  align-items: start;
-  gap: clamp(24px, 4.6vw, 78px);
-  background: var(--glacier);
-  border-bottom: 1px solid rgba(7, 22, 33, 0.2);
+.teamStory,
+.sectionIndexRow {
+  scroll-margin-top: 88px;
 }
 
-.handoffLabel,
-.handoff aside {
-  margin: 8px 0 0;
-  color: #43525c;
+.teamStory {
+  background: var(--glacier);
+  color: var(--ink);
+}
+
+.teamLead {
+  min-height: min(830px, 86vh);
+  padding: clamp(96px, 11vw, 170px) clamp(20px, 4.2vw, 72px) clamp(90px, 10vw, 150px);
+  display: grid;
+  grid-template-columns: minmax(120px, 0.48fr) minmax(0, 2.25fr) minmax(250px, 0.82fr);
+  align-items: start;
+  gap: clamp(28px, 4.5vw, 76px);
+  border-bottom: 1px solid rgba(7, 22, 33, 0.22);
+}
+
+.storyIndex {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--blue);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.59rem;
-  font-weight: 750;
-  letter-spacing: 0.11em;
-  line-height: 1.6;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
-.handoffLabel {
+.storyIndex span {
+  min-width: 38px;
+  padding: 8px 6px;
+  background: var(--blue);
+  color: white;
+  text-align: center;
+}
+
+.storyIndex p,
+.teamHeadline > p,
+.teamIntro p,
+.teamMethod header p,
+.methodList h4,
+.methodList p,
+.squadRail p,
+.squadRail ul,
+.disciplineHeader > p,
+.disciplineList h4,
+.disciplineList p,
+.disciplineFooter p {
+  margin: 0;
+}
+
+.teamHeadline > p,
+.teamMethod header > p,
+.squadRail > p,
+.disciplineHeader > p:first-child,
+.disciplineFooter,
+.teamPortrait figcaption,
+.disciplineList span,
+.disciplineList p,
+.actionFrame figcaption {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.teamHeadline > p {
+  margin-bottom: 24px;
+  color: var(--blue);
+  font-size: 0.67rem;
+}
+
+.teamHeadline h2 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(4.6rem, 8.55vw, 8.75rem);
+  font-weight: 880;
+  letter-spacing: -0.082em;
+  line-height: 0.78;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.teamHeadline h2 em {
+  display: block;
+  margin-top: 0.12em;
+  margin-left: clamp(16px, 4vw, 68px);
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.68em;
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.84;
+  text-transform: none;
+}
+
+.teamIntro {
+  align-self: end;
+  padding-top: 22px;
+  border-top: 4px solid var(--red);
+}
+
+.teamIntro p {
+  color: #374852;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.teamIntro p + p {
+  margin-top: 24px;
+}
+
+.teamIntro strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.teamPortrait {
+  position: relative;
+  margin: 0;
+  padding: 0 clamp(20px, 4.2vw, 72px) clamp(92px, 10vw, 150px);
+  display: grid;
+  grid-template-columns: minmax(0, 4.5fr) minmax(180px, 1fr);
+  align-items: end;
+}
+
+.teamPortrait img {
+  width: 100%;
+  height: min(63vw, 780px);
+  min-height: 540px;
+  display: block;
+  object-fit: cover;
+  object-position: center 44%;
+  filter: saturate(0.88) contrast(1.03);
+}
+
+.photoFlag {
+  position: absolute;
+  top: 28px;
+  left: clamp(20px, 4.2vw, 72px);
+  display: flex;
+  align-items: stretch;
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.photoFlag span {
+  padding: 14px 15px;
+  background: var(--ink);
+}
+
+.photoFlag span:first-child {
+  background: var(--blue);
+}
+
+.teamPortrait figcaption {
+  padding: 0 0 2px clamp(22px, 2.8vw, 46px);
+  color: #43525c;
+  font-size: 0.63rem;
+  line-height: 1.55;
+}
+
+.teamPortrait figcaption span {
+  display: block;
+  margin-bottom: 14px;
   color: var(--blue);
 }
 
-.handoff h2 {
-  max-width: 940px;
+.teamPortrait figcaption p {
+  max-width: 140px;
   margin: 0;
-  font-size: clamp(3.8rem, 8.8vw, 9rem);
+}
+
+.teamMethod {
+  padding: clamp(96px, 10vw, 150px) clamp(20px, 4.2vw, 72px) 0;
+  background: var(--ink);
+  color: white;
+}
+
+.teamMethod > header {
+  padding-bottom: clamp(68px, 7vw, 110px);
+  display: grid;
+  grid-template-columns: minmax(170px, 0.72fr) minmax(0, 2.6fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 68px);
+}
+
+.teamMethod header > p {
+  padding-top: 9px;
+  color: #85baf6;
+  font-size: 0.66rem;
+}
+
+.teamMethod h3 {
+  max-width: 1100px;
+  margin: 0;
+  font-size: clamp(4.4rem, 8.4vw, 8.5rem);
   font-weight: 870;
   letter-spacing: -0.078em;
+  line-height: 0.78;
+  text-transform: uppercase;
+}
+
+.teamMethod h3 em {
+  display: block;
+  margin-left: clamp(20px, 8vw, 130px);
+  color: #85baf6;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  text-transform: none;
+}
+
+.methodList {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.methodList li {
+  min-height: 292px;
+  padding: 24px clamp(18px, 2.3vw, 38px) 32px 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.methodList li + li {
+  padding-left: clamp(18px, 2.3vw, 38px);
+}
+
+.methodList li:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.methodList span {
+  color: #85baf6;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.methodList h4 {
+  align-self: center;
+  font-size: clamp(2.2rem, 3.7vw, 4.2rem);
+  font-weight: 860;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.methodList p {
+  max-width: 245px;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.squadRail {
+  min-height: 144px;
+  display: grid;
+  grid-template-columns: minmax(170px, 0.72fr) minmax(0, 2.6fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 68px);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.squadRail > p {
+  color: #85baf6;
+  font-size: 0.66rem;
+}
+
+.squadRail ul {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+}
+
+.squadRail li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.squadRail li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.disciplines {
+  padding: clamp(96px, 10vw, 150px) clamp(20px, 4.2vw, 72px) 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0 clamp(16px, 2.2vw, 36px);
+  background: var(--blue);
+  color: white;
+}
+
+.disciplineHeader {
+  grid-column: 1 / -1;
+  padding-bottom: clamp(68px, 8vw, 120px);
+  display: grid;
+  grid-template-columns: minmax(170px, 2fr) minmax(0, 7fr) minmax(220px, 2fr);
+  align-items: end;
+  gap: clamp(26px, 4vw, 68px);
+}
+
+.disciplineHeader > p:first-child {
+  align-self: start;
+  padding-top: 10px;
+  font-size: 0.66rem;
+}
+
+.disciplineHeader h3 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(4.4rem, 8.2vw, 8.4rem);
+  font-weight: 880;
+  letter-spacing: -0.08em;
+  line-height: 0.78;
+  text-transform: uppercase;
+}
+
+.disciplineHeader h3 em {
+  display: block;
+  margin-left: clamp(20px, 7vw, 110px);
+  color: var(--glacier);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+  text-transform: none;
+}
+
+.disciplineHeader > p:last-child {
+  margin: 0;
+  padding-top: 19px;
+  border-top: 4px solid white;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.actionFrame {
+  position: sticky;
+  top: 110px;
+  grid-column: 1 / span 5;
+  align-self: start;
+  margin: 0;
+}
+
+.actionFrame img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
+  object-fit: cover;
+  object-position: 61% center;
+  filter: saturate(0.76) contrast(1.08);
+}
+
+.actionFrame figcaption {
+  min-height: 62px;
+  padding: 15px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 0.62rem;
+  line-height: 1.45;
+}
+
+.actionFrame figcaption span:last-child {
+  color: rgba(255, 255, 255, 0.72);
+  text-align: right;
+}
+
+.disciplineList {
+  grid-column: 6 / -1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.disciplineList li {
+  min-height: 142px;
+  padding: 22px 0;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.disciplineList span,
+.disciplineList p {
+  font-size: 0.65rem;
+  line-height: 1.4;
+}
+
+.disciplineList span {
+  color: white;
+}
+
+.disciplineList h4 {
+  font-size: clamp(3rem, 5.4vw, 6.2rem);
+  font-weight: 860;
+  letter-spacing: -0.068em;
   line-height: 0.83;
   text-transform: uppercase;
 }
 
-.handoff h2 em {
-  display: block;
-  color: var(--blue);
+.disciplineList p {
+  max-width: 72px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+}
+
+.disciplineFooter {
+  min-height: 152px;
+  grid-column: 1 / -1;
+  margin-top: clamp(72px, 8vw, 120px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.58);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.disciplineFooter span {
+  color: rgba(255, 255, 255, 0.68);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.78em;
-  font-weight: 400;
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
   letter-spacing: -0.06em;
-  text-transform: none;
-}
-
-.handoff aside {
-  padding-top: 18px;
-  border-top: 4px solid var(--red);
-}
-
-.handoff,
-.sectionIndexRow {
-  scroll-margin-top: 88px;
 }
 
 .sectionIndex {
@@ -474,13 +888,23 @@
     display: none;
   }
 
-  .handoff {
-    grid-template-columns: 130px minmax(0, 1fr);
+  .teamLead {
+    grid-template-columns: 120px minmax(0, 1fr);
   }
 
-  .handoff aside {
+  .teamIntro {
     grid-column: 2;
-    max-width: 380px;
+    max-width: 620px;
+  }
+
+  .disciplineHeader {
+    grid-template-columns: 140px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .disciplineHeader > p:last-child {
+    grid-column: 2;
+    max-width: 440px;
   }
 
   .sectionIndexRow {
@@ -601,23 +1025,218 @@
     white-space: normal;
   }
 
-  .handoff {
-    min-height: 560px;
+  .teamLead {
+    min-height: 0;
+    padding-block: 78px 72px;
     grid-template-columns: 1fr;
-    align-content: center;
+    gap: 48px;
   }
 
-  .handoff h2,
-  .handoff aside {
+  .teamHeadline,
+  .teamIntro {
     grid-column: 1;
   }
 
-  .handoff h2 {
-    font-size: clamp(3.5rem, 17vw, 5.5rem);
+  .storyIndex {
+    justify-content: space-between;
   }
 
-  .handoff aside {
-    max-width: 350px;
+  .teamHeadline > p {
+    margin-bottom: 18px;
+  }
+
+  .teamHeadline h2 {
+    font-size: clamp(3.55rem, 17vw, 5.5rem);
+    line-height: 0.8;
+  }
+
+  .teamHeadline h2 em {
+    margin-top: 0.16em;
+    margin-left: 14px;
+    font-size: 0.67em;
+  }
+
+  .teamIntro {
+    max-width: 540px;
+  }
+
+  .teamIntro p {
+    font-size: 1.05rem;
+  }
+
+  .teamPortrait {
+    padding: 0 20px 80px;
+    grid-template-columns: 1fr;
+  }
+
+  .teamPortrait img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    object-position: 54% center;
+  }
+
+  .photoFlag {
+    top: 16px;
+    left: 20px;
+    font-size: 0.57rem;
+  }
+
+  .photoFlag span {
+    padding: 12px 11px;
+  }
+
+  .teamPortrait figcaption {
+    min-height: 76px;
+    padding: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    border-bottom: 1px solid rgba(7, 22, 33, 0.3);
+  }
+
+  .teamPortrait figcaption span {
+    margin-bottom: 0;
+  }
+
+  .teamPortrait figcaption p {
+    max-width: 120px;
+    text-align: right;
+  }
+
+  .teamMethod {
+    padding: 78px 20px 0;
+  }
+
+  .teamMethod > header {
+    padding-bottom: 62px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .teamMethod h3 {
+    font-size: clamp(3.4rem, 16vw, 5.2rem);
+    line-height: 0.8;
+  }
+
+  .teamMethod h3 em {
+    margin-top: 0.13em;
+    margin-left: 13px;
+  }
+
+  .methodList {
+    grid-template-columns: 1fr;
+  }
+
+  .methodList li,
+  .methodList li + li {
+    min-height: 0;
+    padding: 28px 0 30px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px 8px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .methodList h4 {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+  }
+
+  .methodList p {
+    max-width: 290px;
+    grid-column: 2;
+  }
+
+  .squadRail {
+    min-height: 0;
+    padding-block: 38px 48px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .squadRail ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 22px;
+  }
+
+  .disciplines {
+    padding: 78px 20px 0;
+    grid-template-columns: 1fr;
+  }
+
+  .disciplineHeader,
+  .actionFrame,
+  .disciplineList,
+  .disciplineFooter {
+    grid-column: 1;
+  }
+
+  .disciplineHeader {
+    padding-bottom: 58px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .disciplineHeader > p:last-child {
+    grid-column: 1;
+    max-width: 340px;
+  }
+
+  .disciplineHeader h3 {
+    font-size: clamp(3.7rem, 17vw, 5.5rem);
+  }
+
+  .disciplineHeader h3 em {
+    margin-top: 0.13em;
+    margin-left: 15px;
+  }
+
+  .actionFrame {
+    position: relative;
+    top: auto;
+    margin-bottom: 56px;
+  }
+
+  .actionFrame img {
+    aspect-ratio: 5 / 4;
+    object-position: 57% center;
+  }
+
+  .actionFrame figcaption {
+    font-size: 0.59rem;
+  }
+
+  .disciplineList li {
+    min-height: 128px;
+    padding-block: 22px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .disciplineList h4 {
+    font-size: clamp(2.55rem, 11.4vw, 3.6rem);
+  }
+
+  .disciplineList p {
+    grid-column: 2;
+    max-width: none;
+    text-align: left;
+  }
+
+  .disciplineFooter {
+    min-height: 116px;
+    margin-top: 64px;
+    font-size: 0.6rem;
+  }
+
+  .disciplineFooter p {
+    max-width: 210px;
+  }
+
+  .disciplineFooter span {
+    font-size: 2.7rem;
   }
 
   .sectionIndex {

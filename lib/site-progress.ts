@@ -54,11 +54,11 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 5,
     name: "Team story / disciplines",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "The five-discipline editorial narrative is not yet built.",
-    checkpoint: "P05 · R1 · BUILD",
+    latestVerdict: "Round 1 builder complete; fresh rendered critique pending.",
+    biggestGap: "Pending desktop/mobile comparison against the quality bar.",
+    checkpoint: "P05 · R1 · REVIEW",
   },
   {
     id: 6,
