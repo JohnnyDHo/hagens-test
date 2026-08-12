@@ -375,26 +375,173 @@ export default function Home() {
           </section>
         </section>
 
-        <div className={styles.sectionIndex} aria-label="Explore the team">
-          <header className={styles.sectionIndexHeader}>
-            <p>Race manual / Section index</p>
-            <p>HBR · Seattle</p>
+        <section
+          className={styles.eventsProgram}
+          id="events"
+          aria-labelledby="events-title"
+        >
+          <header className={styles.eventsMasthead}>
+            <div className={styles.eventsIndex}>
+              <span>02</span>
+              <p>Presented races / 2026</p>
+            </div>
+
+            <div className={styles.eventsHeading}>
+              <p>HBR race calendar</p>
+              <h2 id="events-title">
+                Two venues.
+                <em>Three start lines.</em>
+              </h2>
+            </div>
+
+            <p className={styles.eventsIntro}>
+              Hagens Berman Racing presents two spring road-race days around
+              Mason Lake and an August night for women, trans, and non-binary
+              racers at Pacific Raceways.
+            </p>
           </header>
 
-          <section
-            className={styles.sectionIndexRow}
-            id="events"
-            aria-labelledby="events-title"
-          >
-            <p className={styles.sectionNumber}>02 / Race days</p>
-            <h2 id="events-title">Events</h2>
-            <p className={styles.sectionSummary}>
-              The team presents the Mason Lake road race near Grapeview and
-              the Women, Trans, Femme, Non-Binary racing series at Pacific
-              Raceways.
-            </p>
-            <p className={styles.sectionTag}>Mason Lake / WTNB</p>
-          </section>
+          <article className={styles.masonEvent} aria-labelledby="mason-title">
+            <div className={styles.eventLedger}>
+              <p>Road race / 2026</p>
+              <p>Grapeview, Washington</p>
+              <p>Presented by HBR Seattle</p>
+            </div>
+
+            <div className={styles.masonDate} aria-label="March 21 and March 28, 2026">
+              <span className={styles.dateMonth}>Mar</span>
+              <span className={styles.dateDay}>21</span>
+              <span className={styles.dateJoin} aria-hidden="true">+</span>
+              <span className={styles.dateDay}>28</span>
+              <span className={styles.dateYear}>2026 / Saturdays</span>
+            </div>
+
+            <figure className={styles.masonPhoto}>
+              <Image
+                src="/media/mason-05.webp"
+                alt="A road-race group moving through the trees on the Mason Lake course"
+                width="750"
+                height="500"
+                sizes="(max-width: 760px) calc(100vw - 40px), 60vw"
+                loading="lazy"
+              />
+              <figcaption>
+                <span>Official HBR race archive</span>
+                <span>Two race days / one course</span>
+              </figcaption>
+            </figure>
+
+            <div className={styles.masonCopy}>
+              <p className={styles.eventSequence}>Race days / 01 + 02</p>
+              <h3 id="mason-title">Mason Lake Road Race</h3>
+              <p>
+                The 2026 Pacific Northwest spring classic pairs two Saturdays
+                on a rolling 12-mile loop around scenic Mason Lake near
+                Grapeview.
+              </p>
+              <a
+                href="https://www.hbsccycling.com/mason-lake"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View official 2026 Mason Lake race information (opens in a new tab)"
+              >
+                Official race information <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <ol className={styles.masonDays} aria-label="Mason Lake 2026 race dates">
+              <li>
+                <span>Day 01</span>
+                <time dateTime="2026-03-21">Saturday / March 21 / 2026</time>
+              </li>
+              <li>
+                <span>Day 02</span>
+                <time dateTime="2026-03-28">Saturday / March 28 / 2026</time>
+              </li>
+            </ol>
+
+            <dl className={styles.courseReadout}>
+              <div>
+                <dt>Loop</dt>
+                <dd>12 miles</dd>
+              </div>
+              <div>
+                <dt>Profile</dt>
+                <dd>Rolling hills</dd>
+              </div>
+              <div>
+                <dt>Place</dt>
+                <dd>Mason Lake</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article className={styles.wtnbEvent} aria-labelledby="wtnb-title">
+            <div className={styles.wtnbDate} aria-label="August 25, 2026">
+              <span>Aug</span>
+              <strong>25</strong>
+              <small>Tue / 2026</small>
+            </div>
+
+            <div className={styles.wtnbCopy}>
+              <p className={styles.eventSequence}>Race night / 03</p>
+              <h3 id="wtnb-title">
+                WTNB Night
+                <em>at Pacific Raceways</em>
+              </h3>
+              <p>
+                A beginner clinic at 6:00 PM, followed by a short,
+                beginner-friendly women, trans, and non-binary race at 6:45 PM
+                on the closed circuit in Kent.
+              </p>
+              <a
+                href="https://www.hbsccycling.com/wtnb-night-at-pr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View official 2026 WTNB Night information (opens in a new tab)"
+              >
+                Event information <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <figure className={styles.wtnbPhoto}>
+              <Image
+                src="/media/race-03.webp"
+                alt="Cyclists gathered at the start of a road race"
+                width="750"
+                height="500"
+                sizes="(max-width: 760px) calc(100vw - 40px), 42vw"
+                loading="lazy"
+              />
+              <figcaption>
+                <span>Official HBR race archive</span>
+                <span>Race-day community</span>
+              </figcaption>
+            </figure>
+
+            <ol className={styles.wtnbSchedule} aria-label="WTNB Night schedule">
+              <li>
+                <time dateTime="2026-08-25T18:00">6:00 PM</time>
+                <p>Beginner race clinic</p>
+              </li>
+              <li>
+                <time dateTime="2026-08-25T18:45">6:45 PM</time>
+                <p>WTNB race</p>
+              </li>
+            </ol>
+          </article>
+
+          <footer className={styles.eventsFooter}>
+            <p>Three starts / two venues / one racing community</p>
+            <span aria-hidden="true">02—03</span>
+          </footer>
+        </section>
+
+        <div className={styles.sectionIndex} aria-label="Explore the team">
+          <header className={styles.sectionIndexHeader}>
+            <p>Race manual / Next sections</p>
+            <p>HBR · Seattle</p>
+          </header>
 
           <section
             className={styles.sectionIndexRow}

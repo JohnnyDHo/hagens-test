@@ -64,11 +64,11 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 6,
     name: "Events",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "The full event experience is not yet built.",
-    checkpoint: "P06 · R1 · BUILD",
+    latestVerdict: "Round 1 build ready for independent desktop/mobile review.",
+    biggestGap: "Awaiting blind A/B, interaction, and source-truth verdict.",
+    checkpoint: "P06 · R1 · REVIEW",
   },
   {
     id: 7,

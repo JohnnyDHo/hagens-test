@@ -5,7 +5,7 @@ This is the source-of-truth boundary for the redesign. Builders may sharpen hier
 ## Approved sources
 
 - Primary: [current Hagens Berman Racing site](https://www.hbsccycling.com/), reviewed 2026-08-09.
-- Supporting pages reviewed: [Partners](https://www.hbsccycling.com/partners) and [Mason Lake](https://www.hbsccycling.com/mason-lake).
+- Supporting pages reviewed: [Partners](https://www.hbsccycling.com/partners), [Mason Lake](https://www.hbsccycling.com/mason-lake), and [WTNB Night at Pacific Raceways](https://www.hbsccycling.com/wtnb-night-at-pr).
 - Project brief supplied by the site owner on 2026-08-09, especially where a page could not be reliably crawled.
 - The comparison redesign is a quality benchmark only. It is not a factual source.
 
@@ -28,6 +28,7 @@ If future source pages conflict, preserve the current official site and flag the
 ## Verified 2026 events
 
 - **WTNB — August 25, 2026.**
+- The official WTNB event page lists a beginner race clinic at **6:00 PM** and the WTNB race at **6:45 PM** at Pacific Raceways in Kent.
 - **Mason Lake Road Race — March 21 and March 28, 2026.** The official site describes these as two days of racing on a 12-mile rolling loop around Mason Lake.
 
 Dates must always include the year. Do not imply that registration is open unless the official destination confirms it at time of publication.
