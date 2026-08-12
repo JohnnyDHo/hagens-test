@@ -85,12 +85,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 8,
     name: "Race gallery",
     status: "IN REVIEW",
-    round: 2,
+    round: 3,
     latestVerdict:
-      "FAIL — 8.3 overall; visual edit, truth, and mobile passed, but modal continuity scored 7.0 and accessibility 7.7.",
+      "FAIL — R2 functional continuity passed on desktop, but exact style-attribute cleanup failed and mobile remained unverified.",
     biggestGap:
-      "R2 rebuilds scroll lock and focus restoration around the immutable opening frame; awaiting fresh review.",
-    checkpoint: "P08 · R2 · REVIEW",
+      "R3 restores the exact original html/body style-attribute presence and value; awaiting desktop/mobile verification.",
+    checkpoint: "P08 · R3 · REVIEW",
   },
   {
     id: 9,

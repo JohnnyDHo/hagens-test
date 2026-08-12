@@ -18,6 +18,8 @@ type InlinePageStyles = {
 type PageLock = {
   x: number;
   y: number;
+  rootStyleAttribute: string | null;
+  bodyStyleAttribute: string | null;
   rootStyles: InlinePageStyles;
   bodyStyles: InlinePageStyles;
   preventOutsideWheel: (event: WheelEvent) => void;
@@ -133,6 +135,8 @@ export default function RaceArchive() {
     pageLockRef.current = {
       x,
       y,
+      rootStyleAttribute: root.getAttribute("style"),
+      bodyStyleAttribute: body.getAttribute("style"),
       rootStyles: captureInlinePageStyles(root),
       bodyStyles: captureInlinePageStyles(body),
       preventOutsideWheel,
@@ -185,14 +189,22 @@ export default function RaceArchive() {
 
     const root = document.documentElement;
     const body = document.body;
-    const originalRootScrollBehavior = pageLock.rootStyles.scrollBehavior;
     restoreInlinePageStyles(root, {
       ...pageLock.rootStyles,
       scrollBehavior: "auto",
     });
     restoreInlinePageStyles(body, pageLock.bodyStyles);
     window.scrollTo(pageLock.x, pageLock.y);
-    root.style.scrollBehavior = originalRootScrollBehavior;
+    if (pageLock.rootStyleAttribute === null) {
+      root.removeAttribute("style");
+    } else {
+      root.setAttribute("style", pageLock.rootStyleAttribute);
+    }
+    if (pageLock.bodyStyleAttribute === null) {
+      body.removeAttribute("style");
+    } else {
+      body.setAttribute("style", pageLock.bodyStyleAttribute);
+    }
     if (restoreFocus) origin?.element.focus({ preventScroll: true });
 
     pageLockRef.current = null;
