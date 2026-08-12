@@ -44,11 +44,11 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 4,
     name: "Cinematic hero",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "Cinematic hero is not yet built.",
-    checkpoint: "P04 · R1 · BUILD",
+    latestVerdict: "Round 1 production hero built; independent rendered review pending.",
+    biggestGap: "Awaiting desktop/mobile A/B verdict on art direction and first-fold impact.",
+    checkpoint: "P04 · R1 · REVIEW",
   },
   {
     id: 5,

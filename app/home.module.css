@@ -1,0 +1,500 @@
+.site {
+  --blue: #14539e;
+  --ink: #071621;
+  --glacier: #f4f7f9;
+  --red: #b9342e;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--glacier);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+.site *,
+.site *::before,
+.site *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: max(760px, calc(100svh - 76px));
+  padding: 0 clamp(24px, 4.2vw, 72px) 42px clamp(34px, 5.8vw, 100px);
+  display: grid;
+  grid-template-rows: 78px minmax(0, 1fr) auto;
+  overflow: hidden;
+  background: var(--ink);
+  color: white;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 22, 33, 0.8) 0%, rgba(7, 22, 33, 0.58) 40%, rgba(7, 22, 33, 0.12) 77%),
+    linear-gradient(180deg, rgba(7, 22, 33, 0.56) 0%, rgba(7, 22, 33, 0.04) 36%, rgba(7, 22, 33, 0.88) 100%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(255, 255, 255, 0.12) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(180deg, transparent 77px, rgba(255, 255, 255, 0.18) 78px, transparent 79px);
+  pointer-events: none;
+}
+
+.media {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink) url("/media/hero-poster.jpg") 65% center / cover no-repeat;
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 83, 158, 0.08);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  object-fit: cover;
+  object-position: 65% center;
+  scale: 1.025;
+  filter: saturate(0.9) contrast(1.06);
+  transition: opacity 700ms ease;
+}
+
+.mediaReady .video {
+  opacity: 1;
+}
+
+.raceStripe {
+  position: absolute;
+  z-index: 3;
+  inset: 0 auto 0 0;
+  width: clamp(18px, 2.2vw, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--blue);
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.raceStripe span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.topRail {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.topRail p {
+  margin: 0;
+}
+
+.topRail p:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topRail p:first-child::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(185, 52, 46, 0.24);
+}
+
+.topRail p:last-child {
+  padding: 10px 12px;
+  background: rgba(7, 22, 33, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(8px);
+}
+
+.titleBlock {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  padding-block: 34px;
+}
+
+.kicker {
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "01";
+  min-width: 35px;
+  padding: 7px 8px;
+  background: white;
+  color: var(--ink);
+  text-align: center;
+}
+
+.titleBlock h1 {
+  width: min-content;
+  margin: 0;
+  font-size: clamp(6.8rem, 13.1vw, 12.8rem);
+  font-weight: 880;
+  letter-spacing: -0.088em;
+  line-height: 0.7;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+.titleBlock h1 span,
+.titleBlock h1 em {
+  display: block;
+}
+
+.titleBlock h1 em {
+  margin-top: 0.08em;
+  margin-left: clamp(42px, 9vw, 146px);
+  color: var(--glacier);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  text-transform: none;
+}
+
+.bottomRail {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) auto 1fr;
+  align-items: end;
+  gap: clamp(28px, 4.3vw, 72px);
+}
+
+.intro {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.08rem, 1.45vw, 1.3rem);
+  line-height: 1.43;
+  text-wrap: balance;
+}
+
+.actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.actions a {
+  min-height: 52px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.actions a:first-child {
+  min-width: 184px;
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.actions a:last-child {
+  min-width: 178px;
+  background: rgba(7, 22, 33, 0.48);
+  backdrop-filter: blur(8px);
+}
+
+.actions a:hover {
+  background: white;
+  border-color: white;
+  color: var(--ink);
+}
+
+.actions a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+
+.disciplineNote {
+  justify-self: end;
+  margin: 0;
+  max-width: 250px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.55;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.disciplineNote span {
+  display: block;
+  margin-bottom: 7px;
+  color: white;
+}
+
+.handoff {
+  min-height: min(650px, 70vh);
+  padding: clamp(74px, 10vw, 150px) clamp(20px, 4.2vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(135px, 0.55fr) minmax(0, 2.25fr) minmax(190px, 0.65fr);
+  align-items: start;
+  gap: clamp(24px, 4.6vw, 78px);
+  background: var(--glacier);
+  border-bottom: 1px solid rgba(7, 22, 33, 0.2);
+}
+
+.handoffLabel,
+.handoff aside {
+  margin: 8px 0 0;
+  color: #43525c;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.59rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.handoffLabel {
+  color: var(--blue);
+}
+
+.handoff h2 {
+  max-width: 940px;
+  margin: 0;
+  font-size: clamp(3.8rem, 8.8vw, 9rem);
+  font-weight: 870;
+  letter-spacing: -0.078em;
+  line-height: 0.83;
+  text-transform: uppercase;
+}
+
+.handoff h2 em {
+  display: block;
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78em;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  text-transform: none;
+}
+
+.handoff aside {
+  padding-top: 18px;
+  border-top: 4px solid var(--red);
+}
+
+@media (max-width: 1120px) {
+  .bottomRail {
+    grid-template-columns: minmax(260px, 0.8fr) auto;
+  }
+
+  .disciplineNote {
+    display: none;
+  }
+
+  .handoff {
+    grid-template-columns: 130px minmax(0, 1fr);
+  }
+
+  .handoff aside {
+    grid-column: 2;
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: max(700px, calc(100svh - 72px));
+    padding: 0 18px 22px 26px;
+    grid-template-rows: 62px minmax(0, 1fr) auto;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(90deg, rgba(7, 22, 33, 0.5), rgba(7, 22, 33, 0.15)),
+      linear-gradient(180deg, rgba(7, 22, 33, 0.64) 0%, rgba(7, 22, 33, 0.12) 24%, rgba(7, 22, 33, 0.92) 73%, rgba(7, 22, 33, 0.98) 100%);
+  }
+
+  .hero::after {
+    background: linear-gradient(180deg, transparent 61px, rgba(255, 255, 255, 0.18) 62px, transparent 63px);
+  }
+
+  .media,
+  .video {
+    background-position: 69% center;
+    object-position: 69% center;
+  }
+
+  .raceStripe {
+    width: 9px;
+  }
+
+  .raceStripe span {
+    display: none;
+  }
+
+  .topRail {
+    gap: 12px;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .topRail p:last-child {
+    padding: 8px 9px;
+  }
+
+  .titleBlock {
+    align-self: start;
+    padding-top: clamp(46px, 9vh, 82px);
+  }
+
+  .kicker {
+    margin-bottom: 20px;
+    font-size: 0.53rem;
+  }
+
+  .kicker::before {
+    min-width: 31px;
+    padding: 6px;
+  }
+
+  .titleBlock h1 {
+    font-size: clamp(3.8rem, 19vw, 5.6rem);
+    line-height: 0.72;
+  }
+
+  .titleBlock h1 em {
+    margin-top: 0.13em;
+    margin-left: 20px;
+    font-size: 0.69em;
+  }
+
+  .bottomRail {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .intro {
+    max-width: 340px;
+    font-size: 1rem;
+    line-height: 1.38;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .actions a {
+    min-width: 0 !important;
+    min-height: 48px;
+    padding-inline: 13px;
+    flex: 1 1 0;
+    gap: 8px;
+    font-size: 0.55rem;
+    letter-spacing: 0.065em;
+  }
+
+  .handoff {
+    min-height: 560px;
+    grid-template-columns: 1fr;
+    align-content: center;
+  }
+
+  .handoff h2,
+  .handoff aside {
+    grid-column: 1;
+  }
+
+  .handoff h2 {
+    font-size: clamp(3.5rem, 17vw, 5.5rem);
+  }
+
+  .handoff aside {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 380px) {
+  .topRail p:last-child {
+    display: none;
+  }
+
+  .titleBlock h1 {
+    font-size: 19vw;
+  }
+
+  .actions a {
+    padding-inline: 10px;
+    font-size: 0.52rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    opacity: 0 !important;
+    transition: none;
+  }
+
+  .actions a {
+    transition: none;
+  }
+}

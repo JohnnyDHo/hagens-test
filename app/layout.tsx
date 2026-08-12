@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Starter Project",
-  description: "A clean starting point for building your site.",
+  title: {
+    default: "Hagens Berman Racing Seattle",
+    template: "%s | Hagens Berman Racing Seattle",
+  },
+  description:
+    "Hagens Berman Racing Seattle is an amateur cycling team racing road, cyclocross, gravel, track, and mountain bike.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
