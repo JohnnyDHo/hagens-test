@@ -85,10 +85,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 8,
     name: "Race gallery",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Builder checkpoint ready for independent rendered review.",
-    biggestGap: "Awaiting fresh desktop/mobile critic verdict.",
-    checkpoint: "P08 · R1 · REVIEW",
+    round: 2,
+    latestVerdict:
+      "FAIL — 8.3 overall; visual edit, truth, and mobile passed, but modal continuity scored 7.0 and accessibility 7.7.",
+    biggestGap:
+      "R2 rebuilds scroll lock and focus restoration around the immutable opening frame; awaiting fresh review.",
+    checkpoint: "P08 · R2 · REVIEW",
   },
   {
     id: 9,

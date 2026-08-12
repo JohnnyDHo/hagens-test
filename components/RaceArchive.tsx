@@ -1,8 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./RaceArchive.module.css";
+
+type InlinePageStyles = {
+  position: string;
+  top: string;
+  left: string;
+  width: string;
+  overflow: string;
+  overscrollBehavior: string;
+  paddingRight: string;
+  scrollBehavior: string;
+};
+
+type PageLock = {
+  x: number;
+  y: number;
+  rootStyles: InlinePageStyles;
+  bodyStyles: InlinePageStyles;
+  preventOutsideWheel: (event: WheelEvent) => void;
+  preventOutsideTouch: (event: TouchEvent) => void;
+};
+
+const captureInlinePageStyles = (element: HTMLElement): InlinePageStyles => ({
+  position: element.style.position,
+  top: element.style.top,
+  left: element.style.left,
+  width: element.style.width,
+  overflow: element.style.overflow,
+  overscrollBehavior: element.style.overscrollBehavior,
+  paddingRight: element.style.paddingRight,
+  scrollBehavior: element.style.scrollBehavior,
+});
+
+const restoreInlinePageStyles = (
+  element: HTMLElement,
+  styles: InlinePageStyles,
+) => {
+  element.style.position = styles.position;
+  element.style.top = styles.top;
+  element.style.left = styles.left;
+  element.style.width = styles.width;
+  element.style.overflow = styles.overflow;
+  element.style.overscrollBehavior = styles.overscrollBehavior;
+  element.style.paddingRight = styles.paddingRight;
+  element.style.scrollBehavior = styles.scrollBehavior;
+};
 
 const archiveFrames = [
   {
@@ -58,24 +103,131 @@ const archiveFrames = [
 
 export default function RaceArchive() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const isOpen = activeIndex !== null;
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const priorBodyOverflow = useRef("");
+  const originRef = useRef<{
+    element: HTMLButtonElement;
+    index: number;
+    x: number;
+    y: number;
+  } | null>(null);
+  const pageLockRef = useRef<PageLock | null>(null);
+  const focusFrameRef = useRef<number | null>(null);
+
+  const lockPage = useCallback((x: number, y: number) => {
+    if (pageLockRef.current) return;
+
+    const root = document.documentElement;
+    const body = document.body;
+    const dialog = dialogRef.current;
+    const eventTargetsDialog = (target: EventTarget | null) =>
+      target instanceof Node && dialog?.contains(target);
+    const preventOutsideWheel = (event: WheelEvent) => {
+      if (!eventTargetsDialog(event.target)) event.preventDefault();
+    };
+    const preventOutsideTouch = (event: TouchEvent) => {
+      if (!eventTargetsDialog(event.target)) event.preventDefault();
+    };
+
+    pageLockRef.current = {
+      x,
+      y,
+      rootStyles: captureInlinePageStyles(root),
+      bodyStyles: captureInlinePageStyles(body),
+      preventOutsideWheel,
+      preventOutsideTouch,
+    };
+
+    root.style.scrollBehavior = "auto";
+    root.style.overflow = "hidden";
+    root.style.overscrollBehavior = "none";
+    body.style.position = "fixed";
+    body.style.top = `-${y}px`;
+    body.style.left = `-${x}px`;
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+    document.addEventListener("wheel", preventOutsideWheel, {
+      capture: true,
+      passive: false,
+    });
+    document.addEventListener("touchmove", preventOutsideTouch, {
+      capture: true,
+      passive: false,
+    });
+  }, []);
+
+  const restorePage = useCallback((restoreFocus: boolean) => {
+    if (focusFrameRef.current !== null) {
+      window.cancelAnimationFrame(focusFrameRef.current);
+      focusFrameRef.current = null;
+    }
+
+    const pageLock = pageLockRef.current;
+    const origin = originRef.current;
+    if (!pageLock) {
+      if (restoreFocus) origin?.element.focus({ preventScroll: true });
+      originRef.current = null;
+      return;
+    }
+
+    document.removeEventListener(
+      "wheel",
+      pageLock.preventOutsideWheel,
+      true,
+    );
+    document.removeEventListener(
+      "touchmove",
+      pageLock.preventOutsideTouch,
+      true,
+    );
+
+    const root = document.documentElement;
+    const body = document.body;
+    const originalRootScrollBehavior = pageLock.rootStyles.scrollBehavior;
+    restoreInlinePageStyles(root, {
+      ...pageLock.rootStyles,
+      scrollBehavior: "auto",
+    });
+    restoreInlinePageStyles(body, pageLock.bodyStyles);
+    window.scrollTo(pageLock.x, pageLock.y);
+    root.style.scrollBehavior = originalRootScrollBehavior;
+    if (restoreFocus) origin?.element.focus({ preventScroll: true });
+
+    pageLockRef.current = null;
+    originRef.current = null;
+  }, []);
 
   const openFrame = (index: number) => {
     const dialog = dialogRef.current;
-    if (!dialog) return;
+    const originElement = triggerRefs.current[index];
+    if (!dialog || !originElement) return;
 
-    setActiveIndex(index);
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) {
+      const x = window.scrollX;
+      const y = window.scrollY;
+      originRef.current = { element: originElement, index, x, y };
+      lockPage(x, y);
+    }
+
+    try {
+      if (!dialog.open) dialog.showModal();
+      setActiveIndex(index);
+      focusFrameRef.current = window.requestAnimationFrame(() => {
+        focusFrameRef.current = null;
+        closeButtonRef.current?.focus({ preventScroll: true });
+      });
+    } catch {
+      setActiveIndex(null);
+      restorePage(false);
+    }
   };
 
-  const closeArchive = () => {
+  const closeArchive = useCallback(() => {
     const dialog = dialogRef.current;
     if (dialog?.open) dialog.close();
-  };
+  }, []);
 
   const moveFrame = (direction: -1 | 1) => {
     setActiveIndex((current) => {
@@ -85,19 +237,17 @@ export default function RaceArchive() {
   };
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    priorBodyOverflow.current = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const focusFrame = window.requestAnimationFrame(() => {
-      closeButtonRef.current?.focus({ preventScroll: true });
-    });
-
-    return () => {
-      window.cancelAnimationFrame(focusFrame);
-      document.body.style.overflow = priorBodyOverflow.current;
+    const dialog = dialogRef.current;
+    const closeFromBackdrop = (event: MouseEvent) => {
+      if (event.target === dialog) closeArchive();
     };
-  }, [isOpen]);
+    dialog?.addEventListener("click", closeFromBackdrop);
+    return () => {
+      dialog?.removeEventListener("click", closeFromBackdrop);
+      if (dialog?.open) dialog.close();
+      restorePage(true);
+    };
+  }, [closeArchive, restorePage]);
 
   return (
     <section className={styles.archive} id="gallery" aria-labelledby="gallery-title">
@@ -199,13 +349,8 @@ export default function RaceArchive() {
           closeArchive();
         }}
         onClose={() => {
-          const lastIndex = activeIndex;
           setActiveIndex(null);
-          if (lastIndex !== null) {
-            window.requestAnimationFrame(() => {
-              triggerRefs.current[lastIndex]?.focus({ preventScroll: true });
-            });
-          }
+          restorePage(true);
         }}
       >
         {activeIndex !== null ? (
