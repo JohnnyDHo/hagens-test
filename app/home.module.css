@@ -1492,7 +1492,7 @@
   align-items: center;
   gap: 13px;
   color: var(--blue);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   line-height: 1.4;
 }
 
@@ -1524,7 +1524,7 @@
 .joinHeading > p {
   margin-bottom: 24px;
   color: var(--blue);
-  font-size: 0.67rem;
+  font-size: 0.75rem;
 }
 
 .joinHeading h2 {
@@ -1570,10 +1570,20 @@
   box-shadow: 0 28px 80px rgba(7, 22, 33, 0.13);
 }
 
+.joinVisualRail {
+  width: min(100%, 750px);
+  min-width: 0;
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  background: var(--blue);
+}
+
 .joinPortrait {
   position: relative;
-  grid-column: 1 / span 5;
-  min-height: 820px;
+  width: 100%;
+  height: clamp(340px, 34.7vw, 500px);
+  flex: 0 0 auto;
   margin: 0;
   overflow: hidden;
   background: #101c24;
@@ -1607,7 +1617,7 @@
   background: var(--blue);
   color: white;
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.11em;
   line-height: 1;
@@ -1636,12 +1646,55 @@
   justify-content: space-between;
   gap: 20px;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.59rem;
+  font-size: 0.72rem;
   line-height: 1.5;
 }
 
 .joinPortrait figcaption span:last-child {
   text-align: right;
+}
+
+.joinRailStatement {
+  min-height: 390px;
+  flex: 1 0 auto;
+  padding: clamp(30px, 3.8vw, 58px) clamp(22px, 3.2vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+  color: white;
+}
+
+.joinRailStatement p {
+  margin: 0;
+  font-size: clamp(3.5rem, 5.7vw, 6.1rem);
+  font-weight: 870;
+  letter-spacing: -0.075em;
+  line-height: 0.76;
+  text-transform: uppercase;
+}
+
+.joinRailStatement p em {
+  display: block;
+  margin-top: 0.18em;
+  margin-left: clamp(12px, 2vw, 30px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  text-transform: none;
+}
+
+.joinRailStatement > span {
+  max-width: 250px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .joinDossier {
@@ -1658,7 +1711,7 @@
   gap: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
@@ -1680,7 +1733,7 @@
 .dossierLead > p:first-child {
   grid-column: 1 / -1;
   color: #85baf6;
-  font-size: 0.61rem;
+  font-size: 0.75rem;
 }
 
 .dossierLead h3 {
@@ -1739,7 +1792,7 @@
 .riderCommitment header > p {
   margin-bottom: 13px;
   color: #85baf6;
-  font-size: 0.59rem;
+  font-size: 0.75rem;
 }
 
 .teamOffers h4,
@@ -1767,7 +1820,7 @@
   align-items: center;
   gap: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.61rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
@@ -1798,7 +1851,7 @@
 
 .riderCommitment dt {
   color: rgba(255, 255, 255, 0.64);
-  font-size: 0.57rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
@@ -1820,7 +1873,7 @@
 .riderCommitment dd span {
   max-width: 92px;
   color: rgba(255, 255, 255, 0.78);
-  font-size: 0.57rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   line-height: 1.4;
@@ -1830,7 +1883,7 @@
 .volunteerNote {
   margin-top: 16px;
   color: rgba(255, 255, 255, 0.66);
-  font-size: 0.56rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1841,7 +1894,7 @@
   align-items: center;
   gap: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
@@ -1871,7 +1924,7 @@
 
 .joinAction p {
   color: white;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -1898,7 +1951,7 @@
   background: var(--blue);
   border: 1px solid var(--blue);
   color: white;
-  font-size: 0.61rem;
+  font-size: 0.75rem;
   line-height: 1.2;
   text-decoration: none;
   transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
@@ -1923,7 +1976,7 @@
   gap: 28px;
   border-top: 1px solid rgba(7, 22, 33, 0.35);
   color: #4a5a64;
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 
@@ -2062,7 +2115,7 @@
     max-width: 620px;
   }
 
-  .joinPortrait {
+  .joinVisualRail {
     grid-column: 1 / span 4;
   }
 
@@ -2773,12 +2826,17 @@
     box-shadow: none;
   }
 
-  .joinPortrait,
+  .joinVisualRail,
   .joinDossier {
     grid-column: 1;
   }
 
+  .joinVisualRail {
+    width: 100%;
+  }
+
   .joinPortrait {
+    height: auto;
     min-height: 0;
     aspect-ratio: 4 / 5;
   }
@@ -2805,6 +2863,21 @@
 
   .joinPortrait figcaption span {
     max-width: 132px;
+  }
+
+  .joinRailStatement {
+    min-height: 210px;
+    flex: 0 0 auto;
+    padding: 32px 20px 30px;
+    gap: 44px;
+  }
+
+  .joinRailStatement p {
+    font-size: clamp(3.2rem, 15vw, 4.5rem);
+  }
+
+  .joinRailStatement > span {
+    font-size: 0.75rem;
   }
 
   .joinDossier {

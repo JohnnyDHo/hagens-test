@@ -75,11 +75,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 7,
     name: "Join / membership",
     status: "IN REVIEW",
-    round: 1,
+    round: 2,
     latestVerdict:
-      "Production membership dossier built from the verified official join flow; awaiting independent rendered review.",
-    biggestGap: "Fresh desktop and mobile critic verdict pending.",
-    checkpoint: "P07 · R1 · REVIEW",
+      "R1 FAIL — 8.6 overall; editorial structure passed, but desktop photo rendering and official signup wording required correction.",
+    biggestGap:
+      "Fresh R2 critic must verify native-friendly photo rendering and the exact join-page handoff.",
+    checkpoint: "P07 · R2 · REVIEW",
   },
   {
     id: 8,

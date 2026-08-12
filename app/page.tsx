@@ -580,25 +580,35 @@ export default function Home() {
           </header>
 
           <div className={styles.joinBody}>
-            <figure className={styles.joinPortrait}>
-              <Image
-                src="/media/action-05.webp"
-                alt="Two cyclists racing on a forest road, led by a rider in a Hagens Berman kit"
-                width="750"
-                height="500"
-                sizes="(max-width: 760px) calc(100vw - 40px), 39vw"
-                loading="lazy"
-                unoptimized
-              />
-              <div className={styles.joinPhotoFlag} aria-hidden="true">
-                <span>One kit</span>
-                <span>One team</span>
+            <div className={styles.joinVisualRail}>
+              <figure className={styles.joinPortrait}>
+                <Image
+                  src="/media/action-05.webp"
+                  alt="Two cyclists racing on a forest road, led by a rider in a Hagens Berman kit"
+                  width="750"
+                  height="500"
+                  sizes="(max-width: 760px) calc(100vw - 40px), 39vw"
+                  loading="lazy"
+                  unoptimized
+                />
+                <div className={styles.joinPhotoFlag} aria-hidden="true">
+                  <span>One kit</span>
+                  <span>One team</span>
+                </div>
+                <figcaption>
+                  <span>Official HBR race archive</span>
+                  <span>Team kit / On course</span>
+                </figcaption>
+              </figure>
+
+              <div className={styles.joinRailStatement}>
+                <p>
+                  Everyone
+                  <em>can race.</em>
+                </p>
+                <span>Five disciplines / One team-first roster</span>
               </div>
-              <figcaption>
-                <span>Official HBR race archive</span>
-                <span>Team kit / On course</span>
-              </figcaption>
-            </figure>
+            </div>
 
             <article
               className={styles.joinDossier}
@@ -698,17 +708,17 @@ export default function Home() {
                 <div>
                   <p>Start with an introduction.</p>
                   <span>
-                    The official join page opens a short contact form. Tell the
-                    team where you are in your racing journey.
+                    On the official page, choose JOIN THE TEAM to open the
+                    contact form.
                   </span>
                 </div>
                 <a
                   href="https://www.hbsccycling.com/join-us"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Open the official Hagens Berman Racing join form (opens in a new tab)"
+                  aria-label="Open the official Hagens Berman Racing join page (opens in a new tab)"
                 >
-                  Open official join form <span aria-hidden="true">↗</span>
+                  Open official join page <span aria-hidden="true">↗</span>
                 </a>
               </footer>
             </article>
