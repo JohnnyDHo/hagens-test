@@ -94,11 +94,11 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 9,
     name: "Partners",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
-    biggestGap: "The full partner experience is not yet built.",
-    checkpoint: "P09 · R1 · BUILD",
+    latestVerdict: "Builder checkpoint ready for independent rendered review.",
+    biggestGap: "Awaiting fresh desktop and mobile critic verdict.",
+    checkpoint: "P09 · R1 · REVIEW",
   },
   {
     id: 10,

@@ -733,26 +733,172 @@ export default function Home() {
 
         <RaceArchive />
 
-        <div className={styles.sectionIndex} aria-label="Explore the team">
-          <header className={styles.sectionIndexHeader}>
-            <p>Race manual / Final sections</p>
-            <p>HBR · Seattle</p>
+        <section
+          className={styles.partnersProgram}
+          id="partners"
+          aria-labelledby="partners-title"
+        >
+          <header className={styles.partnersMasthead}>
+            <div className={styles.partnersIndex}>
+              <span>05</span>
+              <p>Partners / Current roster</p>
+            </div>
+
+            <div className={styles.partnersHeading}>
+              <p>Team support / 01—05</p>
+              <h2 id="partners-title">
+                With good
+                <em>company.</em>
+              </h2>
+            </div>
+
+            <div className={styles.partnersIntro}>
+              <p>
+                Hagens Berman, Smith, Skratch Labs, Specialized, and SILCA
+                make up the current HBR partner roster.
+              </p>
+              <span>Open a mark to visit its official site.</span>
+            </div>
           </header>
 
-          <section
-            className={styles.sectionIndexRow}
-            id="partners"
-            aria-labelledby="partners-title"
-          >
-            <p className={styles.sectionNumber}>05 / Team support</p>
-            <h2 id="partners-title">Partners</h2>
-            <p className={styles.sectionSummary}>
-              Hagens Berman, Smith, Skratch Labs, Specialized, and SILCA
-              support the team.
-            </p>
-            <p className={styles.sectionTag}>Five verified partners</p>
-          </section>
-        </div>
+          <div className={styles.partnerBoard}>
+            <header className={styles.partnerBoardHeader}>
+              <p>Partner field / Seattle</p>
+              <p>Five verified names</p>
+            </header>
+
+            <ol className={styles.partnerGrid} aria-label="HBR partner roster">
+              <li className={styles.partnerHagens}>
+                <a
+                  href="https://www.hbsslaw.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the official Hagens Berman website (opens in a new tab)"
+                >
+                  <figure>
+                    <Image
+                      src="/media/partner-hagens-berman.webp"
+                      alt="Hagens Berman"
+                      width="1160"
+                      height="230"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 62vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      <span>01 / 05</span>
+                      <span><span className={styles.officialWord}>Official </span>site ↗</span>
+                    </figcaption>
+                  </figure>
+                </a>
+              </li>
+
+              <li className={styles.partnerSilca}>
+                <a
+                  href="https://silca.cc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the official SILCA website (opens in a new tab)"
+                >
+                  <figure>
+                    <Image
+                      src="/media/partner-silca.webp"
+                      alt="SILCA"
+                      width="917"
+                      height="792"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 28vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      <span>05 / 05</span>
+                      <span><span className={styles.officialWord}>Official </span>site ↗</span>
+                    </figcaption>
+                  </figure>
+                </a>
+              </li>
+
+              <li className={styles.partnerSmith}>
+                <a
+                  href="https://www.smithoptics.com/en-us"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the official Smith Optics website (opens in a new tab)"
+                >
+                  <figure>
+                    <Image
+                      src="/media/partner-smith.webp"
+                      alt="Smith"
+                      width="1000"
+                      height="400"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 31vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      <span>02 / 05</span>
+                      <span><span className={styles.officialWord}>Official </span>site ↗</span>
+                    </figcaption>
+                  </figure>
+                </a>
+              </li>
+
+              <li className={styles.partnerSkratch}>
+                <a
+                  href="https://www.skratchlabs.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the official Skratch Labs website (opens in a new tab)"
+                >
+                  <figure>
+                    <Image
+                      src="/media/partner-skratch.webp"
+                      alt="Skratch Labs"
+                      width="622"
+                      height="178"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 27vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      <span>03 / 05</span>
+                      <span><span className={styles.officialWord}>Official </span>site ↗</span>
+                    </figcaption>
+                  </figure>
+                </a>
+              </li>
+
+              <li className={styles.partnerSpecialized}>
+                <a
+                  href="https://www.specialized.com/us/en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit the official Specialized website (opens in a new tab)"
+                >
+                  <figure>
+                    <Image
+                      src="/media/partner-specialized.webp"
+                      alt="Specialized logo with Edge and Spoke wordmark"
+                      width="992"
+                      height="164"
+                      sizes="(max-width: 760px) calc(100vw - 40px), 62vw"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      <span>04 / 05</span>
+                      <span><span className={styles.officialWord}>Official </span>site ↗</span>
+                    </figcaption>
+                  </figure>
+                </a>
+              </li>
+            </ol>
+          </div>
+
+          <footer className={styles.partnersRunout}>
+            <p>Team first / Race together</p>
+            <div aria-hidden="true">
+              <span>HBR</span>
+              <span>SEA</span>
+              <span>05 / 05</span>
+            </div>
+          </footer>
+        </section>
       </main>
 
       <SiteFooter />
