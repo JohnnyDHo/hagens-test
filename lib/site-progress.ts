@@ -65,10 +65,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 6,
     name: "Events",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Round 1 build ready for independent desktop/mobile review.",
-    biggestGap: "Awaiting blind A/B, interaction, and source-truth verdict.",
-    checkpoint: "P06 · R1 · REVIEW",
+    round: 2,
+    latestVerdict:
+      "R1 FAIL — 8.45 overall; hierarchy, editorial design, brand, and mobile passed, but photography sharpness and one unsupported phrase missed the gate.",
+    biggestGap:
+      "R2 replaces upscaled crops with native-resolution official imagery and removes the unsupported spring-classic wording; fresh review pending.",
+    checkpoint: "P06 · R2 · REVIEW",
   },
   {
     id: 7,

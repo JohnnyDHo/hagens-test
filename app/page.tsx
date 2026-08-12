@@ -417,14 +417,30 @@ export default function Home() {
             </div>
 
             <figure className={styles.masonPhoto}>
-              <Image
-                src="/media/mason-05.webp"
-                alt="A road-race group moving through the trees on the Mason Lake course"
-                width="750"
-                height="500"
-                sizes="(max-width: 760px) calc(100vw - 40px), 60vw"
-                loading="lazy"
-              />
+              <div className={styles.masonFrames}>
+                <div>
+                  <Image
+                    src="/media/mason-05.webp"
+                    alt="A road-race group moving through the trees on the Mason Lake course"
+                    width="750"
+                    height="600"
+                    sizes="(max-width: 760px) calc(100vw - 40px), 34vw"
+                    loading="lazy"
+                    unoptimized
+                  />
+                </div>
+                <div>
+                  <Image
+                    src="/media/mason-06.webp"
+                    alt="A road-race field riding together on the Mason Lake course"
+                    width="750"
+                    height="500"
+                    sizes="(max-width: 760px) 78vw, 38vw"
+                    loading="lazy"
+                    unoptimized
+                  />
+                </div>
+              </div>
               <figcaption>
                 <span>Official HBR race archive</span>
                 <span>Two race days / one course</span>
@@ -435,9 +451,8 @@ export default function Home() {
               <p className={styles.eventSequence}>Race days / 01 + 02</p>
               <h3 id="mason-title">Mason Lake Road Race</h3>
               <p>
-                The 2026 Pacific Northwest spring classic pairs two Saturdays
-                on a rolling 12-mile loop around scenic Mason Lake near
-                Grapeview.
+                The 2026 Mason Lake Road Race pairs two Saturdays on a rolling
+                12-mile loop around scenic Mason Lake near Grapeview.
               </p>
               <a
                 href="https://www.hbsccycling.com/mason-lake"
@@ -510,8 +525,9 @@ export default function Home() {
                 alt="Cyclists gathered at the start of a road race"
                 width="750"
                 height="500"
-                sizes="(max-width: 760px) calc(100vw - 40px), 42vw"
+                sizes="(max-width: 760px) calc(100vw - 40px), 30vw"
                 loading="lazy"
+                unoptimized
               />
               <figcaption>
                 <span>Official HBR race archive</span>

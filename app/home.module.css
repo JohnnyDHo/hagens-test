@@ -1080,7 +1080,7 @@
   letter-spacing: 0.12em;
 }
 
-.masonPhoto img,
+.masonFrames img,
 .wtnbPhoto img {
   width: 100%;
   display: block;
@@ -1088,10 +1088,28 @@
   filter: saturate(0.85) contrast(1.04);
 }
 
-.masonPhoto img {
-  min-height: 500px;
-  aspect-ratio: 16 / 10;
-  object-position: center 48%;
+.masonFrames {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: end;
+  gap: 12px;
+}
+
+.masonFrames > div {
+  overflow: hidden;
+  background: #d5dce0;
+}
+
+.masonFrames img {
+  height: clamp(360px, 33vw, 475px);
+}
+
+.masonFrames > div:first-child img {
+  object-position: 47% center;
+}
+
+.masonFrames > div:last-child img {
+  object-position: 55% center;
 }
 
 .masonPhoto figcaption,
@@ -1346,13 +1364,13 @@
 
 .wtnbPhoto {
   grid-column: 9 / -1;
+  align-self: end;
   margin: 0;
 }
 
 .wtnbPhoto img {
-  min-height: 440px;
-  aspect-ratio: 4 / 5;
-  object-position: 56% center;
+  aspect-ratio: 3 / 2;
+  object-position: center 46%;
 }
 
 .wtnbPhoto figcaption {
@@ -2027,9 +2045,23 @@
     font-size: 0.75rem;
   }
 
-  .masonPhoto img {
-    min-height: 0;
+  .masonFrames {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .masonFrames img {
+    height: auto;
     aspect-ratio: 5 / 4;
+  }
+
+  .masonFrames > div:last-child {
+    width: 78%;
+    justify-self: end;
+  }
+
+  .masonFrames > div:last-child img {
+    aspect-ratio: 3 / 2;
   }
 
   .masonPhoto figcaption,
@@ -2155,7 +2187,7 @@
 
   .wtnbPhoto img {
     min-height: 0;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 3 / 2;
     object-position: center 45%;
   }
 
