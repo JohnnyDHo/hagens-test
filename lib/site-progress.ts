@@ -84,22 +84,21 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 8,
     name: "Race gallery",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 3,
     latestVerdict:
-      "FAIL — R2 functional continuity passed on desktop, but exact style-attribute cleanup failed and mobile remained unverified.",
-    biggestGap:
-      "R3 restores the exact original html/body style-attribute presence and value; awaiting desktop/mobile verification.",
-    checkpoint: "P08 · R3 · REVIEW",
+      "PASS — 9.3 overall; clear desktop/mobile A/B win with no objective gallery defect.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P08 · R3 · PASS",
   },
   {
     id: 9,
     name: "Partners",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "Verified partner marks and hierarchy are not yet integrated.",
-    checkpoint: "P09 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "Builder assignment active.",
+    biggestGap: "The full partner experience is not yet built.",
+    checkpoint: "P09 · R1 · BUILD",
   },
   {
     id: 10,
