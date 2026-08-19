@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 1,
+    round: 2,
     latestVerdict:
-      "R1 built — awaiting independent rendered desktop/mobile motion review.",
+      "R2 built after R1 FAIL — 7.5; awaiting independent deep-load and responsive motion review.",
     biggestGap:
-      "Fresh critic must verify choreography, breakpoint cleanup, reduced-motion parity, and interaction preservation.",
-    checkpoint: "P10 · R1 · REVIEW",
+      "R1 release blocker was a ScrollTrigger initialization crash at restored max-scroll and cold #gallery/#partners entry, plus late mobile hero concealment; R2 must prove both eliminated.",
+    checkpoint: "P10 · R2 · REVIEW",
   },
   {
     id: 11,
