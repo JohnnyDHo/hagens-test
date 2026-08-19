@@ -94,22 +94,22 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 9,
     name: "Partners",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 3,
     latestVerdict:
-      "R2 FAIL — 8.9 overall; the visual, content, responsive, and anchor gates cleared, but the light Specialized cell inherited a low-contrast white focus ring. Escape also failed in the critic’s modal checks.",
-    biggestGap:
-      "R3 awaits proof of the dark Specialized focus ring and reliable Escape close with exact scroll and trigger-focus restoration.",
-    checkpoint: "P09 · R3 · REVIEW",
+      "PASS — 9.4 overall; clear desktop/mobile A/B win with no objective partner-section gap.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P09 · R3 · PASS",
   },
   {
     id: 10,
     name: "Motion language",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "GSAP choreography and reduced-motion equivalence are not yet unified.",
-    checkpoint: "P10 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "Builder assignment active.",
+    biggestGap:
+      "Approved static sections still need a cohesive GSAP motion language, scroll choreography, reduced-motion parity, and performance discipline.",
+    checkpoint: "P10 · R1 · BUILD",
   },
   {
     id: 11,
