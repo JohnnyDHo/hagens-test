@@ -4,14 +4,19 @@ import { passedPieceCount, progressPieces } from "../../lib/site-progress";
 import styles from "./progress.module.css";
 
 export const metadata: Metadata = {
-  title: "Build Progress | Hagens Berman Racing Seattle",
+  title: "Build Progress",
   description:
     "Live build-room status for the Hagens Berman Racing Seattle website.",
+  robots: { index: false, follow: false },
 };
 
 export default function ProgressPage() {
   return (
-    <main className={styles.page}>
+    <>
+      <a className={styles.skipLink} href="#main-content">
+        Skip to content
+      </a>
+      <main className={styles.page} id="main-content" tabIndex={-1}>
       <header className={styles.masthead}>
         <Link className={styles.brand} href="/" aria-label="Hagens Berman Racing home">
           <span className={styles.brandMark} aria-hidden="true">
@@ -122,8 +127,9 @@ export default function ProgressPage() {
 
       <footer className={styles.footer}>
         <p>Built in Seattle. Reviewed in the rendered world.</p>
-        <p>Last board reset · 09 Aug 2026</p>
+        <p>Latest checkpoint · 19 Aug 2026</p>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

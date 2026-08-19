@@ -67,7 +67,6 @@ export default function HeroMedia({
       <video
         ref={videoRef}
         className={videoClassName}
-        autoPlay
         muted
         loop
         playsInline

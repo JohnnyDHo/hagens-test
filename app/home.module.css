@@ -3405,6 +3405,47 @@
     min-width: 0;
     flex: 1 1 0;
   }
+
+  .topRail,
+  .kicker,
+  .actions a,
+  .disciplineNote,
+  .storyIndex,
+  .teamHeadline > p,
+  .photoFlag,
+  .teamPortrait figcaption,
+  .teamMethod header > p,
+  .methodList span,
+  .squadRail > p,
+  .squadRail ul,
+  .disciplineHeader > p:first-child,
+  .officialCredit,
+  .photoCredit,
+  .laneCopy span,
+  .laneCopy p,
+  .disciplineFooter,
+  .eventsIndex,
+  .eventsHeading > p,
+  .eventLedger,
+  .dateYear,
+  .masonPhoto::before,
+  .masonPhoto figcaption,
+  .wtnbPhoto figcaption,
+  .eventSequence,
+  .masonCopy > a,
+  .wtnbCopy > a,
+  .masonDays span,
+  .masonDays time,
+  .courseReadout dt,
+  .courseReadout dd,
+  .wtnbDate span,
+  .wtnbDate small,
+  .wtnbSchedule p,
+  .eventsFooter,
+  .joinPhotoFlag,
+  .joinPortrait figcaption {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 380px) {
@@ -3414,7 +3455,7 @@
 
   .actions a {
     padding-inline: 10px;
-    font-size: 0.52rem;
+    font-size: 0.75rem;
   }
 }
 

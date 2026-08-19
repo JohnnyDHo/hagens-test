@@ -387,10 +387,13 @@ export default function RaceArchive() {
           restorePage(true);
         }}
       >
+        <span className={styles.visuallyHidden} id="archive-dialog-title">
+          Official HBR and Mason Lake race archive
+        </span>
         {activeIndex !== null ? (
           <div className={styles.lightboxInner}>
             <header className={styles.lightboxHeader}>
-              <p id="archive-dialog-title">Official HBR / Mason Lake race archive</p>
+              <p>Official HBR / Mason Lake race archive</p>
               <p aria-live="polite" aria-atomic="true">
                 Frame {String(activeIndex + 1).padStart(2, "0")} of {archiveFrames.length}
               </p>

@@ -166,6 +166,15 @@
 }
 
 @media (max-width: 760px) {
+  .brand,
+  .brand small,
+  .legal,
+  .linkGrid nav a,
+  .endLine p,
+  .endLine a {
+    font-size: 0.75rem;
+  }
+
   .topLine,
   .linkGrid {
     grid-template-columns: 1fr;

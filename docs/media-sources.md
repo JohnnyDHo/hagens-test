@@ -13,6 +13,10 @@ The current team site and its public Mason Lake 2026 galleries are the source of
 - `public/media/partner-hagens-berman.webp`, `partner-smith.webp`, `partner-skratch.webp`, and `partner-silca.webp` — current partner page: https://www.hbsccycling.com/partners
 - `public/media/partner-specialized.svg` — frozen, optimized copy of the genuine Specialized wordmark rendered in the global navigation on the official Specialized US site: https://www.specialized.com/us/en (retrieved August 12, 2026). The source page identifies itself as © Specialized Bicycle Components, Inc.; the mark is not offered there under an open-content license. It is reproduced here only to identify Specialized as one of HBR’s five partners, as verified by the HBR partner page above. Geometry is unchanged from the official `viewBox="0 0 1540 160"`; only the site theme-variable fill was resolved to HBR ink and redundant navigation-only attributes were removed.
 
+## Social preview
+
+- `public/og.png` — 1200×630 site-wide social card created with OpenAI ImageGen on August 18, 2026. The sole photographic reference was the frozen official HBR archive image `public/media/action-03.webp`; ImageGen composed its editorial crop, #14539e brand treatment, and the truthful site line “Everyone Can Race / Hagens Berman Racing Seattle” into one unfurl-ready bitmap. This is an AI-assisted derivative of the same Mason Lake 2026 gallery source and carries no rider identity, result, or event claim beyond the verified team name and invitation.
+
 ## Hero footage
 
 - `public/media/hero.mp4` and `public/media/hero-poster.jpg` — “Cyclists race around a curve in an urban park setting,” video 18701796 by Albert Patten on Pexels: https://www.pexels.com/video/a-group-of-cyclists-are-riding-on-a-road-18701796/

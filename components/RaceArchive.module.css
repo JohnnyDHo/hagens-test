@@ -5,6 +5,7 @@
   --red: #b9342e;
   position: relative;
   isolation: isolate;
+  scroll-margin-top: 88px;
   padding: clamp(96px, 10vw, 154px) clamp(20px, 4.2vw, 72px) clamp(104px, 11vw, 168px);
   overflow: hidden;
   background: #e9eef1;
@@ -20,6 +21,18 @@
     linear-gradient(90deg, transparent calc(25% - 0.5px), rgba(7, 22, 33, 0.08) 25%, transparent calc(25% + 0.5px)),
     linear-gradient(90deg, transparent calc(75% - 0.5px), rgba(7, 22, 33, 0.08) 75%, transparent calc(75% + 0.5px));
   pointer-events: none;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
 }
 
 .masthead {

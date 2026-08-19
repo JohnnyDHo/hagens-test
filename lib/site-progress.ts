@@ -114,12 +114,13 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 11,
     name: "Responsive / a11y / performance / SEO",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "R1 builder active — production hardening in progress.",
+    latestVerdict:
+      "R1 builder complete — strict lint, production regression suite, and Sites build pass; independent rendered critique pending.",
     biggestGap:
-      "Full production hardening: metadata/social preview, keyboard/contrast/landmarks, Core Web Vitals/bundle/media budgets, responsive edge cases, and the obsolete test suite.",
-    checkpoint: "P11 · R1 · BUILD",
+      "Independent mobile-first and desktop review must now verify the hardened production result at real viewport edges.",
+    checkpoint: "P11 · R1 · BUILD READY",
   },
   {
     id: 12,

@@ -12,6 +12,31 @@
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
 
+.skipLink {
+  position: fixed;
+  z-index: 110;
+  top: 10px;
+  left: 10px;
+  min-height: 44px;
+  padding: 12px 16px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  background: var(--glacier, #f4f7f9);
+  color: var(--ink, #071621);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateY(-160%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
 .page *,
 .page *::before,
 .page *::after {
@@ -737,6 +762,36 @@
   .imageRules strong { display: none; }
 }
 
+@media (max-width: 760px) {
+  .brand small,
+  .issue,
+  .jumpNav,
+  .heroIndex,
+  .kicker,
+  .heroFigure figcaption,
+  .sectionLabel,
+  .swatches li,
+  .swatches code,
+  .pairings,
+  .displaySample > p,
+  .editorialSample > p,
+  .monoSample > p,
+  .principle > span,
+  .monoSample dl,
+  .raceTitle > p,
+  .raceTitle > span,
+  .statLine dt,
+  .actionLine > p,
+  .primaryAction,
+  .secondaryAction,
+  .teamFigure figcaption,
+  .imageRules > p,
+  .imageRules li,
+  .footer > a {
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 620px) {
   .masthead,
   .palette,
@@ -798,6 +853,34 @@
   .imageRules { padding-top: 14px; }
   .footer { min-height: 180px; grid-template-columns: 1fr auto; }
   .footer > p { display: none; }
+
+  .brand small,
+  .issue,
+  .jumpNav,
+  .heroIndex,
+  .kicker,
+  .heroFigure figcaption,
+  .sectionLabel,
+  .swatches li,
+  .swatches code,
+  .pairings,
+  .displaySample > p,
+  .editorialSample > p,
+  .monoSample > p,
+  .principle > span,
+  .monoSample dl,
+  .raceTitle > p,
+  .raceTitle > span,
+  .statLine dt,
+  .actionLine > p,
+  .primaryAction,
+  .secondaryAction,
+  .teamFigure figcaption,
+  .imageRules > p,
+  .imageRules li,
+  .footer > a {
+    font-size: 0.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

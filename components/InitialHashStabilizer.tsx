@@ -1,14 +1,18 @@
 "use client";
 
 import { useLayoutEffect } from "react";
-
-const INITIAL_TARGET = "#partners";
+import {
+  anchorScrollTop,
+  initialHashTargetId,
+} from "@/lib/hash-navigation";
 
 export default function InitialHashStabilizer() {
   useLayoutEffect(() => {
-    if (window.location.hash !== INITIAL_TARGET) return;
+    const initialHash = window.location.hash;
+    const targetId = initialHashTargetId(initialHash);
+    if (!targetId) return;
 
-    const target = document.getElementById(INITIAL_TARGET.slice(1));
+    const target = document.getElementById(targetId);
     if (!target) return;
 
     let cancelled = false;
@@ -30,16 +34,18 @@ export default function InitialHashStabilizer() {
         window.requestAnimationFrame(() => resolve());
       });
 
-      if (cancelled || window.location.hash !== INITIAL_TARGET) return;
+      if (cancelled || window.location.hash !== initialHash) return;
 
       const stickyHeader = document.querySelector<HTMLElement>(
         "[data-site-header]",
       );
-      const stickyOffset = (stickyHeader?.getBoundingClientRect().height ?? 0) + 16;
-      const targetTop = window.scrollY + target.getBoundingClientRect().top;
-
       window.scrollTo({
-        top: Math.max(0, targetTop - stickyOffset),
+        top: anchorScrollTop({
+          currentScrollY: window.scrollY,
+          targetViewportTop: target.getBoundingClientRect().top,
+          stickyHeaderHeight:
+            stickyHeader?.getBoundingClientRect().height ?? 0,
+        }),
         left: window.scrollX,
         behavior: "auto",
       });

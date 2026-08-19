@@ -5,8 +5,9 @@ import SiteHeader from "@/components/SiteHeader";
 import styles from "./shell.module.css";
 
 export const metadata: Metadata = {
-  title: "Global Shell | Hagens Berman Racing Seattle",
+  title: "Global Shell",
   description: "Responsive navigation and footer specimen for Hagens Berman Racing Seattle.",
+  robots: { index: false, follow: false },
 };
 
 export default function ShellPage() {
@@ -14,7 +15,7 @@ export default function ShellPage() {
     <div className={styles.shell} id="top">
       <SiteHeader />
 
-      <main className={styles.page} id="main-content">
+      <main className={styles.page} id="main-content" tabIndex={-1}>
         <section className={styles.intro} aria-labelledby="shell-title">
           <p className={styles.eyebrow}>Piece 03 / Responsive shell specimen</p>
           <h1 id="shell-title">Built for the sharp end of the bunch.</h1>

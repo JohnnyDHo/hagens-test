@@ -314,6 +314,7 @@ export default function SiteHeader() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${item.label} (opens in a new tab)`}
               onClick={closeMenu}
               key={item.label}
             >

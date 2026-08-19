@@ -21,7 +21,7 @@ export default function Home() {
       <HomeMotion />
       <SiteHeader />
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <section
           className={styles.hero}
           aria-labelledby="hero-title"
@@ -64,7 +64,12 @@ export default function Home() {
             </p>
 
             <div className={styles.actions} aria-label="Team actions">
-              <a href="https://www.hbsccycling.com/join-us">
+              <a
+                href="https://www.hbsccycling.com/join-us"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Join Hagens Berman Racing on the official team site (opens in a new tab)"
+              >
                 Join the team <span aria-hidden="true">↗</span>
               </a>
               <a href="#team">

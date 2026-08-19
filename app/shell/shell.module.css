@@ -181,6 +181,16 @@
   }
 }
 
+@media (max-width: 760px) {
+  .eyebrow,
+  .qaNote,
+  .imageBand figcaption,
+  .scrollCheck > p,
+  .scrollCheck small {
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 600px) {
   .intro {
     min-height: 640px;
@@ -207,6 +217,14 @@
 
   .scrollCheck {
     min-height: 700px;
+  }
+
+  .eyebrow,
+  .qaNote,
+  .imageBand figcaption,
+  .scrollCheck > p,
+  .scrollCheck small {
+    font-size: 0.75rem;
   }
 }
 

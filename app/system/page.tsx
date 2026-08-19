@@ -4,9 +4,10 @@ import Link from "next/link";
 import styles from "./system.module.css";
 
 export const metadata: Metadata = {
-  title: "Puget Sound Race Manual | Hagens Berman Racing",
+  title: "Puget Sound Race Manual",
   description:
     "The editorial design system for Hagens Berman Racing Seattle: color, type, race data, controls, imagery, and rhythm.",
+  robots: { index: false, follow: false },
 };
 
 const colors = [
@@ -25,7 +26,11 @@ const raceFacts = [
 
 export default function SystemPage() {
   return (
-    <main className={styles.page}>
+    <>
+      <a className={styles.skipLink} href="#main-content">
+        Skip to content
+      </a>
+      <main className={styles.page} id="main-content" tabIndex={-1}>
       <header className={styles.masthead}>
         <Link className={styles.brand} href="/" aria-label="Hagens Berman Racing home">
           <span className={styles.brandMark} aria-hidden="true">
@@ -239,6 +244,7 @@ export default function SystemPage() {
         <p>Puget Sound Race Manual · Design system specimen</p>
         <a href="#manual-title">Back to start ↑</a>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
