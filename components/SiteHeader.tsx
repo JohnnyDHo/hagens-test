@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./SiteHeader.module.css";
+
+const MOBILE_NAVIGATION_ID = "hbr-site-navigation";
 
 const primaryNavigation = [
   { label: "Home", href: "/" },
@@ -30,7 +32,6 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState<string | null>(null);
-  const navigationId = `site-navigation-${useId().replaceAll(":", "")}`;
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuOpenRef = useRef(false);
@@ -248,7 +249,7 @@ export default function SiteHeader() {
           className={styles.menuButton}
           ref={menuButtonRef}
           type="button"
-          aria-controls={navigationId}
+          aria-controls={MOBILE_NAVIGATION_ID}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           onClick={toggleMenu}
@@ -263,7 +264,7 @@ export default function SiteHeader() {
 
       <div
         className={styles.mobileMenu}
-        id={navigationId}
+        id={MOBILE_NAVIGATION_ID}
         ref={mobileMenuRef}
         role="dialog"
         aria-label="Site navigation"

@@ -17,6 +17,11 @@ type RevealRecord = {
   finalize: () => void;
 };
 
+const TRANSFORM_CLEAR_PROPS = "transform,translate,rotate,scale";
+const TRANSFORM_ORIGIN_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},transformOrigin`;
+const TRANSFORM_OPACITY_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity`;
+const TRANSFORM_OPACITY_CLIP_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity,clipPath`;
+
 const selectAll = <T extends Element>(root: Element, selector: string) =>
   Array.from(root.querySelectorAll<T>(selector));
 
@@ -68,6 +73,8 @@ export default function HomeMotion() {
 
           const localAnimations = new Set<gsap.core.Animation>();
           const revealRecords: RevealRecord[] = [];
+          const transformTargets = new Set<HTMLElement>();
+          const transformOriginTargets = new Set<HTMLElement>();
           let cleanupProgress: (() => void) | null = null;
 
           const remember = <T extends gsap.core.Animation>(animation: T) => {
@@ -129,6 +136,19 @@ export default function HomeMotion() {
             gsap.set(targets, { clearProps: properties });
           };
 
+          const ownTransforms = (
+            targets: HTMLElement | HTMLElement[],
+            includesTransformOrigin = false,
+          ) => {
+            const targetList = Array.isArray(targets) ? targets : [targets];
+            targetList.forEach((target) => transformTargets.add(target));
+            if (includesTransformOrigin) {
+              targetList.forEach((target) =>
+                transformOriginTargets.add(target),
+              );
+            }
+          };
+
           const registerReveal = (
             animation: gsap.core.Animation,
             trigger: HTMLElement,
@@ -147,6 +167,7 @@ export default function HomeMotion() {
           );
 
           if (progressFill) {
+            ownTransforms(progressFill);
             const setProgress = gsap.quickSetter(progressFill, "scaleY");
             const updateProgress = () => {
               if (document.visibilityState === "hidden") return;
@@ -168,7 +189,6 @@ export default function HomeMotion() {
               window.removeEventListener("scroll", updateProgress);
               window.removeEventListener("resize", updateProgress);
               if (syncProgress === updateProgress) syncProgress = null;
-              finalize(progressFill, "transform");
             };
           }
 
@@ -194,6 +214,7 @@ export default function HomeMotion() {
             );
 
             if (heroMedia) {
+              ownTransforms(heroMedia);
               heroTimeline.fromTo(
                 heroMedia,
                 { scale: desktop ? 1.07 : 1.035 },
@@ -201,13 +222,14 @@ export default function HomeMotion() {
                   scale: 1,
                   duration: desktop ? 1.8 : 1.15,
                   ease: "sine.out",
-                  clearProps: "transform",
+                  clearProps: TRANSFORM_CLEAR_PROPS,
                 },
                 0,
               );
             }
 
             if (stripe) {
+              ownTransforms(stripe, true);
               heroTimeline.fromTo(
                 stripe,
                 { scaleY: 0.18, transformOrigin: "50% 0%" },
@@ -215,13 +237,14 @@ export default function HomeMotion() {
                   scaleY: 1,
                   duration: 0.86,
                   ease: "power4.out",
-                  clearProps: "transform,transformOrigin",
+                  clearProps: TRANSFORM_ORIGIN_CLEAR_PROPS,
                 },
                 0.06,
               );
             }
 
             if (kicker) {
+              ownTransforms(kicker);
               heroTimeline.fromTo(
                 kicker,
                 { y: mobile ? 6 : 10 },
@@ -229,13 +252,14 @@ export default function HomeMotion() {
                   y: 0,
                   duration: 0.62,
                   ease: "power2.out",
-                  clearProps: "transform",
+                  clearProps: TRANSFORM_CLEAR_PROPS,
                 },
                 0.14,
               );
             }
 
             if (lines.length) {
+              ownTransforms(lines);
               heroTimeline.fromTo(
                 lines,
                 { yPercent: desktop ? 8 : 4 },
@@ -244,13 +268,14 @@ export default function HomeMotion() {
                   duration: desktop ? 0.96 : 0.7,
                   stagger: desktop ? 0.12 : 0.08,
                   ease: "power4.out",
-                  clearProps: "transform",
+                  clearProps: TRANSFORM_CLEAR_PROPS,
                 },
                 0.2,
               );
             }
 
             if (meta.length) {
+              ownTransforms(meta);
               heroTimeline.fromTo(
                 meta,
                 { y: mobile ? 6 : 10 },
@@ -259,7 +284,7 @@ export default function HomeMotion() {
                   duration: desktop ? 0.72 : 0.54,
                   stagger: desktop ? 0.07 : 0.04,
                   ease: "power3.out",
-                  clearProps: "transform",
+                  clearProps: TRANSFORM_CLEAR_PROPS,
                 },
                 desktop ? 0.62 : 0.5,
               );
@@ -270,9 +295,10 @@ export default function HomeMotion() {
             (masthead) => {
               const items = childElements(masthead);
               if (!items.length) return;
+              ownTransforms(items);
 
               const finalizeMasthead = () =>
-                finalize(items, "transform,opacity,clipPath");
+                finalize(items, TRANSFORM_OPACITY_CLIP_CLEAR_PROPS);
               if (!isUpcoming(masthead)) {
                 finalizeMasthead();
                 return;
@@ -294,7 +320,7 @@ export default function HomeMotion() {
                   duration: desktop ? 0.92 : 0.64,
                   stagger: desktop ? 0.11 : 0.06,
                   ease: "power3.out",
-                  clearProps: "transform,opacity,clipPath",
+                  clearProps: TRANSFORM_OPACITY_CLIP_CLEAR_PROPS,
                   scrollTrigger: {
                     trigger: masthead,
                     start: desktop ? "top 76%" : "top 88%",
@@ -311,8 +337,10 @@ export default function HomeMotion() {
             (group) => {
               const items = childElements(group);
               if (!items.length) return;
+              ownTransforms(items);
 
-              const finalizeGroup = () => finalize(items, "transform,opacity");
+              const finalizeGroup = () =>
+                finalize(items, TRANSFORM_OPACITY_CLEAR_PROPS);
               if (!isUpcoming(group)) {
                 finalizeGroup();
                 return;
@@ -333,7 +361,7 @@ export default function HomeMotion() {
                     from: "start",
                   },
                   ease: "power2.out",
-                  clearProps: "transform,opacity",
+                  clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
                   scrollTrigger: {
                     trigger: group,
                     start: desktop ? "top 82%" : "top 91%",
@@ -349,7 +377,9 @@ export default function HomeMotion() {
           selectAll<HTMLElement>(root, "[data-motion-atlas]").forEach(
             (atlas) => {
               childElements(atlas).forEach((item, index) => {
-                const finalizeItem = () => finalize(item, "transform,opacity");
+                ownTransforms(item);
+                const finalizeItem = () =>
+                  finalize(item, TRANSFORM_OPACITY_CLEAR_PROPS);
                 if (!isUpcoming(item)) {
                   finalizeItem();
                   return;
@@ -368,7 +398,7 @@ export default function HomeMotion() {
                     opacity: 1,
                     duration: desktop ? 0.82 : 0.56,
                     ease: index === 0 ? "power4.out" : "power3.out",
-                    clearProps: "transform,opacity",
+                    clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
                     scrollTrigger: {
                       trigger: item,
                       start: desktop ? "top 84%" : "top 92%",
@@ -385,9 +415,10 @@ export default function HomeMotion() {
           selectAll<HTMLElement>(root, "[data-motion-image]").forEach(
             (frame) => {
               const images = selectAll<HTMLElement>(frame, "img");
+              if (images.length) ownTransforms(images);
               const finalizeImage = () => {
                 finalize(frame, "clipPath");
-                if (images.length) finalize(images, "transform");
+                if (images.length) finalize(images, TRANSFORM_CLEAR_PROPS);
               };
 
               if (!isUpcoming(frame)) {
@@ -427,7 +458,7 @@ export default function HomeMotion() {
                     scale: 1,
                     duration: desktop ? 1.18 : 0.76,
                     ease: "sine.out",
-                    clearProps: "transform",
+                    clearProps: TRANSFORM_CLEAR_PROPS,
                   },
                   0,
                 );
@@ -439,8 +470,9 @@ export default function HomeMotion() {
 
           selectAll<HTMLElement>(root, "[data-motion-accent]").forEach(
             (accent) => {
+              ownTransforms(accent);
               const finalizeAccent = () =>
-                finalize(accent, "transform,opacity");
+                finalize(accent, TRANSFORM_OPACITY_CLEAR_PROPS);
               if (!isUpcoming(accent)) {
                 finalizeAccent();
                 return;
@@ -454,7 +486,7 @@ export default function HomeMotion() {
                   opacity: 1,
                   duration: desktop ? 0.82 : 0.58,
                   ease: "power4.out",
-                  clearProps: "transform,opacity",
+                  clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
                   scrollTrigger: {
                     trigger: accent,
                     start: desktop ? "top 83%" : "top 92%",
@@ -501,6 +533,15 @@ export default function HomeMotion() {
               runningAnimations.delete(animation);
             });
             localAnimations.clear();
+            if (transformTargets.size) {
+              finalize(Array.from(transformTargets), TRANSFORM_CLEAR_PROPS);
+            }
+            if (transformOriginTargets.size) {
+              finalize(
+                Array.from(transformOriginTargets),
+                TRANSFORM_ORIGIN_CLEAR_PROPS,
+              );
+            }
           };
         },
       );

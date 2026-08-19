@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 2,
+    round: 3,
     latestVerdict:
-      "R2 built after R1 FAIL — 7.5; awaiting independent deep-load and responsive motion review.",
+      "R3 built after R2 FAIL — 8.3; awaiting hydration and transform-cleanup verification.",
     biggestGap:
-      "R1 release blocker was a ScrollTrigger initialization crash at restored max-scroll and cold #gallery/#partners entry, plus late mobile hero concealment; R2 must prove both eliminated.",
-    checkpoint: "P10 · R2 · REVIEW",
+      "R2 cleared every crash, deep-hash, hero, and interaction gate; remaining defects were history-restored header ID hydration mismatch and GSAP no-op inline translate/rotate/scale residue.",
+    checkpoint: "P10 · R3 · REVIEW",
   },
   {
     id: 11,
