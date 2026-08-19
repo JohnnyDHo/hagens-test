@@ -96,18 +96,19 @@ export default function HomeMotion() {
       const localMotionTargets = new Set<HTMLElement>();
       let cleanupProgress: (() => void) | null = null;
 
-      const getProjectedScrollY = () => {
-        let projectedScrollY = window.scrollY;
+      const resolveHashTarget = () => {
         const hash = window.location.hash.slice(1);
-        let hashTarget: HTMLElement | null = null;
+        if (!hash) return null;
 
-        if (hash) {
-          try {
-            hashTarget = document.getElementById(decodeURIComponent(hash));
-          } catch {
-            hashTarget = document.getElementById(hash);
-          }
+        try {
+          return document.getElementById(decodeURIComponent(hash));
+        } catch {
+          return document.getElementById(hash);
         }
+      };
+
+      const getProjectedScrollY = (hashTarget: HTMLElement | null) => {
+        let projectedScrollY = window.scrollY;
 
         if (hashTarget) {
           const stickyHeader = document.querySelector<HTMLElement>(
@@ -129,9 +130,12 @@ export default function HomeMotion() {
       const getDocumentTop = (element: HTMLElement) =>
         window.scrollY + element.getBoundingClientRect().top;
 
-      const isUpcoming = (documentTop: number) => {
+      const isUpcoming = (
+        documentTop: number,
+        projectedScrollY: number,
+      ) => {
         if (!Number.isFinite(documentTop)) return false;
-        const projectedTop = documentTop - getProjectedScrollY();
+        const projectedTop = documentTop - projectedScrollY;
         const viewportHeight = Math.max(
           window.innerHeight,
           document.documentElement.clientHeight,
@@ -578,8 +582,18 @@ export default function HomeMotion() {
           }
 
           ownershipReady = true;
+          const hashTarget = resolveHashTarget();
+          const projectedScrollY = getProjectedScrollY(hashTarget);
           revealRecords.forEach((record) => {
-            if (isUpcoming(record.documentTop)) {
+            const belongsToHashTarget =
+              hashTarget !== null &&
+              (record.trigger === hashTarget ||
+                hashTarget.contains(record.trigger));
+
+            if (
+              !belongsToHashTarget &&
+              isUpcoming(record.documentTop, projectedScrollY)
+            ) {
               observer.observe(record.trigger);
               return;
             }

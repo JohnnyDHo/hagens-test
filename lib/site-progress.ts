@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 6,
+    round: 7,
     latestVerdict:
-      "R6 built after R5 FAIL — 7.2; awaiting paused observer-ownership and lock-restoration verification.",
+      "R7 built after R6 FAIL — 8.7; awaiting explicit deep-link target integrity verification.",
     biggestGap:
-      "R5 lost one-shot ownership: 58 below-fold nodes autoplayed at scrollY0, five archive items autoplayed on a cold gallery hash, and the mobile drawer did not restore root/body style attributes exactly.",
-    checkpoint: "P10 · R6 · REVIEW",
+      "R6 passed ordinary scroll ownership and every cleanup gate, but cold desktop #gallery left archive frames 03–07 prepared below the first viewport instead of finalizing the entire target section.",
+    checkpoint: "P10 · R7 · REVIEW",
   },
   {
     id: 11,
