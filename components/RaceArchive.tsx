@@ -261,6 +261,24 @@ export default function RaceArchive() {
     };
   }, [closeArchive, restorePage]);
 
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const closeFromEscape = (event: KeyboardEvent) => {
+      const dialog = dialogRef.current;
+      if (event.key !== "Escape" || !dialog?.open) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      closeArchive();
+    };
+
+    document.addEventListener("keydown", closeFromEscape, true);
+    return () => {
+      document.removeEventListener("keydown", closeFromEscape, true);
+    };
+  }, [activeIndex, closeArchive]);
+
   return (
     <section className={styles.archive} id="gallery" aria-labelledby="gallery-title">
       <header className={styles.masthead}>

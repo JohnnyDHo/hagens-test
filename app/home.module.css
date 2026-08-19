@@ -2244,6 +2244,10 @@
   background: var(--glacier) !important;
 }
 
+.partnerSpecialized a:focus-visible {
+  outline-color: var(--ink);
+}
+
 .partnerSpecialized figure {
   padding-inline: clamp(32px, 10vw, 170px);
 }

@@ -95,12 +95,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 9,
     name: "Partners",
     status: "IN REVIEW",
-    round: 2,
+    round: 3,
     latestVerdict:
-      "R1 FAIL — 8.0 overall; misleading Specialized / Edge & Spoke art, sub-12px desktop metadata, and a 1,700px mobile hard-load anchor drift.",
+      "R2 FAIL — 8.9 overall; the visual, content, responsive, and anchor gates cleared, but the light Specialized cell inherited a low-contrast white focus ring. Escape also failed in the critic’s modal checks.",
     biggestGap:
-      "R2 awaits proof that a fresh 390×844 direct #partners load settles below the 72px sticky header with the genuine Specialized mark and ≥12px metadata.",
-    checkpoint: "P09 · R2 · REVIEW",
+      "R3 awaits proof of the dark Specialized focus ring and reliable Escape close with exact scroll and trigger-focus restoration.",
+    checkpoint: "P09 · R3 · REVIEW",
   },
   {
     id: 10,
