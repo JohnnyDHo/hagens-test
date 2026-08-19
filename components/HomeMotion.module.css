@@ -1,0 +1,65 @@
+.raceProgress {
+  --progress-ink: rgba(255, 255, 255, 0.92);
+  position: fixed;
+  z-index: 28;
+  top: 50%;
+  right: 12px;
+  width: 18px;
+  height: min(248px, 36vh);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  gap: 9px;
+  color: var(--progress-ink);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.progressLabel {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.progressTrack {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: currentColor;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+@media (max-width: 760px) {
+  .raceProgress {
+    right: 6px;
+    width: 12px;
+    height: min(154px, 24vh);
+    gap: 7px;
+  }
+
+  .progressLabel {
+    font-size: 0.43rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .raceProgress {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import HeroMedia from "@/components/HeroMedia";
+import HomeMotion from "@/components/HomeMotion";
 import InitialHashStabilizer from "@/components/InitialHashStabilizer";
 import RaceArchive from "@/components/RaceArchive";
 import SiteFooter from "@/components/SiteFooter";
@@ -15,36 +16,48 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className={styles.site} id="top">
+    <div className={styles.site} id="top" data-motion-root>
       <InitialHashStabilizer />
+      <HomeMotion />
       <SiteHeader />
 
       <main id="main-content">
-        <section className={styles.hero} aria-labelledby="hero-title">
+        <section
+          className={styles.hero}
+          aria-labelledby="hero-title"
+          data-motion-hero
+        >
           <HeroMedia
             className={styles.media}
             videoClassName={styles.video}
             readyClassName={styles.mediaReady}
+            motionHook
           />
 
-          <div className={styles.raceStripe} aria-hidden="true">
+          <div
+            className={styles.raceStripe}
+            aria-hidden="true"
+            data-motion-hero-stripe
+          >
             <span>HBR / Seattle / Five disciplines / One team</span>
           </div>
 
-          <div className={styles.topRail}>
+          <div className={styles.topRail} data-motion-hero-meta>
             <p>Seattle, Washington</p>
             <p>Amateur cycling / Team first</p>
           </div>
 
           <div className={styles.titleBlock}>
-            <p className={styles.kicker}>Hagens Berman Racing</p>
+            <p className={styles.kicker} data-motion-hero-kicker>
+              Hagens Berman Racing
+            </p>
             <h1 id="hero-title">
-              <span>Everyone</span>
-              <em>can race.</em>
+              <span data-motion-hero-line>Everyone</span>
+              <em data-motion-hero-line>can race.</em>
             </h1>
           </div>
 
-          <div className={styles.bottomRail}>
+          <div className={styles.bottomRail} data-motion-hero-meta>
             <p className={styles.intro}>
               A Seattle racing team bringing cyclists together across road,
               cyclocross, gravel, track, and mountain bike.
@@ -71,7 +84,7 @@ export default function Home() {
           id="team"
           aria-labelledby="team-title"
         >
-          <header className={styles.teamLead}>
+          <header className={styles.teamLead} data-motion-masthead>
             <div className={styles.storyIndex}>
               <span>01</span>
               <p>Team / Seattle</p>
@@ -99,7 +112,7 @@ export default function Home() {
             </div>
           </header>
 
-          <figure className={styles.teamPortrait}>
+          <figure className={styles.teamPortrait} data-motion-image>
             <Image
               src="/media/team.webp"
               alt="A group of Hagens Berman Racing cyclists gathered with their bikes"
@@ -119,7 +132,7 @@ export default function Home() {
           </figure>
 
           <section className={styles.teamMethod} aria-labelledby="method-title">
-            <header>
+            <header data-motion-masthead>
               <p>How the team moves / 04</p>
               <div className={styles.methodTitle}>
                 <h3 id="method-title">More than race day.</h3>
@@ -129,7 +142,7 @@ export default function Home() {
               </div>
             </header>
 
-            <ol className={styles.methodList}>
+            <ol className={styles.methodList} data-motion-stagger>
               <li>
                 <span>01</span>
                 <h4>Ride</h4>
@@ -173,7 +186,7 @@ export default function Home() {
             className={styles.disciplines}
             aria-labelledby="disciplines-title"
           >
-            <header className={styles.disciplineHeader}>
+            <header className={styles.disciplineHeader} data-motion-masthead>
               <p>Race atlas / 01—05</p>
               <h3 id="disciplines-title">The race changes under your wheels.</h3>
               <p>
@@ -182,7 +195,7 @@ export default function Home() {
               </p>
             </header>
 
-            <ol className={styles.disciplineAtlas}>
+            <ol className={styles.disciplineAtlas} data-motion-atlas>
               <li className={styles.roadLane}>
                 <article>
                   <figure>
@@ -383,7 +396,7 @@ export default function Home() {
           id="events"
           aria-labelledby="events-title"
         >
-          <header className={styles.eventsMasthead}>
+          <header className={styles.eventsMasthead} data-motion-masthead>
             <div className={styles.eventsIndex}>
               <span>02</span>
               <p>Presented races / 2026</p>
@@ -411,7 +424,11 @@ export default function Home() {
               <p>Presented by HBR Seattle</p>
             </div>
 
-            <div className={styles.masonDate} aria-label="March 21 and March 28, 2026">
+            <div
+              className={styles.masonDate}
+              aria-label="March 21 and March 28, 2026"
+              data-motion-accent
+            >
               <span className={styles.dateMonth}>Mar</span>
               <span className={styles.dateDay}>21</span>
               <span className={styles.dateJoin} aria-hidden="true">+</span>
@@ -419,7 +436,7 @@ export default function Home() {
               <span className={styles.dateYear}>2026 / Saturdays</span>
             </div>
 
-            <figure className={styles.masonPhoto}>
+            <figure className={styles.masonPhoto} data-motion-image>
               <div className={styles.masonFrames}>
                 <div>
                   <Image
@@ -467,7 +484,11 @@ export default function Home() {
               </a>
             </div>
 
-            <ol className={styles.masonDays} aria-label="Mason Lake 2026 race dates">
+            <ol
+              className={styles.masonDays}
+              aria-label="Mason Lake 2026 race dates"
+              data-motion-stagger
+            >
               <li>
                 <span>Day 01</span>
                 <time dateTime="2026-03-21">Saturday / March 21 / 2026</time>
@@ -495,7 +516,11 @@ export default function Home() {
           </article>
 
           <article className={styles.wtnbEvent} aria-labelledby="wtnb-title">
-            <div className={styles.wtnbDate} aria-label="August 25, 2026">
+            <div
+              className={styles.wtnbDate}
+              aria-label="August 25, 2026"
+              data-motion-accent
+            >
               <span>Aug</span>
               <strong>25</strong>
               <small>Tue / 2026</small>
@@ -522,7 +547,7 @@ export default function Home() {
               </a>
             </div>
 
-            <figure className={styles.wtnbPhoto}>
+            <figure className={styles.wtnbPhoto} data-motion-image>
               <Image
                 src="/media/race-03.webp"
                 alt="Cyclists gathered at the start of a road race"
@@ -538,7 +563,11 @@ export default function Home() {
               </figcaption>
             </figure>
 
-            <ol className={styles.wtnbSchedule} aria-label="WTNB Night schedule">
+            <ol
+              className={styles.wtnbSchedule}
+              aria-label="WTNB Night schedule"
+              data-motion-stagger
+            >
               <li>
                 <time dateTime="2026-08-25T18:00">6:00 PM</time>
                 <p>Beginner race clinic</p>
@@ -561,7 +590,7 @@ export default function Home() {
           id="join"
           aria-labelledby="join-title"
         >
-          <header className={styles.joinMasthead}>
+          <header className={styles.joinMasthead} data-motion-masthead>
             <div className={styles.joinIndex}>
               <span>03</span>
               <p>Membership / Seattle</p>
@@ -584,7 +613,7 @@ export default function Home() {
 
           <div className={styles.joinBody}>
             <div className={styles.joinVisualRail}>
-              <figure className={styles.joinPortrait}>
+              <figure className={styles.joinPortrait} data-motion-image>
                 <Image
                   src="/media/action-05.webp"
                   alt="Two cyclists racing on a forest road, led by a rider in a Hagens Berman kit"
@@ -604,7 +633,7 @@ export default function Home() {
                 </figcaption>
               </figure>
 
-              <div className={styles.joinRailStatement}>
+              <div className={styles.joinRailStatement} data-motion-accent>
                 <p>
                   Everyone
                   <em>can race.</em>
@@ -643,7 +672,7 @@ export default function Home() {
                     <p>Team / Offers</p>
                     <h4 id="offers-title">Support from week to race day.</h4>
                   </header>
-                  <ol>
+                  <ol data-motion-stagger>
                     <li>
                       <span>01</span>
                       <p>Weekly team rides</p>
@@ -740,7 +769,7 @@ export default function Home() {
           id="partners"
           aria-labelledby="partners-title"
         >
-          <header className={styles.partnersMasthead}>
+          <header className={styles.partnersMasthead} data-motion-masthead>
             <div className={styles.partnersIndex}>
               <span>05</span>
               <p>Partners / Current roster</p>
@@ -769,7 +798,11 @@ export default function Home() {
               <p>Five verified names</p>
             </header>
 
-            <ol className={styles.partnerGrid} aria-label="HBR partner roster">
+            <ol
+              className={styles.partnerGrid}
+              aria-label="HBR partner roster"
+              data-motion-stagger
+            >
               <li className={styles.partnerHagens}>
                 <a
                   href="https://www.hbsslaw.com/"

@@ -281,7 +281,7 @@ export default function RaceArchive() {
 
   return (
     <section className={styles.archive} id="gallery" aria-labelledby="gallery-title">
-      <header className={styles.masthead}>
+      <header className={styles.masthead} data-motion-masthead>
         <div className={styles.index}>
           <span>04</span>
           <p>Race archive / 07 frames</p>
@@ -311,7 +311,11 @@ export default function RaceArchive() {
         <span>ML · 01—07</span>
       </div>
 
-      <ol className={styles.archiveList} aria-label="Selected race archive photographs">
+      <ol
+        className={styles.archiveList}
+        aria-label="Selected race archive photographs"
+        data-motion-atlas
+      >
         {archiveFrames.map((frame, index) => {
           const frameNumber = String(index + 1).padStart(2, "0");
 

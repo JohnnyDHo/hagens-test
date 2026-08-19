@@ -6,12 +6,14 @@ type HeroMediaProps = {
   className: string;
   videoClassName: string;
   readyClassName: string;
+  motionHook?: boolean;
 };
 
 export default function HeroMedia({
   className,
   videoClassName,
   readyClassName,
+  motionHook = false,
 }: HeroMediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
@@ -23,24 +25,35 @@ export default function HeroMedia({
     if (!video) return;
 
     const syncPlayback = () => {
-      if (reducedMotion.matches) {
+      if (reducedMotion.matches || document.visibilityState === "hidden") {
         video.pause();
-        video.currentTime = 0;
-        setVideoReady(false);
+        if (reducedMotion.matches) {
+          video.currentTime = 0;
+          setVideoReady(false);
+        }
         return;
       }
 
-      void video.play().catch(() => {
-        // The poster remains a complete visual fallback when autoplay is unavailable.
-        setVideoReady(false);
-      });
+      void video
+        .play()
+        .then(() => {
+          if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+            setVideoReady(true);
+          }
+        })
+        .catch(() => {
+          // The poster remains a complete visual fallback when autoplay is unavailable.
+          setVideoReady(false);
+        });
     };
 
     syncPlayback();
     reducedMotion.addEventListener("change", syncPlayback);
+    document.addEventListener("visibilitychange", syncPlayback);
 
     return () => {
       reducedMotion.removeEventListener("change", syncPlayback);
+      document.removeEventListener("visibilitychange", syncPlayback);
       video.pause();
     };
   }, []);
@@ -49,6 +62,7 @@ export default function HeroMedia({
     <div
       className={`${className} ${videoReady ? readyClassName : ""}`}
       aria-hidden="true"
+      data-motion-hero-media={motionHook ? "" : undefined}
     >
       <video
         ref={videoRef}

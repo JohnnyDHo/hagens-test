@@ -104,12 +104,13 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 10,
     name: "Motion language",
-    status: "BUILDING",
+    status: "IN REVIEW",
     round: 1,
-    latestVerdict: "Builder assignment active.",
+    latestVerdict:
+      "R1 built — awaiting independent rendered desktop/mobile motion review.",
     biggestGap:
-      "Approved static sections still need a cohesive GSAP motion language, scroll choreography, reduced-motion parity, and performance discipline.",
-    checkpoint: "P10 · R1 · BUILD",
+      "Fresh critic must verify choreography, breakpoint cleanup, reduced-motion parity, and interaction preservation.",
+    checkpoint: "P10 · R1 · REVIEW",
   },
   {
     id: 11,
