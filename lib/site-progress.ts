@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 5,
+    round: 6,
     latestVerdict:
-      "R5 built after R4 FAIL — 8.4; awaiting read-only geometry and resize-lifecycle verification.",
+      "R6 built after R5 FAIL — 7.2; awaiting paused observer-ownership and lock-restoration verification.",
     biggestGap:
-      "R4 cleanup passed on owned targets, but gsap.getProperty mutated 12 unowned trigger roots and breakpoint auto-revert could reapply transform residue or opacity:0 after cleanup.",
-    checkpoint: "P10 · R5 · REVIEW",
+      "R5 lost one-shot ownership: 58 below-fold nodes autoplayed at scrollY0, five archive items autoplayed on a cold gallery hash, and the mobile drawer did not restore root/body style attributes exactly.",
+    checkpoint: "P10 · R6 · REVIEW",
   },
   {
     id: 11,

@@ -78,10 +78,11 @@ export default function SiteHeader() {
     if (!scrollCapture) return;
 
     const { x: scrollX, y: scrollY } = scrollCapture;
+    const rootStyleAttribute = root.getAttribute("style");
+    const bodyStyleAttribute = body.getAttribute("style");
     const rootStyles = {
       overflow: root.style.overflow,
       overscrollBehavior: root.style.overscrollBehavior,
-      scrollBehavior: root.style.scrollBehavior,
     };
     const bodyStyles = {
       overflow: body.style.overflow,
@@ -163,8 +164,18 @@ export default function SiteHeader() {
       body.style.top = bodyStyles.top;
       body.style.left = bodyStyles.left;
       body.style.width = bodyStyles.width;
+      root.style.scrollBehavior = "auto";
       window.scrollTo(scrollX, scrollY);
-      root.style.scrollBehavior = rootStyles.scrollBehavior;
+      if (rootStyleAttribute === null) {
+        root.removeAttribute("style");
+      } else {
+        root.setAttribute("style", rootStyleAttribute);
+      }
+      if (bodyStyleAttribute === null) {
+        body.removeAttribute("style");
+      } else {
+        body.setAttribute("style", bodyStyleAttribute);
+      }
       menuButton?.focus({ preventScroll: true });
 
       if (!menuOpenRef.current && scrollCaptureRef.current === scrollCapture) {
