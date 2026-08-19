@@ -2012,8 +2012,10 @@
 .partnerGrid figcaption,
 .partnersRunout {
   font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
   font-weight: 760;
   letter-spacing: 0.1em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
@@ -2022,8 +2024,6 @@
   align-items: center;
   gap: 13px;
   color: #85baf6;
-  font-size: 0.66rem;
-  line-height: 1.4;
 }
 
 .partnersIndex span {
@@ -2047,7 +2047,6 @@
 .partnersHeading > p {
   margin-bottom: 24px;
   color: #85baf6;
-  font-size: 0.75rem;
 }
 
 .partnersHeading h2 {
@@ -2091,8 +2090,6 @@
   margin-top: 22px;
   display: block;
   color: rgba(255, 255, 255, 0.58);
-  font-size: 0.62rem;
-  line-height: 1.5;
 }
 
 .partnerBoard {
@@ -2108,8 +2105,6 @@
   justify-content: space-between;
   gap: 24px;
   color: rgba(255, 255, 255, 0.58);
-  font-size: 0.64rem;
-  line-height: 1.5;
 }
 
 .partnerBoardHeader p:first-child {
@@ -2200,8 +2195,6 @@
   justify-content: space-between;
   gap: 18px;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.62rem;
-  line-height: 1.5;
 }
 
 .partnerGrid figcaption span:last-child {
@@ -2274,8 +2267,6 @@
   justify-content: space-between;
   gap: 30px;
   color: rgba(255, 255, 255, 0.66);
-  font-size: 0.66rem;
-  line-height: 1.5;
 }
 
 .partnersRunout div {

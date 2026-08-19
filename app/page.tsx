@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import HeroMedia from "@/components/HeroMedia";
+import InitialHashStabilizer from "@/components/InitialHashStabilizer";
 import RaceArchive from "@/components/RaceArchive";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className={styles.site} id="top">
+      <InitialHashStabilizer />
       <SiteHeader />
 
       <main id="main-content">
@@ -873,10 +875,10 @@ export default function Home() {
                 >
                   <figure>
                     <Image
-                      src="/media/partner-specialized.webp"
-                      alt="Specialized logo with Edge and Spoke wordmark"
-                      width="992"
-                      height="164"
+                      src="/media/partner-specialized.svg"
+                      alt="Specialized"
+                      width="1540"
+                      height="160"
                       sizes="(max-width: 760px) calc(100vw - 40px), 62vw"
                       loading="lazy"
                     />

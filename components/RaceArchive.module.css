@@ -620,6 +620,12 @@
     scroll-snap-align: start;
   }
 
+  .archiveItem figure {
+    display: grid;
+    grid-template-rows: auto 94px;
+  }
+
+  .archiveItem .frameButton,
   .archiveItem:nth-child(n) .frameCrop {
     aspect-ratio: 4 / 5;
   }
@@ -643,7 +649,8 @@
   }
 
   .archiveItem figcaption {
-    min-height: 82px;
+    height: 94px;
+    min-height: 94px;
   }
 
   .archiveFooter {

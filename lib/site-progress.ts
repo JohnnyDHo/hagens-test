@@ -95,10 +95,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 9,
     name: "Partners",
     status: "IN REVIEW",
-    round: 1,
-    latestVerdict: "Builder checkpoint ready for independent rendered review.",
-    biggestGap: "Awaiting fresh desktop and mobile critic verdict.",
-    checkpoint: "P09 · R1 · REVIEW",
+    round: 2,
+    latestVerdict:
+      "R1 FAIL — 8.0 overall; misleading Specialized / Edge & Spoke art, sub-12px desktop metadata, and a 1,700px mobile hard-load anchor drift.",
+    biggestGap:
+      "R2 awaits proof that a fresh 390×844 direct #partners load settles below the 72px sticky header with the genuine Specialized mark and ≥12px metadata.",
+    checkpoint: "P09 · R2 · REVIEW",
   },
   {
     id: 10,

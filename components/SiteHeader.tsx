@@ -198,6 +198,7 @@ export default function SiteHeader() {
       </a>
       <header
         className={`${styles.header} ${menuOpen ? styles.headerMenuOpen : ""}`}
+        data-site-header
       >
         <Link
           className={styles.brand}
