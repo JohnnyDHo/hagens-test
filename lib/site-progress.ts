@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 3,
+    round: 4,
     latestVerdict:
-      "R3 built after R2 FAIL — 8.3; awaiting hydration and transform-cleanup verification.",
+      "R4 built after R3 FAIL — 8.4; awaiting literal inline-style residue verification.",
     biggestGap:
-      "R2 cleared every crash, deep-hash, hero, and interaction gate; remaining defects were history-restored header ID hydration mismatch and GSAP no-op inline translate/rotate/scale residue.",
-    checkpoint: "P10 · R3 · REVIEW",
+      "R3 cleared every functional and visual gate; the remaining blocker was GSAP serializing translate:none / rotate:none / scale:none on 17 finalized nodes and a malformed quickSetter progress transform.",
+    checkpoint: "P10 · R4 · REVIEW",
   },
   {
     id: 11,

@@ -17,10 +17,47 @@ type RevealRecord = {
   finalize: () => void;
 };
 
+type GsapOwnedElement = HTMLElement & {
+  _gsap?: { uncache?: number };
+};
+
 const TRANSFORM_CLEAR_PROPS = "transform,translate,rotate,scale";
 const TRANSFORM_ORIGIN_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},transformOrigin`;
 const TRANSFORM_OPACITY_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity`;
 const TRANSFORM_OPACITY_CLIP_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity,clipPath`;
+
+const RAW_MOTION_PROPERTIES = [
+  "transform",
+  "translate",
+  "rotate",
+  "scale",
+  "opacity",
+  "clip-path",
+  "transform-origin",
+] as const;
+
+const removeMotionInlineProperties = (
+  targets: HTMLElement | Iterable<HTMLElement>,
+) => {
+  const targetList =
+    targets instanceof HTMLElement ? [targets] : Array.from(targets);
+
+  targetList.forEach((target) => {
+    RAW_MOTION_PROPERTIES.forEach((property) => {
+      target.style.removeProperty(property);
+    });
+
+    Array.from(target.style).forEach((property) => {
+      if (property.startsWith("--gsap")) {
+        target.style.removeProperty(property);
+      }
+    });
+
+    const gsapTarget = target as GsapOwnedElement;
+    if (gsapTarget._gsap) gsapTarget._gsap.uncache = 1;
+    if (target.style.length === 0) target.removeAttribute("style");
+  });
+};
 
 const selectAll = <T extends Element>(root: Element, selector: string) =>
   Array.from(root.querySelectorAll<T>(selector));
@@ -41,6 +78,7 @@ export default function HomeMotion() {
     let refreshFrame: number | null = null;
     let syncProgress: (() => void) | null = null;
     const runningAnimations = new Set<gsap.core.Animation>();
+    const ownedMotionTargets = new Set<HTMLElement>();
     const media = gsap.matchMedia();
 
     const cancelRefresh = () => {
@@ -73,8 +111,7 @@ export default function HomeMotion() {
 
           const localAnimations = new Set<gsap.core.Animation>();
           const revealRecords: RevealRecord[] = [];
-          const transformTargets = new Set<HTMLElement>();
-          const transformOriginTargets = new Set<HTMLElement>();
+          const localMotionTargets = new Set<HTMLElement>();
           let cleanupProgress: (() => void) | null = null;
 
           const remember = <T extends gsap.core.Animation>(animation: T) => {
@@ -134,19 +171,15 @@ export default function HomeMotion() {
             properties: string,
           ) => {
             gsap.set(targets, { clearProps: properties });
+            removeMotionInlineProperties(targets);
           };
 
-          const ownTransforms = (
-            targets: HTMLElement | HTMLElement[],
-            includesTransformOrigin = false,
-          ) => {
+          const ownMotion = (targets: HTMLElement | HTMLElement[]) => {
             const targetList = Array.isArray(targets) ? targets : [targets];
-            targetList.forEach((target) => transformTargets.add(target));
-            if (includesTransformOrigin) {
-              targetList.forEach((target) =>
-                transformOriginTargets.add(target),
-              );
-            }
+            targetList.forEach((target) => {
+              localMotionTargets.add(target);
+              ownedMotionTargets.add(target);
+            });
           };
 
           const registerReveal = (
@@ -167,17 +200,18 @@ export default function HomeMotion() {
           );
 
           if (progressFill) {
-            ownTransforms(progressFill);
-            const setProgress = gsap.quickSetter(progressFill, "scaleY");
+            ownMotion(progressFill);
             const updateProgress = () => {
               if (document.visibilityState === "hidden") return;
               const scrollRange = Math.max(
                 1,
                 document.documentElement.scrollHeight - window.innerHeight,
               );
-              setProgress(
-                Math.min(1, Math.max(0, window.scrollY / scrollRange)),
+              const progress = Math.min(
+                1,
+                Math.max(0, window.scrollY / scrollRange),
               );
+              progressFill.style.transform = `scaleY(${progress})`;
             };
 
             syncProgress = updateProgress;
@@ -189,6 +223,7 @@ export default function HomeMotion() {
               window.removeEventListener("scroll", updateProgress);
               window.removeEventListener("resize", updateProgress);
               if (syncProgress === updateProgress) syncProgress = null;
+              removeMotionInlineProperties(progressFill);
             };
           }
 
@@ -209,12 +244,18 @@ export default function HomeMotion() {
             );
             const lines = selectAll<HTMLElement>(hero, "[data-motion-hero-line]");
             const meta = selectAll<HTMLElement>(hero, "[data-motion-hero-meta]");
+            const heroMotionTargets: HTMLElement[] = [];
             const heroTimeline = remember(
-              gsap.timeline({ defaults: { overwrite: "auto" } }),
+              gsap.timeline({
+                defaults: { overwrite: "auto" },
+                onComplete: () =>
+                  removeMotionInlineProperties(heroMotionTargets),
+              }),
             );
 
             if (heroMedia) {
-              ownTransforms(heroMedia);
+              ownMotion(heroMedia);
+              heroMotionTargets.push(heroMedia);
               heroTimeline.fromTo(
                 heroMedia,
                 { scale: desktop ? 1.07 : 1.035 },
@@ -229,7 +270,8 @@ export default function HomeMotion() {
             }
 
             if (stripe) {
-              ownTransforms(stripe, true);
+              ownMotion(stripe);
+              heroMotionTargets.push(stripe);
               heroTimeline.fromTo(
                 stripe,
                 { scaleY: 0.18, transformOrigin: "50% 0%" },
@@ -244,7 +286,8 @@ export default function HomeMotion() {
             }
 
             if (kicker) {
-              ownTransforms(kicker);
+              ownMotion(kicker);
+              heroMotionTargets.push(kicker);
               heroTimeline.fromTo(
                 kicker,
                 { y: mobile ? 6 : 10 },
@@ -259,7 +302,8 @@ export default function HomeMotion() {
             }
 
             if (lines.length) {
-              ownTransforms(lines);
+              ownMotion(lines);
+              heroMotionTargets.push(...lines);
               heroTimeline.fromTo(
                 lines,
                 { yPercent: desktop ? 8 : 4 },
@@ -275,7 +319,8 @@ export default function HomeMotion() {
             }
 
             if (meta.length) {
-              ownTransforms(meta);
+              ownMotion(meta);
+              heroMotionTargets.push(...meta);
               heroTimeline.fromTo(
                 meta,
                 { y: mobile ? 6 : 10 },
@@ -295,7 +340,7 @@ export default function HomeMotion() {
             (masthead) => {
               const items = childElements(masthead);
               if (!items.length) return;
-              ownTransforms(items);
+              ownMotion(items);
 
               const finalizeMasthead = () =>
                 finalize(items, TRANSFORM_OPACITY_CLIP_CLEAR_PROPS);
@@ -321,6 +366,7 @@ export default function HomeMotion() {
                   stagger: desktop ? 0.11 : 0.06,
                   ease: "power3.out",
                   clearProps: TRANSFORM_OPACITY_CLIP_CLEAR_PROPS,
+                  onComplete: finalizeMasthead,
                   scrollTrigger: {
                     trigger: masthead,
                     start: desktop ? "top 76%" : "top 88%",
@@ -337,7 +383,7 @@ export default function HomeMotion() {
             (group) => {
               const items = childElements(group);
               if (!items.length) return;
-              ownTransforms(items);
+              ownMotion(items);
 
               const finalizeGroup = () =>
                 finalize(items, TRANSFORM_OPACITY_CLEAR_PROPS);
@@ -362,6 +408,7 @@ export default function HomeMotion() {
                   },
                   ease: "power2.out",
                   clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
+                  onComplete: finalizeGroup,
                   scrollTrigger: {
                     trigger: group,
                     start: desktop ? "top 82%" : "top 91%",
@@ -377,7 +424,7 @@ export default function HomeMotion() {
           selectAll<HTMLElement>(root, "[data-motion-atlas]").forEach(
             (atlas) => {
               childElements(atlas).forEach((item, index) => {
-                ownTransforms(item);
+                ownMotion(item);
                 const finalizeItem = () =>
                   finalize(item, TRANSFORM_OPACITY_CLEAR_PROPS);
                 if (!isUpcoming(item)) {
@@ -399,6 +446,7 @@ export default function HomeMotion() {
                     duration: desktop ? 0.82 : 0.56,
                     ease: index === 0 ? "power4.out" : "power3.out",
                     clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
+                    onComplete: finalizeItem,
                     scrollTrigger: {
                       trigger: item,
                       start: desktop ? "top 84%" : "top 92%",
@@ -415,7 +463,8 @@ export default function HomeMotion() {
           selectAll<HTMLElement>(root, "[data-motion-image]").forEach(
             (frame) => {
               const images = selectAll<HTMLElement>(frame, "img");
-              if (images.length) ownTransforms(images);
+              ownMotion(frame);
+              if (images.length) ownMotion(images);
               const finalizeImage = () => {
                 finalize(frame, "clipPath");
                 if (images.length) finalize(images, TRANSFORM_CLEAR_PROPS);
@@ -427,6 +476,7 @@ export default function HomeMotion() {
               }
 
               const imageTimeline = gsap.timeline({
+                onComplete: finalizeImage,
                 scrollTrigger: {
                   trigger: frame,
                   start: desktop ? "top 82%" : "top 91%",
@@ -470,7 +520,7 @@ export default function HomeMotion() {
 
           selectAll<HTMLElement>(root, "[data-motion-accent]").forEach(
             (accent) => {
-              ownTransforms(accent);
+              ownMotion(accent);
               const finalizeAccent = () =>
                 finalize(accent, TRANSFORM_OPACITY_CLEAR_PROPS);
               if (!isUpcoming(accent)) {
@@ -487,6 +537,7 @@ export default function HomeMotion() {
                   duration: desktop ? 0.82 : 0.58,
                   ease: "power4.out",
                   clearProps: TRANSFORM_OPACITY_CLEAR_PROPS,
+                  onComplete: finalizeAccent,
                   scrollTrigger: {
                     trigger: accent,
                     start: desktop ? "top 83%" : "top 92%",
@@ -533,15 +584,8 @@ export default function HomeMotion() {
               runningAnimations.delete(animation);
             });
             localAnimations.clear();
-            if (transformTargets.size) {
-              finalize(Array.from(transformTargets), TRANSFORM_CLEAR_PROPS);
-            }
-            if (transformOriginTargets.size) {
-              finalize(
-                Array.from(transformOriginTargets),
-                TRANSFORM_ORIGIN_CLEAR_PROPS,
-              );
-            }
+            removeMotionInlineProperties(localMotionTargets);
+            localMotionTargets.clear();
           };
         },
       );
@@ -562,6 +606,8 @@ export default function HomeMotion() {
       document.removeEventListener("visibilitychange", syncVisibility);
       media.revert();
       context.revert();
+      removeMotionInlineProperties(ownedMotionTargets);
+      ownedMotionTargets.clear();
       runningAnimations.clear();
       syncProgress = null;
     };
