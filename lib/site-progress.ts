@@ -104,22 +104,22 @@ export const progressPieces: readonly ProgressPiece[] = [
   {
     id: 10,
     name: "Motion language",
-    status: "IN REVIEW",
+    status: "PASSED",
     round: 7,
     latestVerdict:
-      "R7 built after R6 FAIL — 8.7; awaiting explicit deep-link target integrity verification.",
-    biggestGap:
-      "R6 passed ordinary scroll ownership and every cleanup gate, but cold desktop #gallery left archive frames 03–07 prepared below the first viewport instead of finalizing the entire target section.",
-    checkpoint: "P10 · R7 · REVIEW",
+      "PASS — 9.1 overall; clear desktop/mobile A/B win with no objective motion-system gap.",
+    biggestGap: "None — independently approved.",
+    checkpoint: "P10 · R7 · PASS",
   },
   {
     id: 11,
     name: "Responsive / a11y / performance / SEO",
-    status: "QUEUED",
-    round: null,
-    latestVerdict: "No verdict yet.",
-    biggestGap: "Four-viewport QA, Lighthouse, metadata, and console checks remain.",
-    checkpoint: "P11 · PLANNED",
+    status: "BUILDING",
+    round: 1,
+    latestVerdict: "R1 builder active — production hardening in progress.",
+    biggestGap:
+      "Full production hardening: metadata/social preview, keyboard/contrast/landmarks, Core Web Vitals/bundle/media budgets, responsive edge cases, and the obsolete test suite.",
+    checkpoint: "P11 · R1 · BUILD",
   },
   {
     id: 12,
