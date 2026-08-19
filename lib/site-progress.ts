@@ -105,12 +105,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 10,
     name: "Motion language",
     status: "IN REVIEW",
-    round: 4,
+    round: 5,
     latestVerdict:
-      "R4 built after R3 FAIL — 8.4; awaiting literal inline-style residue verification.",
+      "R5 built after R4 FAIL — 8.4; awaiting read-only geometry and resize-lifecycle verification.",
     biggestGap:
-      "R3 cleared every functional and visual gate; the remaining blocker was GSAP serializing translate:none / rotate:none / scale:none on 17 finalized nodes and a malformed quickSetter progress transform.",
-    checkpoint: "P10 · R4 · REVIEW",
+      "R4 cleanup passed on owned targets, but gsap.getProperty mutated 12 unowned trigger roots and breakpoint auto-revert could reapply transform residue or opacity:0 after cleanup.",
+    checkpoint: "P10 · R5 · REVIEW",
   },
   {
     id: 11,

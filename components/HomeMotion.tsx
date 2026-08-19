@@ -5,15 +5,9 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import styles from "./HomeMotion.module.css";
 
-type MotionConditions = {
-  desktop: boolean;
-  mobile: boolean;
-  reduceMotion: boolean;
-};
-
 type RevealRecord = {
   animation: gsap.core.Animation;
-  trigger: HTMLElement;
+  documentTop: number;
   finalize: () => void;
 };
 
@@ -25,6 +19,8 @@ const TRANSFORM_CLEAR_PROPS = "transform,translate,rotate,scale";
 const TRANSFORM_ORIGIN_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},transformOrigin`;
 const TRANSFORM_OPACITY_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity`;
 const TRANSFORM_OPACITY_CLIP_CLEAR_PROPS = `${TRANSFORM_CLEAR_PROPS},opacity,clipPath`;
+const MANAGED_AUTO_REFRESH_EVENTS = "visibilitychange,DOMContentLoaded,load";
+const DEFAULT_AUTO_REFRESH_EVENTS = `${MANAGED_AUTO_REFRESH_EVENTS},resize`;
 
 const RAW_MOTION_PROPERTIES = [
   "transform",
@@ -73,13 +69,18 @@ export default function HomeMotion() {
     if (!root) return;
 
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ autoRefreshEvents: MANAGED_AUTO_REFRESH_EVENTS });
 
     let disposed = false;
     let refreshFrame: number | null = null;
+    let pendingReconcile: (() => boolean) | null = null;
     let syncProgress: (() => void) | null = null;
+    let teardownMotionSession: (() => void) | null = null;
     const runningAnimations = new Set<gsap.core.Animation>();
-    const ownedMotionTargets = new Set<HTMLElement>();
-    const media = gsap.matchMedia();
+    const desktopAtMount = window.matchMedia("(min-width: 1024px)").matches;
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
 
     const cancelRefresh = () => {
       if (refreshFrame === null) return;
@@ -87,33 +88,44 @@ export default function HomeMotion() {
       refreshFrame = null;
     };
 
-    const scheduleRefresh = (reconcile: () => boolean) => {
+    const scheduleRefresh = (reconcile?: () => boolean) => {
+      if (reconcile) pendingReconcile = reconcile;
       cancelRefresh();
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
-        if (disposed || !reconcile()) return;
+        if (
+          disposed ||
+          reducedMotionQuery.matches ||
+          document.visibilityState === "hidden"
+        ) {
+          return;
+        }
+
+        const reconcileBeforeRefresh = pendingReconcile;
+        pendingReconcile = null;
+        if (reconcileBeforeRefresh && !reconcileBeforeRefresh()) {
+          syncProgress?.();
+          return;
+        }
+
         ScrollTrigger.refresh();
+        syncProgress?.();
       });
     };
 
-    const context = gsap.context(() => {
-      media.add(
-        {
-          desktop: "(min-width: 1024px)",
-          mobile: "(max-width: 1023px)",
-          reduceMotion: "(prefers-reduced-motion: reduce)",
-        },
-        (matchContext) => {
-          const { desktop, mobile, reduceMotion } =
-            matchContext.conditions as MotionConditions;
+    const setupMotionSession = () => {
+      if (disposed || reducedMotionQuery.matches || teardownMotionSession) {
+        return;
+      }
 
-          if (reduceMotion) return;
+      const desktop = desktopAtMount;
+      const mobile = !desktop;
+      const localAnimations = new Set<gsap.core.Animation>();
+      const revealRecords: RevealRecord[] = [];
+      const localMotionTargets = new Set<HTMLElement>();
+      let cleanupProgress: (() => void) | null = null;
 
-          const localAnimations = new Set<gsap.core.Animation>();
-          const revealRecords: RevealRecord[] = [];
-          const localMotionTargets = new Set<HTMLElement>();
-          let cleanupProgress: (() => void) | null = null;
-
+      const context = gsap.context(() => {
           const remember = <T extends gsap.core.Animation>(animation: T) => {
             localAnimations.add(animation);
             runningAnimations.add(animation);
@@ -150,13 +162,11 @@ export default function HomeMotion() {
             return projectedScrollY;
           };
 
-          const isUpcoming = (element: HTMLElement) => {
-            const rect = element.getBoundingClientRect();
-            if (!Number.isFinite(rect.top)) return false;
+          const getDocumentTop = (element: HTMLElement) =>
+            window.scrollY + element.getBoundingClientRect().top;
 
-            const animatedYOffset =
-              Number(gsap.getProperty(element, "y")) || 0;
-            const documentTop = window.scrollY + rect.top - animatedYOffset;
+          const isUpcoming = (documentTop: number) => {
+            if (!Number.isFinite(documentTop)) return false;
             const projectedTop = documentTop - getProjectedScrollY();
             const viewportHeight = Math.max(
               window.innerHeight,
@@ -178,19 +188,18 @@ export default function HomeMotion() {
             const targetList = Array.isArray(targets) ? targets : [targets];
             targetList.forEach((target) => {
               localMotionTargets.add(target);
-              ownedMotionTargets.add(target);
             });
           };
 
           const registerReveal = (
             animation: gsap.core.Animation,
-            trigger: HTMLElement,
+            documentTop: number,
             finalizeReveal: () => void,
           ) => {
             remember(animation);
             revealRecords.push({
               animation,
-              trigger,
+              documentTop,
               finalize: finalizeReveal,
             });
           };
@@ -216,12 +225,10 @@ export default function HomeMotion() {
 
             syncProgress = updateProgress;
             window.addEventListener("scroll", updateProgress, { passive: true });
-            window.addEventListener("resize", updateProgress, { passive: true });
             updateProgress();
 
             cleanupProgress = () => {
               window.removeEventListener("scroll", updateProgress);
-              window.removeEventListener("resize", updateProgress);
               if (syncProgress === updateProgress) syncProgress = null;
               removeMotionInlineProperties(progressFill);
             };
@@ -340,11 +347,12 @@ export default function HomeMotion() {
             (masthead) => {
               const items = childElements(masthead);
               if (!items.length) return;
+              const documentTop = getDocumentTop(masthead);
               ownMotion(items);
 
               const finalizeMasthead = () =>
                 finalize(items, TRANSFORM_OPACITY_CLIP_CLEAR_PROPS);
-              if (!isUpcoming(masthead)) {
+              if (!isUpcoming(documentTop)) {
                 finalizeMasthead();
                 return;
               }
@@ -375,7 +383,7 @@ export default function HomeMotion() {
                 },
               );
 
-              registerReveal(animation, masthead, finalizeMasthead);
+              registerReveal(animation, documentTop, finalizeMasthead);
             },
           );
 
@@ -383,11 +391,12 @@ export default function HomeMotion() {
             (group) => {
               const items = childElements(group);
               if (!items.length) return;
+              const documentTop = getDocumentTop(group);
               ownMotion(items);
 
               const finalizeGroup = () =>
                 finalize(items, TRANSFORM_OPACITY_CLEAR_PROPS);
-              if (!isUpcoming(group)) {
+              if (!isUpcoming(documentTop)) {
                 finalizeGroup();
                 return;
               }
@@ -417,17 +426,18 @@ export default function HomeMotion() {
                 },
               );
 
-              registerReveal(animation, group, finalizeGroup);
+              registerReveal(animation, documentTop, finalizeGroup);
             },
           );
 
           selectAll<HTMLElement>(root, "[data-motion-atlas]").forEach(
             (atlas) => {
               childElements(atlas).forEach((item, index) => {
+                const documentTop = getDocumentTop(item);
                 ownMotion(item);
                 const finalizeItem = () =>
                   finalize(item, TRANSFORM_OPACITY_CLEAR_PROPS);
-                if (!isUpcoming(item)) {
+                if (!isUpcoming(documentTop)) {
                   finalizeItem();
                   return;
                 }
@@ -455,7 +465,7 @@ export default function HomeMotion() {
                   },
                 );
 
-                registerReveal(animation, item, finalizeItem);
+                registerReveal(animation, documentTop, finalizeItem);
               });
             },
           );
@@ -463,6 +473,7 @@ export default function HomeMotion() {
           selectAll<HTMLElement>(root, "[data-motion-image]").forEach(
             (frame) => {
               const images = selectAll<HTMLElement>(frame, "img");
+              const documentTop = getDocumentTop(frame);
               ownMotion(frame);
               if (images.length) ownMotion(images);
               const finalizeImage = () => {
@@ -470,7 +481,7 @@ export default function HomeMotion() {
                 if (images.length) finalize(images, TRANSFORM_CLEAR_PROPS);
               };
 
-              if (!isUpcoming(frame)) {
+              if (!isUpcoming(documentTop)) {
                 finalizeImage();
                 return;
               }
@@ -514,16 +525,17 @@ export default function HomeMotion() {
                 );
               }
 
-              registerReveal(imageTimeline, frame, finalizeImage);
+              registerReveal(imageTimeline, documentTop, finalizeImage);
             },
           );
 
           selectAll<HTMLElement>(root, "[data-motion-accent]").forEach(
             (accent) => {
+              const documentTop = getDocumentTop(accent);
               ownMotion(accent);
               const finalizeAccent = () =>
                 finalize(accent, TRANSFORM_OPACITY_CLEAR_PROPS);
-              if (!isUpcoming(accent)) {
+              if (!isUpcoming(documentTop)) {
                 finalizeAccent();
                 return;
               }
@@ -546,7 +558,7 @@ export default function HomeMotion() {
                 },
               );
 
-              registerReveal(animation, accent, finalizeAccent);
+              registerReveal(animation, documentTop, finalizeAccent);
             },
           );
 
@@ -557,7 +569,7 @@ export default function HomeMotion() {
               const scrollTrigger = record.animation.scrollTrigger;
               if (!scrollTrigger || record.animation.progress() >= 1) return;
 
-              if (!isUpcoming(record.trigger)) {
+              if (!isUpcoming(record.documentTop)) {
                 scrollTrigger.kill(false);
                 record.animation.kill();
                 localAnimations.delete(record.animation);
@@ -575,39 +587,72 @@ export default function HomeMotion() {
           if (revealRecords.length) {
             scheduleRefresh(reconcileBeforeRefresh);
           }
+      }, root);
 
-          return () => {
-            cancelRefresh();
-            cleanupProgress?.();
-            cleanupProgress = null;
-            localAnimations.forEach((animation) => {
-              runningAnimations.delete(animation);
-            });
-            localAnimations.clear();
-            removeMotionInlineProperties(localMotionTargets);
-            localMotionTargets.clear();
-          };
-        },
-      );
-    }, root);
+      const teardownSession = () => {
+        if (teardownMotionSession !== teardownSession) return;
+        teardownMotionSession = null;
+        cancelRefresh();
+        pendingReconcile = null;
+        cleanupProgress?.();
+        cleanupProgress = null;
+
+        context.revert();
+        removeMotionInlineProperties(localMotionTargets);
+        localMotionTargets.clear();
+
+        localAnimations.forEach((animation) => {
+          runningAnimations.delete(animation);
+        });
+        localAnimations.clear();
+      };
+
+      teardownMotionSession = teardownSession;
+      if (document.visibilityState === "hidden") {
+        localAnimations.forEach((animation) => animation.paused(true));
+      }
+    };
 
     const syncVisibility = () => {
       const hidden = document.visibilityState === "hidden";
       runningAnimations.forEach((animation) => animation.paused(hidden));
-      if (!hidden) syncProgress?.();
+      if (hidden) {
+        cancelRefresh();
+        return;
+      }
+
+      syncProgress?.();
+      if (teardownMotionSession) scheduleRefresh();
+    };
+
+    const syncResize = () => {
+      if (teardownMotionSession) scheduleRefresh();
+    };
+
+    const syncReducedMotion = () => {
+      if (reducedMotionQuery.matches) {
+        teardownMotionSession?.();
+        return;
+      }
+
+      setupMotionSession();
     };
 
     document.addEventListener("visibilitychange", syncVisibility);
+    window.addEventListener("resize", syncResize, { passive: true });
+    reducedMotionQuery.addEventListener("change", syncReducedMotion);
+    syncReducedMotion();
     syncVisibility();
 
     return () => {
       disposed = true;
       cancelRefresh();
+      pendingReconcile = null;
       document.removeEventListener("visibilitychange", syncVisibility);
-      media.revert();
-      context.revert();
-      removeMotionInlineProperties(ownedMotionTargets);
-      ownedMotionTargets.clear();
+      window.removeEventListener("resize", syncResize);
+      reducedMotionQuery.removeEventListener("change", syncReducedMotion);
+      teardownMotionSession?.();
+      ScrollTrigger.config({ autoRefreshEvents: DEFAULT_AUTO_REFRESH_EVENTS });
       runningAnimations.clear();
       syncProgress = null;
     };
