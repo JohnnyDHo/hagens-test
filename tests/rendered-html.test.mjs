@@ -279,6 +279,42 @@ test("unit-checks deep-hash math and guards motion ownership statically", async 
   assert.doesNotMatch(motion, /ScrollTrigger/);
 });
 
+test("statically guards the owning narrow-mobile typography and ornament rules", async () => {
+  const [homeCss, motionCss] = await Promise.all([
+    readFile(new URL("../app/home.module.css", import.meta.url), "utf8"),
+    readFile(
+      new URL("../components/HomeMotion.module.css", import.meta.url),
+      "utf8",
+    ),
+  ]);
+  const mobileStart = homeCss.indexOf("@media (max-width: 760px) {");
+  const mobileEnd = homeCss.indexOf("@media (max-width: 380px) {", mobileStart);
+  const mobileHomeCss = homeCss.slice(mobileStart, mobileEnd);
+  const narrowEnd = homeCss.indexOf(
+    "@media (prefers-reduced-motion: reduce)",
+    mobileEnd,
+  );
+  const narrowHomeCss = homeCss.slice(mobileEnd, narrowEnd);
+
+  assert.ok(mobileStart >= 0 && mobileEnd > mobileStart);
+  assert.match(
+    mobileHomeCss,
+    /\.topRail\s*\{[^}]*font-size:\s*0\.75rem;/,
+  );
+  assert.match(
+    mobileHomeCss,
+    /\.kicker\s*\{[^}]*font-size:\s*0\.75rem;/,
+  );
+  assert.match(
+    motionCss,
+    /@media \(max-width: 340px\)\s*\{\s*\.raceProgress\s*\{\s*display:\s*none;/,
+  );
+  assert.match(
+    narrowHomeCss,
+    /\.topRail p:last-child\s*\{\s*display:\s*none;/,
+  );
+});
+
 test("keeps production source free of starter-only assets", async () => {
   const removedAssets = [
     "../public/file.svg",

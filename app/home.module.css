@@ -2414,7 +2414,7 @@
 
   .topRail {
     gap: 12px;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
   }
 
@@ -2429,7 +2429,7 @@
 
   .kicker {
     margin-bottom: 20px;
-    font-size: 0.53rem;
+    font-size: 0.75rem;
   }
 
   .kicker::before {

@@ -115,12 +115,12 @@ export const progressPieces: readonly ProgressPiece[] = [
     id: 11,
     name: "Responsive / a11y / performance / SEO",
     status: "IN REVIEW",
-    round: 1,
+    round: 2,
     latestVerdict:
-      "R1 builder complete — strict lint, production regression suite, and Sites build pass; independent rendered critique pending.",
+      "R1 FAIL — 8.0 overall. At 320px, the progress ornament clipped beyond the viewport and hero microtype still computed below 12px.",
     biggestGap:
-      "Independent mobile-first and desktop review must now verify the hardened production result at real viewport edges.",
-    checkpoint: "P11 · R1 · BUILD READY",
+      "R2 fixes both owning narrow-mobile rules; independent review must verify the 320px render without regressing the approved 390px treatment.",
+    checkpoint: "P11 · R2 · BUILD READY",
   },
   {
     id: 12,

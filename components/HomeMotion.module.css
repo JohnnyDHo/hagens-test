@@ -58,6 +58,12 @@
   }
 }
 
+@media (max-width: 340px) {
+  .raceProgress {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .raceProgress {
     display: none;
