@@ -119,6 +119,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 .nav-cta:hover { background: var(--blue); border-color: var(--blue); color: #fff !important; }
+.nav-cta.is-current { background: var(--blue); border-color: var(--blue); color: #fff; }
+.site-header.is-scrolled .site-nav .nav-cta.is-current { background: var(--blue); border-color: var(--blue); color: #fff !important; }
 
 .menu-toggle { display: none; align-items: center; gap: 0.65rem; }
 .menu-toggle-label {
@@ -178,7 +180,7 @@ body.menu-open { overflow: hidden; }
   background: var(--navy); color: var(--paper);
   overflow: clip;
 }
-.hero-media, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-media, .hero-media video, .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Subtle cinematic grade: keeps the stock footage from reading flat gray
    and pulls it toward the team's deep-blue world. */
 .hero-media video { filter: saturate(1.14) contrast(1.07); }
@@ -205,9 +207,17 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 64em) { .hero-rail { display: none; } }
 .hero-content { position: relative; z-index: 1; width: 100%; padding-bottom: clamp(1.5rem, 3vw, 2.75rem); }
 .hero-kicker {
+  display: inline-flex; align-items: center;
   font-family: var(--font-mono); font-size: 0.76rem; font-weight: 500;
   letter-spacing: 0.24em; text-transform: uppercase;
   margin-bottom: clamp(1rem, 2.5vh, 2rem);
+  /* Scrim chip: keeps the micro-label readable over bright/busy footage */
+  padding: 0.6em 1em;
+  background: rgba(10, 21, 36, 0.64);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(244, 241, 234, 0.16);
+  text-shadow: 0 1px 2px rgba(10, 21, 36, 0.85), 0 0 14px rgba(10, 21, 36, 0.6);
 }
 .tick {
   display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--red);
@@ -222,6 +232,8 @@ body.menu-open { overflow: hidden; }
 .hero-title .line { display: block; overflow: hidden; padding-block: 0.03em; }
 .hero-title .line--indent { margin-left: clamp(2rem, 14vw, 13rem); }
 .hero-title .word { display: inline-block; }
+/* Join page headline is longer than the home claim — keep it inside the band. */
+.hero-title--join { font-size: clamp(2.4rem, 8.2vw, 8rem); }
 .hero-lede {
   max-width: 44ch;
   margin-top: clamp(1.25rem, 2.5vh, 2rem);
@@ -614,6 +626,94 @@ body.menu-open { overflow: hidden; }
   line-height: 1.8; color: rgba(255, 255, 255, 0.78); text-align: right;
 }
 
+/* ---------- join page: benefits vs requirements ledger ---------- */
+.ledger {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+.ledger-col-head {
+  display: flex; align-items: baseline; gap: 1rem;
+  padding-bottom: 1rem;
+}
+.ledger-label {
+  font-family: var(--font-mono); font-weight: 500;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  letter-spacing: 0.3em; text-transform: uppercase;
+}
+.ledger-count { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.2em; opacity: 0.55; }
+.ledger-list { border-top: 2px solid var(--ink); }
+.ledger-item {
+  display: grid;
+  grid-template-columns: clamp(2.8rem, 5vw, 4.25rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+  padding: clamp(0.9rem, 1.9vw, 1.35rem) 0.25rem;
+  border-bottom: 1px solid var(--line-on-paper);
+}
+.ledger-num {
+  font-family: var(--font-display); font-weight: 250; font-stretch: 62%;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1;
+  color: var(--blue);
+}
+.ledger-text { font-size: 0.98rem; color: rgba(20, 27, 38, 0.86); text-wrap: pretty; }
+.ledger-text strong {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: 1.2em; letter-spacing: 0.01em; color: var(--ink);
+}
+
+/* ---------- join page: women's program band ---------- */
+.women-band {
+  position: relative; overflow: clip;
+  background:
+    linear-gradient(150deg, rgba(20, 83, 158, 0.38), rgba(20, 83, 158, 0) 58%),
+    var(--navy);
+  color: var(--paper);
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  border-top: 1px solid var(--line-on-dark);
+}
+.women-tag {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-mono); font-weight: 500;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  letter-spacing: 0.3em; text-transform: uppercase;
+}
+.women-line {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  font-family: var(--font-display); font-weight: 850; font-stretch: 118%;
+  text-transform: uppercase; letter-spacing: -0.005em;
+  font-size: clamp(2rem, 5.6vw, 4.9rem);
+  line-height: 1.02;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.women-line em { font-style: normal; color: #9dbfe8; }
+.women-copy {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 56ch;
+  display: flex; flex-direction: column; gap: 1em;
+  font-size: 1.05rem;
+  color: rgba(244, 241, 234, 0.82);
+}
+.women-actions { margin-top: clamp(1.75rem, 3.5vw, 2.5rem); display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+/* ---------- join page: closing CTA extras ---------- */
+.band-social {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+.band-social a { color: #fff; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+@media (max-width: 48em) {
+  .ledger { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -670,6 +770,7 @@ body.menu-open { overflow: hidden; }
   .site-nav { display: none; }
   .menu-toggle { display: inline-flex; }
   .hero-title { font-size: clamp(2.6rem, 11.5vw, 4rem); }
+  .hero-title--join { font-size: clamp(1.7rem, 7vw, 2.9rem); }
   .hero-title .line--indent { margin-left: clamp(1.25rem, 8vw, 3rem); }
   .hero-kicker { letter-spacing: 0.18em; font-size: 0.68rem; }
   .hero-lede { font-size: 0.95rem; max-width: 40ch; margin-top: 1.1rem; }
@@ -697,8 +798,12 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 24em) {
   .hero-title { font-size: clamp(2.1rem, 10vw, 2.6rem); }
+  .hero-title--join { font-size: clamp(1.45rem, 6.6vw, 1.95rem); }
   .hero-title .line--indent { margin-left: 0.75rem; }
 }
+
+/* Join-page closing line is short — let it breathe on one line. */
+#join-cta .join-line { max-width: none; }
 
 /* ============================================================
    REDUCED MOTION

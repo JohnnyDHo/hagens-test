@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ channel: 'chromium' });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+await p.goto('http://localhost:4173/', { waitUntil: 'networkidle' });
+await p.waitForTimeout(2000);
+const h = await p.evaluate(() => ({ scrollH: document.body.scrollHeight, vh: innerHeight }));
+console.log('scrollHeight', h);
+await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+await p.waitForTimeout(1200);
+await p.screenshot({ path: '/tmp/bottom-desktop.png' });
+await p.setViewportSize({ width: 390, height: 844 });
+await p.waitForTimeout(800);
+await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+await p.waitForTimeout(1000);
+await p.screenshot({ path: '/tmp/bottom-mobile.png' });
+await b.close();

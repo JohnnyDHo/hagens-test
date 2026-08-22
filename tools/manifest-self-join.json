@@ -1,0 +1,15 @@
+{
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "mobile", "width": 390, "height": 844, "dsf": 2 }
+  ],
+  "targets": [
+    {
+      "label": "self",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/join.html", "name": "join" }
+      ]
+    }
+  ]
+}

@@ -8,8 +8,8 @@ Goal: Awwwards-caliber local site for Hagens Berman Racing Seattle (`#14539e`), 
 
 | # | Piece | Status | Latest verdict |
 |---|-------|--------|----------------|
-| 1 | Foundation + Home (video hero, nav, story, footer) | 🔄 in progress | — |
-| 2 | Join Us page | ⏳ pending | — |
+| 1 | Foundation + Home (video hero, nav, story, footer) | ✅ critic-passed | R1 blind A/B: ours 84 vs competitor 41 desktop, 84 vs 54 mobile — clear win |
+| 2 | Join Us page | 🔄 in progress | — |
 | 3 | Partners page | ⏳ pending | — |
 | 4 | Events pages (Mason Lake, WTNB Night at PR) | ⏳ pending | — |
 | 5 | Gallery page | ⏳ pending | — |
@@ -20,3 +20,4 @@ Goal: Awwwards-caliber local site for Hagens Berman Racing Seattle (`#14539e`), 
 
 ## Log
 - 2026-08-21: Content scraped from hbsccycling.com into `CONTENT.md`; competitor surveyed (static 5-page site, placeholder imagery); A/B screenshot rig verified in `tools/`. Piece 1 builder launched.
+- 2026-08-21: Piece 1 built + polished (commit 527611b). Critic R1 (blind A/B, downscaled evidence): desktop 84–41, mobile 84–54 in our favor. Action item: strengthen mobile hero kicker contrast over video.
