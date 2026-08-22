@@ -1351,7 +1351,8 @@ body.menu-open { overflow: hidden; }
   display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
   margin-top: 0.6rem;
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(20, 27, 38, 0.6);
+  /* Same AA-safe caption ink as .a-item figcaption. */
+  color: rgba(20, 27, 38, 0.7);
 }
 @media (max-width: 64em) {
   .g-item--lead, .g-item--half { grid-column: 1 / -1; }
@@ -1465,9 +1466,9 @@ body.menu-open { overflow: hidden; }
   display: flex; justify-content: space-between; gap: 0.35rem 1rem; flex-wrap: wrap;
   margin-top: 0.65rem;
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(20, 27, 38, 0.6);
+  /* >=4.5:1 on --paper for the small mono captions (0.6 alpha sat just under AA). */
+  color: rgba(20, 27, 38, 0.7);
 }
-.a-item .a-loc { color: var(--blue); }
 
 /* Asymmetric placement — varied spans, crops and staggered offsets
    so the sheet reads like an editorial layout, not a card wall. */
@@ -1499,8 +1500,69 @@ body.menu-open { overflow: hidden; }
   .a-item--i { grid-column: 1 / -1; }
   .a-item--i .a-frame { aspect-ratio: 16 / 9; }
 }
+/* Phones: no footage sits in the archive hero, so the default sub-hero
+   band read as dead navy before the title. Flow the band from the top,
+   clearing the fixed header, so "THE ARCHIVE." lands high in the first
+   viewport instead of riding the bottom of a half-empty plate. */
 @media (max-width: 48em) {
-  .arch-grid { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+  .hero--archive { min-height: 0; justify-content: flex-start; }
+  .hero--archive .hero-content { padding-top: var(--header-h); }
+}
+
+/* Phone: the sheet runs as one physical film strip — frames ride a
+   full-bleed scroll-snap track inside sprocket-perforated rebates,
+   gutter-aligned at each snap point. Desktop keeps the offset
+   editorial grid untouched. */
+@media (max-width: 48em) {
+  .arch-grid {
+    display: flex;
+    gap: 1rem;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .arch-grid::-webkit-scrollbar { display: none; }
+  .a-item {
+    flex: 0 0 auto;
+    width: min(70vw, 21rem);
+    margin-top: 0; align-self: flex-start;
+    scroll-snap-align: start;
+  }
+  /* One shared frame window (4/3) so every cell is the same height —
+     ragged bottoms read as a broken strip, not a film edge. */
+  .arch-grid .a-frame { aspect-ratio: auto; }
+  .arch-grid .a-frame img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  /* Negative-sleeve rebate: navy base with punched-paper perforation
+     rails above and below each frame (absolute, inside the padding
+     band, so they never disturb the frame's aspect-ratio box). */
+  .a-frame {
+    position: relative;
+    padding-block: 0.8rem;
+    background-color: var(--navy);
+  }
+  .a-frame::before,
+  .a-frame::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 7px;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(244, 241, 234, 0.78) 0 9px,
+      transparent 9px 17px
+    );
+  }
+  .a-frame::before { top: 0.25rem; }
+  .a-frame::after { bottom: 0.25rem; }
+  .a-item figcaption { margin-top: 0.75rem; }
 }
 
 /* ---------- gallery page: dark feature plate ---------- */
