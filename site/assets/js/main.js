@@ -180,6 +180,25 @@
     });
   });
 
+  /* Mason Lake start sheet — rows cascade in once, grouped as they enter. */
+  const catRows = document.querySelectorAll(".cats tbody tr");
+  if (catRows.length) {
+    gsap.set(catRows, { opacity: 0, y: 24 });
+    ScrollTrigger.batch(catRows, {
+      start: "top 88%",
+      once: true,
+      onEnter: (els) =>
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+          stagger: 0.07,
+          overwrite: true,
+        }),
+    });
+  }
+
   /* Image clip reveals */
   gsap.utils.toArray("[data-reveal-img]").forEach((el) => {
     const img = el.querySelector("img");

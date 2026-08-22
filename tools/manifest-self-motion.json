@@ -1,0 +1,15 @@
+{
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 }
+  ],
+  "targets": [
+    {
+      "label": "self-motion",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/", "name": "home" },
+        { "path": "/mason.html", "name": "mason" }
+      ]
+    }
+  ]
+}

@@ -40,6 +40,10 @@ body {
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
 }
+/* Page transition: soft fade-in on load, gated behind the .js class that
+   main.js sets first thing — no JS, no hiding, content always visible. */
+html.js body { animation: page-enter 0.4s ease both; }
+@keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }
 img, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
@@ -113,7 +117,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   content: ""; position: absolute; left: 0; bottom: 0;
   width: 100%; height: 1px; background: currentColor;
   transform: scaleX(0); transform-origin: right;
-  transition: transform 0.32s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 0.22s cubic-bezier(0.65, 0, 0.35, 1);
 }
 .nav-link:hover::after, .nav-link.is-current::after { transform: scaleX(1); transform-origin: left; }
 .nav-cta {
@@ -121,9 +125,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   letter-spacing: 0.14em; text-transform: uppercase;
   padding: 0.55em 1.1em;
   border: 1px solid currentColor;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.18s ease;
 }
-.nav-cta:hover { background: var(--blue); border-color: var(--blue); color: #fff !important; }
+.nav-cta:hover { background: var(--blue); border-color: var(--blue); color: #fff !important; transform: translateY(-1px); }
 .nav-cta.is-current { background: var(--blue); border-color: var(--blue); color: #fff; }
 .site-header.is-scrolled .site-nav .nav-cta.is-current { background: var(--blue); border-color: var(--blue); color: #fff !important; }
 
@@ -256,8 +260,10 @@ body.menu-open { overflow: hidden; }
   letter-spacing: 0.16em; text-transform: uppercase;
   padding: 0.95em 1.7em;
   border: 1px solid transparent;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); transition-duration: 0.1s; }
 .btn--solid { background: var(--blue); color: #fff; }
 .btn--solid:hover { background: var(--blue-deep); }
 .btn--ghost { border-color: rgba(244, 241, 234, 0.5); color: var(--paper); }
@@ -624,7 +630,7 @@ body.menu-open { overflow: hidden; }
 .join-arrow svg {
   width: clamp(2.6rem, 5vw, 4rem); height: auto; fill: none;
   stroke: currentColor; stroke-width: 2; overflow: visible;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .join-arrow:hover svg { transform: translateX(10px); }
 .join-note {
@@ -1009,6 +1015,25 @@ body.menu-open { overflow: hidden; }
   font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--blue);
 }
+/* Status chip — "next up" flag for the imminent race, soft pulsing dot. */
+.event-chip {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  margin-top: 1rem;
+  padding: 0.5em 1em;
+  border: 1px solid rgba(20, 83, 158, 0.32);
+  background: rgba(20, 83, 158, 0.07);
+  color: var(--blue);
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+.event-chip-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--red);
+  animation: chip-pulse 2.4s ease-in-out infinite;
+}
+@keyframes chip-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.78); }
+}
 .event-feature-name {
   margin-top: 0.9rem;
   font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
@@ -1034,7 +1059,7 @@ body.menu-open { overflow: hidden; }
 .event-feature-link svg {
   width: clamp(2.4rem, 4vw, 3.2rem); height: auto; fill: none;
   stroke: currentColor; stroke-width: 2; overflow: visible;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .event-feature-link:hover svg { transform: translateX(8px); }
 .event-feature-media {
@@ -1119,7 +1144,11 @@ body.menu-open { overflow: hidden; }
   vertical-align: middle;
 }
 .cats tbody tr { transition: background-color 0.22s ease; }
-.cats tbody tr:hover { background: rgba(20, 83, 158, 0.055); }
+.cats tbody tr:hover { background: rgba(20, 83, 158, 0.075); }
+/* Hover nudge: the whole row's content slides a touch down-range.
+   Cells carry the transform (not the <tr>) for reliable rendering. */
+.cats tbody td { transition: transform 0.22s ease; }
+.cats tbody tr:hover td { transform: translateX(4px); }
 .cat-num {
   font-family: var(--font-display); font-weight: 250; font-stretch: 62%;
   font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1;
@@ -1167,6 +1196,7 @@ body.menu-open { overflow: hidden; }
   }
   .cats tbody tr + tr { margin-top: 0.9rem; }
   .cats tbody tr:hover { background: transparent; }
+  .cats tbody tr:hover td { transform: none; }
   .cat-num { grid-column: 1; grid-row: 1 / span 4; font-size: 2.1rem; }
   .cats td { padding: 0; border-bottom: 0; }
   /* .cats .class beats the .cats td reset above so flex layout actually applies. */
@@ -1254,8 +1284,14 @@ body.menu-open { overflow: hidden; }
   gap: clamp(0.9rem, 2vw, 1.6rem);
 }
 .g-item { position: relative; overflow: clip; min-width: 0; margin: 0; }
-.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.g-item:hover img { transform: scale(1.035); }
+/* Shared archive treatment: a whisper of the hero's blue-world grade so
+   every race photo sits in the same duotone-consistent documentary world. */
+.g-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(1.06) contrast(1.03);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.g-item:hover img { transform: scale(1.02); }
 .g-item--lead { grid-column: 1 / -1; aspect-ratio: 1800 / 900; }
 .g-item--half { grid-column: span 3; aspect-ratio: 3 / 2; }
 .g-item figcaption {
@@ -1365,9 +1401,10 @@ body.menu-open { overflow: hidden; }
 .a-frame { position: relative; overflow: clip; background: var(--paper-2); }
 .a-frame img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: saturate(1.06) contrast(1.03);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.a-item:hover .a-frame img { transform: scale(1.035); }
+.a-item:hover .a-frame img { transform: scale(1.02); }
 .a-item figcaption {
   display: flex; justify-content: space-between; gap: 0.35rem 1rem; flex-wrap: wrap;
   margin-top: 0.65rem;
@@ -1466,6 +1503,8 @@ body.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
   .ticker-track { animation: none; }
+  .event-chip-dot { animation: none; }
+  html.js body { animation: none; }
   /* Poster swap applies only to heroes that actually carry footage
      (the typographic partners hero must stay plain navy). */
   .hero-media--video video { display: none; }
