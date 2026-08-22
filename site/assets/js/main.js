@@ -208,7 +208,11 @@
         defaults: { ease: "power3.out" },
       })
       .from(el, { clipPath: "inset(12% 6% 12% 6%)", opacity: 0.4, duration: 0.9 })
-      .from(img, { scale: 1.18, duration: 1.15 }, "<");
+      /* clearProps: CSS transitions on img transforms can capture the tween's
+         initial scale as a stale inline value, leaving photos painted ~18%
+         large over content below. Clearing at the end hands control back to
+         the stylesheet (:hover zoom) with no residue. */
+      .from(img, { scale: 1.18, duration: 1.15, clearProps: "scale,transform" }, "<");
   });
 
   /* Section rule grows */

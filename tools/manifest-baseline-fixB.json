@@ -1,0 +1,19 @@
+{
+  "viewports": [
+    { "name": "mobile", "width": 390, "height": 844, "dsf": 2, "mobile": true }
+  ],
+  "targets": [
+    {
+      "label": "baseline-fixB",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/join.html", "name": "join" },
+        { "path": "/partners.html", "name": "partners" },
+        { "path": "/events.html", "name": "events" },
+        { "path": "/mason.html", "name": "mason" },
+        { "path": "/wtnb.html", "name": "wtnb" },
+        { "path": "/gallery.html", "name": "gallery" }
+      ]
+    }
+  ]
+}
