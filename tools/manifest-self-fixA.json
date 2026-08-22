@@ -1,0 +1,15 @@
+{
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "mobile", "width": 390, "height": 844, "dsf": 2, "mobile": true }
+  ],
+  "targets": [
+    {
+      "label": "self-fixA",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/index.html", "name": "index" }
+      ]
+    }
+  ]
+}

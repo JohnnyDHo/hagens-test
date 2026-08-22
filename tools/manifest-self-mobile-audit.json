@@ -1,0 +1,22 @@
+{
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "tablet", "width": 768, "height": 900 },
+    { "name": "mobile", "width": 390, "height": 844, "dsf": 2, "mobile": true }
+  ],
+  "targets": [
+    {
+      "label": "self-mobile-audit",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/index.html", "name": "index" },
+        { "path": "/join.html", "name": "join" },
+        { "path": "/partners.html", "name": "partners" },
+        { "path": "/events.html", "name": "events" },
+        { "path": "/mason.html", "name": "mason" },
+        { "path": "/wtnb.html", "name": "wtnb" },
+        { "path": "/gallery.html", "name": "gallery" }
+      ]
+    }
+  ]
+}
