@@ -107,6 +107,8 @@ for (const target of manifest.targets) {
         await page.screenshot({ path: path.join(dir, `${pg.name}-tile${String(idx).padStart(2, '0')}.png`) });
         idx++;
       }
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(600);
       await page.screenshot({ path: path.join(dir, `${pg.name}-fold.png`) });
       console.log(`captured ${target.label}/${vp.name}/${pg.name} (${idx} tiles)`);
     }

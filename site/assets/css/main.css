@@ -182,8 +182,10 @@ body.menu-open { overflow: hidden; }
 }
 .hero-media, .hero-media video, .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Subtle cinematic grade: keeps the stock footage from reading flat gray
-   and pulls it toward the team's deep-blue world. */
-.hero-media video { filter: saturate(1.14) contrast(1.07); }
+   and pulls it toward the team's deep-blue world. Applies to the static
+   join-page hero image too so both heroes feel owned. */
+.hero-media video,
+.hero-media img { filter: saturate(1.14) contrast(1.07); }
 .hero-scrim {
   position: absolute; inset: 0;
   background:
@@ -697,6 +699,30 @@ body.menu-open { overflow: hidden; }
   color: rgba(244, 241, 234, 0.82);
 }
 .women-actions { margin-top: clamp(1.75rem, 3.5vw, 2.5rem); display: flex; flex-wrap: wrap; gap: 0.9rem; }
+/* Two-column callout: copy left, start-line photo right so the navy band
+   doesn't read as an empty billboard on desktop. */
+.women-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.women-figure { position: relative; overflow: clip; }
+/* Square-ish crop biased to the left of frame keeps focus on the riders
+   (and off the camera's corner date-stamp). */
+.women-figure img {
+  width: 100%; height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover; object-position: 20% center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.women-figure:hover img { transform: scale(1.035); }
+.women-figure figcaption {
+  position: absolute; left: 0.8rem; bottom: 0.8rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(10, 21, 36, 0.82); color: var(--paper);
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
 
 /* ---------- join page: closing CTA extras ---------- */
 .band-social {
@@ -712,6 +738,120 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 48em) {
   .ledger { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* ============================================================
+   PARTNERS PAGE — sub-page hero + sponsor ledger
+   ============================================================ */
+.hero--sub { min-height: min(74svh, 46rem); }
+
+/* Numbered broadsheet directory — one row per partner, generous rules,
+   blue sweep on hover. Marks live on navy plates so both real logos and
+   typographic wordmarks sit in the same system. */
+.sponsors-note {
+  max-width: 52ch;
+  font-size: 1.05rem; color: rgba(20, 27, 38, 0.78);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.sponsor-index { border-top: 2px solid var(--ink); }
+.sponsor-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(3rem, 5.5vw, 5rem) minmax(0, 1fr) auto;
+  grid-template-areas: "num body mark";
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  padding: clamp(1.4rem, 3vw, 2.1rem) 0.25rem;
+  border-bottom: 1px solid var(--line-on-paper);
+  isolation: isolate;
+}
+.sponsor-row::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--blue);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.32s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.sponsor-row:hover::before, .sponsor-row:focus-within::before { transform: scaleY(1); }
+.sponsor-num {
+  grid-area: num;
+  font-family: var(--font-display); font-weight: 250; font-stretch: 62%;
+  font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1;
+  color: var(--blue);
+  transition: color 0.25s ease;
+}
+.sponsor-body { grid-area: body; min-width: 0; }
+.sponsor-role {
+  display: block;
+  font-family: var(--font-mono); font-weight: 500;
+  font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.55rem;
+  transition: color 0.25s ease;
+}
+.sponsor-name {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+  text-transform: uppercase; letter-spacing: 0.01em;
+  font-size: clamp(1.45rem, 3vw, 2.4rem); line-height: 0.98;
+  transition: color 0.25s ease;
+}
+.sponsor-row--lead .sponsor-name { font-size: clamp(1.8rem, 4vw, 3.3rem); }
+.sponsor-desc {
+  margin-top: 0.65rem;
+  max-width: 58ch;
+  font-size: 0.95rem; color: rgba(20, 27, 38, 0.68);
+  transition: color 0.25s ease;
+}
+.sponsor-mark {
+  grid-area: mark;
+  display: grid; place-items: center;
+  min-width: clamp(9.5rem, 15vw, 14rem);
+  min-height: clamp(3.6rem, 6vw, 4.6rem);
+  padding: 0.8rem 1.4rem;
+  background: var(--navy);
+}
+.sponsor-mark img { max-height: clamp(2rem, 3.4vw, 2.7rem); width: auto; max-width: 100%; }
+.sponsor-wordmark {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 116%;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--paper);
+  font-size: clamp(0.95rem, 1.5vw, 1.3rem); white-space: nowrap;
+}
+.sponsor-row:hover .sponsor-name,
+.sponsor-row:hover .sponsor-num { color: var(--paper); }
+.sponsor-row:hover .sponsor-role { color: #9dbfe8; }
+.sponsor-row:hover .sponsor-desc { color: rgba(244, 241, 234, 0.82); }
+
+/* Race-day fine print — a light mention under the ledger. */
+.race-foot {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem 2rem; flex-wrap: wrap;
+  margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line-on-paper);
+}
+.race-foot-label {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(20, 27, 38, 0.6);
+}
+.race-foot-names {
+  font-family: var(--font-display); font-weight: 700; font-stretch: 112%;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  color: rgba(20, 27, 38, 0.82);
+}
+
+@media (max-width: 48em) {
+  .hero--sub { min-height: min(88svh, 42rem); }
+  .sponsor-row {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "num body"
+      "mark mark";
+    row-gap: 1.15rem;
+    align-items: start;
+  }
+  .sponsor-mark { width: 100%; }
+  .race-foot { flex-direction: column; gap: 0.45rem; }
 }
 
 /* ============================================================
@@ -804,6 +944,18 @@ body.menu-open { overflow: hidden; }
 
 /* Join-page closing line is short — let it breathe on one line. */
 #join-cta .join-line { max-width: none; }
+/* The closing CTA follows a dense ledger — keep the blue band snug so it
+   doesn't read as a near-empty billboard above the footer. */
+#join-cta { padding-block: clamp(3rem, 6vw, 4.75rem); }
+#join-cta .join-head { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+#join-cta .join-row { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+#join-cta .band-social { margin-top: clamp(1.1rem, 2.2vw, 1.75rem); }
+
+/* On phones, kill the dead seam between the spec rows (dues/region) and
+   the squad photo that follows each intro section. */
+@media (max-width: 48em) {
+  .section:has(+ .interlude) { padding-bottom: 1.1rem; }
+}
 
 /* ============================================================
    REDUCED MOTION
@@ -812,8 +964,10 @@ body.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
   .ticker-track { animation: none; }
-  .hero-media video { display: none; }
-  .hero-media::before {
+  /* Poster swap applies only to heroes that actually carry footage
+     (the typographic partners hero must stay plain navy). */
+  .hero-media--video video { display: none; }
+  .hero-media--video::before {
     content: ""; position: absolute; inset: 0;
     background: url("../img/hero-poster.jpg") center / cover no-repeat;
   }
