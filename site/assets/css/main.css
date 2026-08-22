@@ -1139,7 +1139,8 @@ body.menu-open { overflow: hidden; }
   .cats tbody tr:hover { background: transparent; }
   .cat-num { grid-column: 1; grid-row: 1 / span 4; font-size: 2.1rem; }
   .cats td { padding: 0; border-bottom: 0; }
-  .cat-start {
+  /* .cats .class beats the .cats td reset above so flex layout actually applies. */
+  .cats .cat-start {
     grid-column: 2;
     display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
     padding-bottom: 0.55rem;
@@ -1150,7 +1151,7 @@ body.menu-open { overflow: hidden; }
     color: rgba(20, 27, 38, 0.5);
   }
   .cat-field { grid-column: 2; padding-bottom: 0.85rem; }
-  .cat-dist, .cat-prize {
+  .cats .cat-dist, .cats .cat-prize {
     grid-column: 2;
     display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
     padding-top: 0.55rem;
