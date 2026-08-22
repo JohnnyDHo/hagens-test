@@ -19,6 +19,8 @@
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --container: 90rem;
+  /* Fixed-header height: anchors and scroll-margin clear it everywhere. */
+  --header-h: calc(clamp(0.9rem, 2vw, 1.35rem) * 2 + 2.4rem);
 }
 
 /* ---------- reset-ish ---------- */
@@ -27,6 +29,9 @@ html { -webkit-text-size-adjust: 100%; }
 /* Smooth anchor scrolling only when JS is unavailable; JS-driven pages
    manage scrolling themselves (Lenis / instant jumps). */
 html:not(.js) { scroll-behavior: smooth; }
+/* Anchored sections must land below the fixed header, never beneath it. */
+html { scroll-padding-block-start: var(--header-h); }
+[id] { scroll-margin-block-start: var(--header-h); }
 body {
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -89,7 +94,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.75;
 }
 .header-inner, .site-nav .nav-link, .site-nav .nav-cta { color: var(--paper); transition: color 0.35s ease; }
-.site-header.is-scrolled { background: rgba(244, 241, 234, 0.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line-on-paper); }
+.site-header.is-scrolled { background: rgba(244, 241, 234, 0.97); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line-on-paper); }
 .site-header.is-scrolled .header-inner,
 .site-header.is-scrolled .site-nav .nav-link,
 .site-header.is-scrolled .site-nav .nav-cta { color: var(--ink); }
@@ -820,6 +825,19 @@ body.menu-open { overflow: hidden; }
 .sponsor-row:hover .sponsor-num { color: var(--paper); }
 .sponsor-row:hover .sponsor-role { color: #9dbfe8; }
 .sponsor-row:hover .sponsor-desc { color: rgba(244, 241, 234, 0.82); }
+/* Whole-row link variant — no boxed button plate, just an inline affordance
+   so the row reads as one link, not a name plus a labeled tile. */
+.sponsor-mark--visit { background: none; padding: 0; min-width: 0; min-height: 0; place-items: end center; }
+.sponsor-visit {
+  font-family: var(--font-mono); font-weight: 500;
+  font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue);
+  border-bottom: 1px solid currentColor; padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+.sponsor-row--link { color: inherit; }
+.sponsor-row--link:hover .sponsor-visit,
+.sponsor-row--link:focus-visible .sponsor-visit { color: var(--paper); }
 
 /* Race-day fine print — a light mention under the ledger. */
 .race-foot {
@@ -907,6 +925,10 @@ body.menu-open { overflow: hidden; }
 }
 
 @media (max-width: 48em) {
+  /* Tighten hero bands on small screens: less empty navy above the kicker,
+     same bottom-anchored composition. Desktop sizes are untouched. */
+  .hero { min-height: min(92svh, 56rem); }
+  .hero--sub { min-height: min(72svh, 36rem); }
   .site-nav { display: none; }
   .menu-toggle { display: inline-flex; }
   .hero-title { font-size: clamp(2.6rem, 11.5vw, 4rem); }
@@ -1032,9 +1054,17 @@ body.menu-open { overflow: hidden; }
 }
 @media (min-width: 48.01em) {
   .event-feature--flip .event-feature-media { order: -1; }
+  /* Flipped rows place media first, which would relegate the copy to the
+     narrow 5fr track and push long headlines off-canvas at tablet widths —
+     swap the tracks so the body always owns the wide column. */
+  .event-feature--flip { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
 }
 @media (max-width: 48em) {
   .event-feature { grid-template-columns: 1fr; gap: 1.4rem; }
+}
+/* Tablet band: the 5vw display size outruns the narrower feature column. */
+@media (max-width: 72em) {
+  .event-feature-name { font-size: clamp(1.9rem, 3.6vw, 3rem); }
 }
 
 /* ============================================================

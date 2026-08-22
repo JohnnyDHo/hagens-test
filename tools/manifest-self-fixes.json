@@ -1,0 +1,18 @@
+{
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "tablet-1100", "width": 1100, "height": 800 },
+    { "name": "mobile", "width": 390, "height": 844, "dsf": 2 }
+  ],
+  "targets": [
+    {
+      "label": "self-fixes",
+      "baseURL": "http://localhost:4173",
+      "pages": [
+        { "path": "/events.html", "name": "events" },
+        { "path": "/partners.html", "name": "partners" },
+        { "path": "/gallery.html", "name": "gallery" }
+      ]
+    }
+  ]
+}

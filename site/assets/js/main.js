@@ -153,7 +153,7 @@
       e.preventDefault();
       closeMenuIfOpen();
       if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
-      if (lenis) lenis.scrollTo(target, { offset: -56 });
+      if (lenis) lenis.scrollTo(target, { offset: -(header?.offsetHeight || 56) });
       else target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
       target.focus({ preventScroll: true });
     });
