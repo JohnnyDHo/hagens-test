@@ -11,8 +11,8 @@ Goal: Awwwards-caliber local site for Hagens Berman Racing Seattle (`#14539e`), 
 | 1 | Foundation + Home (video hero, nav, story, footer) | ✅ critic-passed | R1 blind A/B: ours 84 vs competitor 41 desktop, 84 vs 54 mobile — clear win |
 | 2 | Join Us page | ✅ critic-passed | R1 blind A/B vs competitor about: ours 79 vs 36 — clear win; 3 polish notes queued |
 | 3 | Partners page | ✅ critic-passed | R1 blind A/B: ours 79 vs 36 — clear win; ledger-depth fixes queued |
-| 4 | Events pages (Mason Lake, WTNB Night at PR) | 🔄 in progress | — |
-| 5 | Gallery page | ⏳ pending | — |
+| 4 | Events pages (Mason Lake, WTNB Night at PR) | ✅ critic-passed | R1 blind A/B: ours 88 vs 41 — clear win; WTNB row overflow + polish queued |
+| 5 | Gallery page | 🔄 in progress | — |
 | 6 | Site-wide motion polish | ⏳ pending | — |
 | 7 | Mobile deep-pass | ⏳ pending | — |
 | 8 | Accessibility & performance hardening | ⏳ pending | — |
