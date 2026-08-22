@@ -1,0 +1,51 @@
+[
+  {
+    "page": "index.html",
+    "total": 8635947,
+    "count": 28,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "join.html",
+    "total": 2299704,
+    "count": 22,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "partners.html",
+    "total": 749114,
+    "count": 21,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "events.html",
+    "total": 1909027,
+    "count": 23,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "mason.html",
+    "total": 4278567,
+    "count": 24,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "wtnb.html",
+    "total": 1209946,
+    "count": 20,
+    "missing": 1,
+    "detail": {}
+  },
+  {
+    "page": "gallery.html",
+    "total": 6022280,
+    "count": 28,
+    "missing": 1,
+    "detail": {}
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "viewport": "desktop",
+    "page": "/",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#community > .container > .section-head > .section-index"
+    ]
+  },
+  {
+    "viewport": "desktop",
+    "page": "/join.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      ".ledger-col[data-reveal=\"\"]:nth-child(1) > .ledger-col-head > .ledger-count",
+      ".ledger-col[data-reveal=\"\"]:nth-child(2) > .ledger-col-head > .ledger-count"
+    ]
+  },
+  {
+    "viewport": "desktop",
+    "page": "/partners.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      ".race-foot-label"
+    ]
+  },
+  {
+    "viewport": "desktop",
+    "page": "/events.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)"
+    ]
+  },
+  {
+    "viewport": "desktop",
+    "page": "/mason.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#facts > .container > dl > div:nth-child(1) > dt",
+      "#facts > .container > dl > div:nth-child(2) > dt",
+      "#facts > .container > dl > div:nth-child(3) > dt",
+      "#facts > .container > dl > div:nth-child(4) > dt",
+      "div:nth-child(5) > dt",
+      "th:nth-child(2)",
+      "th:nth-child(3)",
+      "th:nth-child(4)",
+      "th:nth-child(5)",
+      "tr:nth-child(3) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(6) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(7) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(9) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "#start-sheet > .container > .race-foot[data-reveal=\"\"] > .race-foot-label",
+      "#enter > .container > .section-head > .section-index"
+    ]
+  },
+  {
+    "viewport": "desktop",
+    "page": "/wtnb.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#the-night > .container > .section-head > .section-index",
+      ".race-foot-label"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(1) > span:nth-child(11)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#community > .container > .section-head > .section-index"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/join.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(1) > span:nth-child(11)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      ".ledger-col[data-reveal=\"\"]:nth-child(1) > .ledger-col-head > .ledger-count",
+      ".ledger-col[data-reveal=\"\"]:nth-child(2) > .ledger-col-head > .ledger-count"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/partners.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(5)",
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(1) > span:nth-child(11)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      ".race-foot-label"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/events.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(5)",
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/mason.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(5)",
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(1) > span:nth-child(11)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#facts > .container > dl > div:nth-child(1) > dt",
+      "#facts > .container > dl > div:nth-child(2) > dt",
+      "#facts > .container > dl > div:nth-child(3) > dt",
+      "#facts > .container > dl > div:nth-child(4) > dt",
+      "div:nth-child(5) > dt",
+      "tr:nth-child(3) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(6) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(7) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "tr:nth-child(9) > .prize-cash.cat-prize[data-th=\"Prizes\"] > .cash-tag",
+      "#start-sheet > .container > .race-foot[data-reveal=\"\"] > .race-foot-label",
+      "#enter > .container > .section-head > .section-index"
+    ]
+  },
+  {
+    "viewport": "mobile",
+    "page": "/wtnb.html",
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": [
+      ".ticker-group:nth-child(1) > span:nth-child(5)",
+      ".ticker-group:nth-child(1) > span:nth-child(7)",
+      ".ticker-group:nth-child(1) > span:nth-child(9)",
+      ".ticker-group:nth-child(1) > span:nth-child(11)",
+      ".ticker-group:nth-child(2) > span:nth-child(1)",
+      ".ticker-group:nth-child(2) > span:nth-child(3)",
+      ".ticker-group:nth-child(2) > span:nth-child(5)",
+      ".ticker-group:nth-child(2) > span:nth-child(7)",
+      ".ticker-group:nth-child(2) > span:nth-child(9)",
+      ".ticker-group:nth-child(2) > span:nth-child(11)",
+      "#the-night > .container > .section-head > .section-index",
+      ".race-foot-label"
+    ]
+  }
+]

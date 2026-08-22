@@ -16,13 +16,19 @@
   function openMenu() {
     lastFocused = document.activeElement;
     overlay.hidden = false;
-    requestAnimationFrame(() => overlay.classList.add("is-open"));
+    /* Focus must land INSIDE the overlay: visibility flips to visible only
+       when .is-open lands, so class + forced recalc + focus all happen in
+       the same frame — focusing earlier would silently no-op against
+       visibility:hidden and strand keyboard users outside the menu. */
+    requestAnimationFrame(() => {
+      overlay.classList.add("is-open");
+      void overlay.offsetHeight;
+      focusablesIn(overlay)[0]?.focus({ preventScroll: true });
+    });
     toggle.setAttribute("aria-expanded", "true");
     if (label) label.textContent = "Close";
     document.body.classList.add("menu-open");
     window.__lenis?.stop();
-    const first = focusablesIn(overlay)[0];
-    first?.focus({ preventScroll: true });
     document.addEventListener("keydown", onMenuKeydown);
     document.addEventListener("focusin", onDocFocusin);
   }

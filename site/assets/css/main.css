@@ -12,6 +12,9 @@
   --paper-2: #eae5d9;
   --ink: #141b26;
   --red: #d8432f;
+  /* Small-text red: --red reads ~3.9:1 on paper, so compact labels use
+     this darkened variant (5.2:1) while display accents keep --red. */
+  --red-deep: #b93321;
   --line-on-paper: rgba(20, 27, 38, 0.16);
   --line-on-dark: rgba(244, 241, 234, 0.18);
   --font-display: "Archivo", "Arial Narrow", sans-serif;
@@ -317,7 +320,9 @@ body.menu-open { overflow: hidden; }
   border-block: 1px solid var(--blue-deep);
   padding-block: 0.8rem;
 }
-.ticker-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+/* Opaque track background: the transformed marquee otherwise leaves axe's
+   contrast probe sampling the page behind the clip edge. */
+.ticker-track { display: flex; width: max-content; background: var(--blue); animation: marquee 30s linear infinite; }
 .ticker-group { display: flex; align-items: center; gap: 2.2rem; padding-right: 2.2rem; }
 .ticker-group span {
   font-family: var(--font-display); font-weight: 700; font-stretch: 116%;
@@ -348,6 +353,9 @@ body.menu-open { overflow: hidden; }
   font-size: clamp(0.78rem, 1vw, 0.9rem);
   letter-spacing: 0.3em; text-transform: uppercase;
 }
+/* Brand blue sinks to ~2.5:1 on navy — dark sections carry the light
+   accent instead (9.6:1). Paper sections keep --blue at 6.6:1. */
+.section--dark .section-index { color: #9dbfe8; }
 .section-rule { flex: 1; height: 1px; background: currentColor; opacity: 0.18; transform-origin: left; }
 .section--dark .section-rule { opacity: 0.25; }
 
@@ -671,7 +679,8 @@ body.menu-open { overflow: hidden; }
   font-size: clamp(0.78rem, 1vw, 0.9rem);
   letter-spacing: 0.3em; text-transform: uppercase;
 }
-.ledger-count { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.2em; opacity: 0.55; }
+/* 0.75 (not 0.55): keeps the count subtle while clearing 4.5:1 on paper. */
+.ledger-count { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.2em; opacity: 0.75; }
 .ledger-list { border-top: 2px solid var(--ink); }
 .ledger-item {
   display: grid;
@@ -885,7 +894,8 @@ body.menu-open { overflow: hidden; }
 #ledger .race-foot { margin-top: 0.75rem; }
 .race-foot-label {
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: rgba(20, 27, 38, 0.6);
+  /* >=4.5:1 on --paper for the small mono label. */
+  color: rgba(20, 27, 38, 0.7);
 }
 .race-foot-names {
   font-family: var(--font-display); font-weight: 700; font-stretch: 112%;
@@ -1152,7 +1162,8 @@ body.menu-open { overflow: hidden; }
 .facts-strip dl > div:first-child { border-left: 0; }
 .facts-strip dt {
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.66);
+  /* 0.78 white clears 4.5:1 over --blue for this micro label. */
+  color: rgba(255, 255, 255, 0.78);
 }
 .facts-strip dd {
   margin-top: 0.45rem;
@@ -1180,7 +1191,8 @@ body.menu-open { overflow: hidden; }
   border-bottom: 1px solid var(--ink);
   font-family: var(--font-mono); font-weight: 500;
   font-size: 0.66rem; letter-spacing: 0.26em; text-transform: uppercase;
-  color: rgba(20, 27, 38, 0.55);
+  /* >=4.5:1 on --paper. */
+  color: rgba(20, 27, 38, 0.7);
   text-align: left;
 }
 .cats td {
@@ -1220,7 +1232,7 @@ body.menu-open { overflow: hidden; }
   white-space: nowrap;
 }
 .cat-prize .tick { margin-right: 0.55rem; }
-.prize-cash { color: var(--red); font-weight: 600; }
+.prize-cash { color: var(--red-deep); font-weight: 600; }
 /* Phones: each row becomes a stacked card. */
 @media (max-width: 48em) {
   .cats-wrap { border-top: 0; }
@@ -1631,7 +1643,7 @@ body.menu-open { overflow: hidden; }
   .hero-media--video video { display: none; }
   .hero-media--video::before {
     content: ""; position: absolute; inset: 0;
-    background: url("../img/hero-poster.jpg") center / cover no-repeat;
+    background: url("../img/opt/hero-poster.webp") center / cover no-repeat;
   }
   .scroll-cue svg { animation: none; }
 }
