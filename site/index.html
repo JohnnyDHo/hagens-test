@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hagens Berman Racing Seattle — Everyone Can Race</title>
+  <meta name="description" content="Hagens Berman Racing Seattle is an amateur cycling race team competing in road, gravel, cyclocross, track, and mountain bike races throughout the Pacific Northwest." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preload" as="image" href="assets/img/hero-poster.jpg" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Hagens Berman Racing Seattle — home">
+        <span class="brand-mark" aria-hidden="true">HB</span>
+        <span class="brand-text">
+          <span class="brand-name">Hagens Berman</span>
+          <span class="brand-sub">Racing&thinsp;/&thinsp;Seattle</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a class="nav-link is-current" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="#">Events</a></li>
+          <li><a class="nav-link" href="#">Gallery</a></li>
+          <li><a class="nav-link" href="#partners">Partners</a></li>
+          <li><a class="nav-cta" href="#join">Join&nbsp;Us</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="menu-overlay">
+        <span class="menu-toggle-label" data-menu-label>Menu</span>
+        <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU OVERLAY ============ -->
+  <div class="menu-overlay" id="menu-overlay" data-menu-overlay hidden>
+    <nav class="overlay-nav" aria-label="Mobile">
+      <ol class="overlay-list">
+        <li style="--i:0"><a href="index.html" class="overlay-link"><em>01</em>Home<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:1"><a href="#" class="overlay-link"><em>02</em>Events<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:2"><a href="#" class="overlay-link"><em>03</em>Gallery<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:3"><a href="#partners" class="overlay-link"><em>04</em>Partners<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:4"><a href="#join" class="overlay-link overlay-link--cta"><em>05</em>Join Us<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ol>
+    </nav>
+    <div class="overlay-foot">
+      <p>A Seattle area competitive cycling team.<br />Est. 20+ years · 501(c)(3) via Pedali Inc.</p>
+      <a href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank">@hagensbermancycling</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-label="Intro">
+      <div class="hero-media" aria-hidden="true">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/img/hero-poster.jpg"
+          tabindex="-1"
+        >
+          <source src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-scrim"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+      </div>
+
+      <p class="hero-rail hero-rail--l" aria-hidden="true">47.61°N&thinsp;/&thinsp;122.33°W&ensp;—&ensp;Seattle&nbsp;WA</p>
+      <p class="hero-rail hero-rail--r" aria-hidden="true">Est.&nbsp;20+ seasons&ensp;—&ensp;Pacific&nbsp;Northwest</p>
+
+      <div class="hero-content container">
+        <p class="hero-kicker" data-hero-fade>
+          <span class="tick" aria-hidden="true"></span>
+          A Seattle area competitive cycling team
+        </p>
+        <h1 class="hero-title">
+          <span class="line"><span class="word" data-hero-line>Everyone</span></span>
+          <span class="line line--indent"><span class="word" data-hero-line>Can&nbsp;Race.</span></span>
+        </h1>
+        <p class="hero-lede" data-hero-fade>
+          Hagens Berman Racing Seattle is an amateur cycling race team competing in road,
+          gravel, cyclocross, track, and mountain bike races throughout the Pacific Northwest.
+        </p>
+        <div class="hero-actions" data-hero-fade>
+          <a class="btn btn--solid" href="#join">Join the team</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch!</a>
+        </div>
+      </div>
+
+      <div class="hero-meta container" data-hero-fade>
+        <dl class="hero-stats">
+          <div><dt>Established</dt><dd>20+ yrs</dd></div>
+          <div><dt>Disciplines</dt><dd>Five</dd></div>
+          <div><dt>Squads</dt><dd>M·W·Masters·Dev</dd></div>
+          <div><dt>Status</dt><dd>501(c)(3)</dd></div>
+        </dl>
+        <a class="scroll-cue" href="#story" aria-label="Scroll to story section">
+          <span>Scroll</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v14m0 0l-6-6m6 6l6-6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>Road</span><i></i><span>Gravel</span><i></i><span>Cyclocross</span><i></i><span>Track</span><i></i><span>Mountain&nbsp;Bike</span><i></i><span>Everyone&nbsp;can&nbsp;race</span><i></i>
+        </div>
+        <div class="ticker-group">
+          <span>Road</span><i></i><span>Gravel</span><i></i><span>Cyclocross</span><i></i><span>Track</span><i></i><span>Mountain&nbsp;Bike</span><i></i><span>Everyone&nbsp;can&nbsp;race</span><i></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 01 WHO WE ARE ============ -->
+    <section class="section section--paper" id="story">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="section-index">01</span>
+          <h2 class="section-label">Who we are</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="intro-grid">
+          <p class="lede" data-reveal>
+            Twenty-plus seasons in. Alumni in the pro ranks. Still lining up
+            <em>every weekend</em> — because racing is what we do together.
+          </p>
+          <div class="intro-body" data-reveal>
+            <p>
+              Hagens Berman Racing Seattle is an amateur cycling race team competing in road,
+              gravel, cyclocross, track, and mountain bike races throughout the Pacific
+              Northwest. Our team has been established for over 20 years, and our alumni
+              include riders who have gone on to race professionally.
+            </p>
+            <p>
+              We seek to develop riders of all ages and abilities to race successfully while
+              maintaining healthy balance with other aspects of life.
+            </p>
+          </div>
+          <ul class="fact-rail" data-reveal>
+            <li><span>Years racing</span><strong>20+</strong></li>
+            <li><span>Alumni</span><strong>Pro ranks</strong></li>
+            <li><span>Squads</span><strong>4</strong></li>
+            <li><span>Region</span><strong>PNW</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEAM PHOTO INTERLUDE ============ -->
+    <figure class="interlude" data-parallax-figure>
+      <div class="interlude-frame" data-reveal-img>
+        <img
+          src="assets/img/team-photo.jpg"
+          alt="The full Hagens Berman squad lined up in team kit under a blue sky"
+          width="1170" height="874"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="container interlude-caption">
+        <span>Fig.&nbsp;01 — The full squad, team kit, PNW sky.</span>
+        <span>Hagens Berman Racing archive</span>
+      </figcaption>
+    </figure>
+
+    <!-- ============ 02 DISCIPLINES ============ -->
+    <section class="section section--paper" id="disciplines">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="section-index">02</span>
+          <h2 class="section-label">Five disciplines</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </header>
+        <p class="disciplines-note" data-reveal>
+          One team, five ways to suffer beautifully. Wherever you point a bike, there&rsquo;s a
+          teammate beside you.
+        </p>
+        <ol class="discipline-list">
+          <li class="discipline-row" data-reveal>
+            <span class="discipline-num">01</span>
+            <h3 class="discipline-name">Road</h3>
+            <p class="discipline-desc">Circuit &amp; road races — the heart of the calendar.</p>
+            <span class="discipline-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="discipline-row" data-reveal>
+            <span class="discipline-num">02</span>
+            <h3 class="discipline-name">Gravel</h3>
+            <p class="discipline-desc">Forest service roads, big days out.</p>
+            <span class="discipline-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="discipline-row" data-reveal>
+            <span class="discipline-num">03</span>
+            <h3 class="discipline-name">Cyclocross</h3>
+            <p class="discipline-desc">Autumn mud, barriers and cowbells.</p>
+            <span class="discipline-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="discipline-row" data-reveal>
+            <span class="discipline-num">04</span>
+            <h3 class="discipline-name">Track</h3>
+            <p class="discipline-desc">Velodrome nights, fixed gear, full gas.</p>
+            <span class="discipline-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="discipline-row" data-reveal>
+            <span class="discipline-num">05</span>
+            <h3 class="discipline-name">Mountain bike</h3>
+            <p class="discipline-desc">Singletrack in our own backyard.</p>
+            <span class="discipline-arrow" aria-hidden="true">→</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 03 GIVING BACK (dark) ============ -->
+    <section class="section section--dark" id="community">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="section-index">03</span>
+          <h2 class="section-label">Giving back</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </header>
+
+        <blockquote class="pull-quote" data-reveal>
+          <p>&ldquo;Racing happens as a community,&nbsp;<br class="quote-br" />not as an individual.&rdquo;</p>
+        </blockquote>
+
+        <div class="community-grid">
+          <div class="community-copy" data-reveal>
+            <p>
+              We don&rsquo;t only race hard — we give our time back. Hagens Berman hosts two road
+              races each March, and our members regularly volunteer at other events throughout
+              the year.
+            </p>
+            <p>
+              We foster a welcoming, enthusiastic, and inclusive culture within the team — an
+              attitude that we bring to races.
+            </p>
+          </div>
+
+          <article class="event-card" data-reveal>
+            <p class="event-tag">Hosted by HB Racing</p>
+            <h3 class="event-title">Mason Lake Road&nbsp;Race</h3>
+            <p class="event-dates"><span>Mar 21</span><span>Mar 28</span><span>2026</span></p>
+            <p class="event-note">
+              The PNW Spring Classics return — a rolling 12-mile loop around scenic Mason Lake.
+              Start/finish at Grapeview, WA.
+            </p>
+            <div class="event-links">
+              <a class="btn btn--outline btn--sm" href="#">Event details</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 WE RACE AS A TEAM ============ -->
+    <section class="section section--paper" id="team">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="section-index">04</span>
+          <h2 class="section-label">We race as a team</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="team-grid">
+          <div class="team-copy" data-reveal>
+            <p>
+              We strive to win and have fun while fueling the development of riders and of
+              cycling in the local community — and we back it up with real in-race support.
+            </p>
+            <ul class="programme">
+              <li><span>Weekly team rides</span> — open to all friendly riders</li>
+              <li><span>Skills &amp; strategy clinics</span> — organized coaching</li>
+              <li><span>Team training camp</span> — build the base together</li>
+              <li><span>In-race support</span> — feeds, wheels, pit duty</li>
+            </ul>
+            <p class="team-emphasis">
+              We race as a team,<br />not as a group of individuals wearing the same kit.
+            </p>
+          </div>
+
+          <div class="collage">
+            <figure class="collage-item collage-item--a" data-reveal-img>
+              <img src="assets/img/race-mason-2.jpg"
+                   alt="Women&rsquo;s peloton leaning through a corner under storm clouds at Mason Lake"
+                   loading="lazy" width="1800" height="1440" decoding="async" />
+               <figcaption>Mason Lake — women&rsquo;s field</figcaption>
+            </figure>
+            <figure class="collage-item collage-item--b" data-reveal-img>
+              <img src="assets/img/rider-join.jpg"
+                   alt="Rain-soaked masters racers driving the pace up a wet climb"
+                   loading="lazy" width="1366" height="1366" decoding="async" />
+              <figcaption>Rain is just part of it</figcaption>
+            </figure>
+            <figure class="collage-item collage-item--c" data-reveal-img>
+              <img src="assets/img/race-mason-5.jpg"
+                   alt="Hagens Berman rider smiling on the start line before a road race"
+                   loading="lazy" width="1800" height="1440" decoding="async" />
+              <figcaption>Start line nerves — the good kind</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 PARTNERS ============ -->
+    <section class="section section--paper partners" id="partners">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="section-index">05</span>
+          <h2 class="section-label">Supported by</h2>
+          <span class="section-rule" aria-hidden="true"></span>
+        </header>
+        <ul class="partner-grid">
+          <li class="partner partner--title" data-reveal>
+            <span class="partner-num">01</span>
+            <span class="partner-name">Hagens Berman Sobol Shapiro LLP</span>
+            <span class="partner-role">Title sponsor — plaintiff-focused law firm protecting consumers, workers, whistleblowers &amp; investors</span>
+          </li>
+          <li class="partner" data-reveal>
+            <span class="partner-num">02</span>
+            <span class="partner-name">Smith Optics</span>
+            <span class="partner-role">Eyewear · Helmets</span>
+          </li>
+          <li class="partner" data-reveal>
+            <span class="partner-num">03</span>
+            <span class="partner-name">Skratch Labs</span>
+            <span class="partner-role">Sports nutrition</span>
+          </li>
+          <li class="partner" data-reveal>
+            <span class="partner-num">04</span>
+            <span class="partner-name">Specialized</span>
+            <span class="partner-role">Ambassador program — via Edge and Spoke</span>
+          </li>
+          <li class="partner" data-reveal>
+            <span class="partner-num">05</span>
+            <span class="partner-name">SILCA</span>
+            <span class="partner-role">Pumps &amp; tools</span>
+          </li>
+        </ul>
+        <p class="partners-more" data-reveal><a href="#">All partners →</a></p>
+      </div>
+    </section>
+
+    <!-- ============ INSTAGRAM STRIP ============ -->
+    <section class="section section--dark instagram" id="instagram" aria-label="Instagram">
+      <div class="container">
+        <p class="ig-kicker" data-reveal>The gallery lives on Instagram</p>
+        <a class="ig-handle" href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank" data-reveal>
+          @hagensbermancycling<span aria-hidden="true">↗</span>
+        </a>
+        <div class="ig-strip">
+          <a class="ig-photo" href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank" data-reveal-img>
+            <img src="assets/img/wtnb-start.jpg"
+                 alt="Golden-hour start line crowded with riders at Pacific Raceways"
+                 loading="lazy" width="1800" height="1350" decoding="async" />
+            <span class="ig-tag">Start line, Pacific Raceways</span>
+          </a>
+          <a class="ig-photo" href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank" data-reveal-img>
+            <img src="assets/img/race-mason-1.jpg"
+                 alt="Peloton descending a forested road with an HB rider leading"
+                 loading="lazy" width="1800" height="1440" decoding="async" />
+            <span class="ig-tag">Mason Lake Road Race</span>
+          </a>
+          <a class="ig-photo" href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank" data-reveal-img>
+            <img src="assets/img/race-mason-3.jpg"
+                 alt="Two racers laughing on the start line in the rain"
+                 loading="lazy" width="1800" height="1202" decoding="async" />
+            <span class="ig-tag">Pre-race, Mason Lake</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOIN BAND ============ -->
+    <section class="join-band" id="join">
+      <div class="container join-inner">
+        <div class="join-head" data-reveal>
+          <span class="join-index">06</span>
+          <h2 class="join-kicker">Ride with us</h2>
+        </div>
+        <p class="join-line" data-reveal>
+          First race or upgrade points —<br />
+          <strong>there&rsquo;s a place for you here.</strong>
+        </p>
+        <div class="join-row">
+          <a class="join-arrow" href="#" data-reveal>
+            <span>Join the team</span>
+            <svg viewBox="0 0 56 24" aria-hidden="true"><path d="M0 12h52m0 0l-9-9m9 9l-9 9"/></svg>
+          </a>
+          <p class="join-note" data-reveal>Men&rsquo;s&thinsp;/&thinsp;women&rsquo;s&thinsp;/&thinsp;masters&thinsp;/&thinsp;development squads &mdash; $75 annual dues, all five disciplines.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="brand-mark brand-mark--lg" aria-hidden="true">HB</span>
+        <p class="footer-tagline">A Seattle area competitive cycling team.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#join">Join us</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h3>Visit</h3>
+        <address>
+          Seattle Race Club<br />
+          2440 63rd Avenue Southeast<br />
+          Mercer Island, WA 98040
+        </address>
+      </div>
+
+      <div class="footer-col">
+        <h3>Follow</h3>
+        <ul class="footer-social">
+          <li><a href="https://www.instagram.com/hagensbermancycling/" rel="noopener" target="_blank" aria-label="Instagram">@hagensbermancycling</a></li>
+          <li><a href="https://www.facebook.com/HagensBermanCyclingTeam/" rel="noopener" target="_blank" aria-label="Facebook">HagensBermanCyclingTeam</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <p>©&nbsp;2026 Pedali Inc. / Hagens Berman Racing Seattle · A 501(c)(3) non-profit organization.</p>
+      <a class="to-top" href="#top">Back to top ↑</a>
+      <p class="video-credit">
+        <a href="https://commons.wikimedia.org/wiki/File:Giro_d%27Italia_2018_bicycle_race,_launch_of_stage_3_,_Beer_Sheva.webm" rel="noopener" target="_blank">Hero footage: Giro d&rsquo;Italia 2018, CC BY 4.0 via Wikimedia Commons</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/vendor/gsap.min.js" defer></script>
+  <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
