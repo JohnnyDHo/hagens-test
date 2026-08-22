@@ -1319,6 +1319,117 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ============================================================
+   GALLERY PAGE — the contact sheet
+   ============================================================ */
+.arch-note {
+  max-width: 52ch;
+  font-size: 1.05rem; color: rgba(20, 27, 38, 0.78);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(2.5rem, 5vw, 4.5rem) clamp(0.9rem, 2vw, 1.6rem);
+}
+.a-item { position: relative; min-width: 0; margin: 0; }
+.a-frame { position: relative; overflow: clip; background: var(--paper-2); }
+.a-frame img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.a-item:hover .a-frame img { transform: scale(1.035); }
+.a-item figcaption {
+  display: flex; justify-content: space-between; gap: 0.35rem 1rem; flex-wrap: wrap;
+  margin-top: 0.65rem;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(20, 27, 38, 0.6);
+}
+.a-item .a-loc { color: var(--blue); }
+
+/* Asymmetric placement — varied spans, crops and staggered offsets
+   so the sheet reads like an editorial layout, not a card wall. */
+.a-item--a { grid-column: span 4; }
+.a-item--a .a-frame { aspect-ratio: 2048 / 1638; }
+.a-item--b { grid-column: span 2; align-self: start; margin-top: clamp(3rem, 9vw, 8rem); }
+.a-item--b .a-frame { aspect-ratio: 1 / 1; }
+.a-item--c { grid-column: span 2; align-self: end; }
+.a-item--c .a-frame { aspect-ratio: 1170 / 873; }
+.a-item--d { grid-column: span 4; }
+.a-item--d .a-frame { aspect-ratio: 2048 / 1367; }
+.a-item--e { grid-column: span 3; }
+.a-item--e .a-frame { aspect-ratio: 1800 / 1350; }
+.a-item--f { grid-column: span 3; margin-top: clamp(1.25rem, 3vw, 2.75rem); }
+.a-item--f .a-frame { aspect-ratio: 2048 / 1638; }
+.a-item--g { grid-column: span 4; }
+.a-item--g .a-frame { aspect-ratio: 21 / 10; }
+.a-item--h { grid-column: span 2; align-self: start; margin-top: clamp(2rem, 6vw, 5rem); }
+.a-item--h .a-frame { aspect-ratio: 1 / 1; }
+.a-item--i { grid-column: 1 / -1; }
+.a-item--i .a-frame { aspect-ratio: 21 / 8; }
+
+@media (max-width: 64em) {
+  .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3rem) clamp(0.9rem, 2vw, 1.4rem); }
+  .a-item--a, .a-item--b, .a-item--c, .a-item--d,
+  .a-item--e, .a-item--f, .a-item--g, .a-item--h { grid-column: auto; margin-top: 0; align-self: auto; }
+  .a-item--b .a-frame, .a-item--c .a-frame, .a-item--f .a-frame { aspect-ratio: 4 / 3; }
+  .a-item--g .a-frame { aspect-ratio: 16 / 9; }
+  .a-item--i { grid-column: 1 / -1; }
+  .a-item--i .a-frame { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 48em) {
+  .arch-grid { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+}
+
+/* ---------- gallery page: dark feature plate ---------- */
+.plate {
+  position: relative;
+  background: var(--navy); color: var(--paper);
+  overflow: clip;
+}
+.plate-media, .plate-media img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.plate-media img { object-fit: cover; filter: saturate(1.14) contrast(1.07); }
+.plate-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(10, 21, 36, 0.94), rgba(10, 21, 36, 0.42) 46%, rgba(10, 21, 36, 0.16)),
+    linear-gradient(100deg, rgba(13, 58, 112, 0.45), transparent 58%);
+}
+.plate-inner {
+  position: relative; z-index: 1; width: 100%;
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding-block: clamp(6rem, 16vw, 13rem);
+}
+.plate-tag {
+  display: flex; justify-content: space-between; gap: 0.5rem 1.5rem; flex-wrap: wrap;
+  width: 100%;
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #9dbfe8;
+}
+.plate-tag .tick { margin-right: 0.8rem; }
+.plate .pull-quote { margin-top: clamp(1.5rem, 4vw, 3rem); color: var(--paper); text-shadow: 0 2px 24px rgba(10, 21, 36, 0.55); }
+
+/* ---------- gallery page: closing Instagram band ---------- */
+.ig-close { background: var(--blue); color: #fff; border-top: 1px solid var(--blue-deep); }
+.ig-close .join-index { color: rgba(255, 255, 255, 0.85); }
+.ig-close .join-kicker { color: rgba(255, 255, 255, 0.92); }
+.ig-close .section-rule { opacity: 0.3; }
+.ig-close-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem 3rem; flex-wrap: wrap;
+  margin-top: clamp(2rem, 5vw, 3.75rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+.ig-close-row .btn { flex: none; }
+.ig-close-note {
+  max-width: 46ch;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
+  line-height: 1.9; color: rgba(255, 255, 255, 0.78);
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
