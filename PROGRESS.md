@@ -15,8 +15,8 @@ Goal: Awwwards-caliber local site for Hagens Berman Racing Seattle (`#14539e`), 
 | 5 | Gallery page | ✅ critic-passed | R1 blind A/B: ours 84 vs 41 — clear win; header/FIG collision + rhythm fixes queued |
 | 6 | Site-wide motion polish | ✅ done | Motion craft shipped (35f16c5) + layout bug fixes (c9b1fd3, 4a4eb01, 5f5737e) |
 | 7 | Mobile deep-pass | ✅ critic-passed | Mobile-only blind A/B: ours 88 vs competitor 52 — clear win; contact-sheet polish queued |
-| 8 | Accessibility & performance hardening | 🔄 in progress | — |
-| F | Final full-site blind A/B (desktop + mobile) | ⏳ pending | — |
+| 8 | Accessibility & performance hardening | ✅ done | 0 axe violations across 7 pages × 2 viewports; keyboard pass; page weight −38% (ee33332) |
+| F | Final full-site blind A/B (desktop + mobile) | 🔄 in progress | — |
 
 ## Log
 - 2026-08-21: Content scraped from hbsccycling.com into `CONTENT.md`; competitor surveyed (static 5-page site, placeholder imagery); A/B screenshot rig verified in `tools/`. Piece 1 builder launched.
