@@ -16,9 +16,12 @@ Goal: Awwwards-caliber local site for Hagens Berman Racing Seattle (`#14539e`), 
 | 6 | Site-wide motion polish | ✅ done | Motion craft shipped (35f16c5) + layout bug fixes (c9b1fd3, 4a4eb01, 5f5737e) |
 | 7 | Mobile deep-pass | ✅ critic-passed | Mobile-only blind A/B: ours 88 vs competitor 52 — clear win; contact-sheet polish queued |
 | 8 | Accessibility & performance hardening | ✅ done | 0 axe violations across 7 pages × 2 viewports; keyboard pass; page weight −38% (ee33332) |
-| F | Final full-site blind A/B (desktop + mobile) | 🔄 in progress | — |
+| F | Final full-site blind A/B (desktop + mobile) | ✅ ours wins | Home 81–41 · Join/Partners 76–46 · Events/Mason/WTNB/Gallery 79–41 — clear win on all counts |
 
 ## Log
 - 2026-08-21: Content scraped from hbsccycling.com into `CONTENT.md`; competitor surveyed (static 5-page site, placeholder imagery); A/B screenshot rig verified in `tools/`. Piece 1 builder launched.
 - 2026-08-21: Piece 1 built + polished (commit 527611b). Critic R1 (blind A/B, downscaled evidence): desktop 84–41, mobile 84–54 in our favor. Action item: strengthen mobile hero kicker contrast over video.
 - 2026-08-21: Kicker contrast fixed + Join Us page built (282034a); repo history cleaned of accidental tool deps (e6320a7). Critic R1 join vs competitor about: 79–36 clear win. Queued: own the join hero treatment, tighten navy dead band, women's-program image asset.
+- 2026-08-22: Motion polish (35f16c5), critic-reported layout fixes (c9b1fd3), mobile deep-pass fixes (4a4eb01, 5f5737e), gallery contact-sheet craft (8b75152). Mobile-only blind A/B: 88-52.
+- 2026-08-22: A11y/perf hardening (ee33332): 0 axe violations across 7 pages x 2 viewports, keyboard pass, page weight -38%.
+- 2026-08-22: FINAL full-site blind A/B — ours wins clearly on every comparison: Home 81-41, Join/Partners 76-46, Events+Mason+WTNB+Gallery 79-41. Goal met: production-ready local build, no deployment performed.
